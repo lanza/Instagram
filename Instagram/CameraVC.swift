@@ -31,7 +31,22 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             
             self.usersImage = pickedImage
-            self.imageURL = info[UIImagePickerControllerMediaURL] as? NSURL
+            
+            let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+            let path = paths[0] as NSString
+            let pathString = path.stringByAppendingPathComponent("cached.png")
+            
+            
+            var dataFormat = UIImageJPEGRepresentation(pickedImage, 1.0)
+            if dataFormat == nil {
+                dataFormat = UIImagePNGRepresentation(pickedImage)
+            }
+            
+            let result = dataFormat?.writeToFile(pathString, atomically: true)
+            let image = UIImage(contentsOfFile: pathString)
+            
+            
+            self.imageURL = NSURL(fileURLWithPath: pathString)
             picker.dismissViewControllerAnimated(true, completion: nil)
             
             // segue to ComposeVC

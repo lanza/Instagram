@@ -10,6 +10,8 @@ class CloudManager {
         publicDatabase = container.publicCloudDatabase
     }
     
+    var currentUser: User!
+    
     func getCurrentUser(completionHandler: (User?,ErrorType?) -> () ) {
         
         container.fetchUserRecordIDWithCompletionHandler { (userRecordID, errorOne) -> Void in
@@ -25,18 +27,54 @@ class CloudManager {
                 }
                 guard let userRecord = userRecord else { return }
                 let user = User(fromRecord: userRecord)
+                self.currentUser = user
                 completionHandler(user,nil)
             })
         }
     }
     
-    func postImage(image: NSURL, description: String) {
+    func postImage(imageURL: NSURL, description: String) {
         
-        let post = Post()
+        func savePost(post: Post) {
+            post.saveRecord(inDatabase: publicDatabase, withCompletionHandler: nil)
+        }
         
+        let post = Post(withImageURL: imageURL, andDescription: description, andPoster: currentUser)
+        let referenceToPost = CKReference(record: post.record, action: .None)
+        
+        var usersPosts = currentUser.record.objectForKey("Posts") as? [CKReference]
+        if var usersPosts = usersPosts {
+            usersPosts.append(referenceToPost)
+            currentUser.record.setObject(usersPosts, forKey: "Posts")
+        } else {
+            usersPosts = [referenceToPost]
+            currentUser.record.setObject(usersPosts, forKey: "Posts")
+        }
+        print("FUCK")
+        
+        currentUser.saveRecord(inDatabase: publicDatabase) { () -> () in
+            savePost(post)
+        }
+        
+//        let ckModifyRecordsOperation = CKModifyRecordsOperation(recordsToSave: [currentUser.record, post.record], recordIDsToDelete: nil)
+//        ckModifyRecordsOperation.modifyRecordsCompletionBlock = { records, recordIDs, error in
+//            print("Started")
+//            if let error = error {
+//                print("The function \(__FUNCTION__) had the error: \(error)")
+//            }
+//            guard let records = records else { return }
+//        }
+//        ckModifyRecordsOperation.completionBlock = {
+//            print("finished")
+//        }
+//        publicDatabase.addOperation(ckModifyRecordsOperation)
     }
     
+
+    
     func getPostsForUser(user: User, withCompletionHandler completionHandler: ([Post]?,ErrorType?) -> ()) {
+       
+        
         let reference = CKReference(record: user.record, action: .None)
         let predicate = NSPredicate(format: "Poster == %@", reference)
         let query = CKQuery(recordType: "Post", predicate: predicate)
@@ -50,6 +88,7 @@ class CloudManager {
             completionHandler(posts,error)
         }
     }
+    
     
     func getFollowersForUser(user: User, withCompletionHandler completionHandler: ([User]?,ErrorType?) -> ()) {
         let reference = CKReference(record: user.record, action: .None)

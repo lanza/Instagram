@@ -4,6 +4,7 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     let manager = CloudManager.sharedManager
     var user: User!
+
     
     // storyboard outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -13,6 +14,7 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         collectionView.delegate = self
         manager.getCurrentUser { (user, error) -> () in
@@ -44,7 +46,7 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! PostCollectionViewCell
         let post = posts[indexPath.row]
         print(post.posterName)
-        cell.imageView.image = UIImage(named: "placeholder")
+        cell.imageView.image = post.image
         
         return cell
     }

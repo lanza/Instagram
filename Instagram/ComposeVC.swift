@@ -17,8 +17,9 @@ class ComposeVC: UIViewController {
     @IBAction func onShareTapped(sender: AnyObject) {
         
         guard let imageURL = imageURL else { return }
+        print(imageURL)
         CloudManager.sharedManager.postImage(imageURL, description: "Something something darkside")
-        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func onCancelTapped(sender: AnyObject) {

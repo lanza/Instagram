@@ -16,6 +16,8 @@
 		60EFB25E1C683119004DEFD2 /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFB25D1C683119004DEFD2 /* NotificationsVC.swift */; };
 		60EFB2601C683123004DEFD2 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFB25F1C683123004DEFD2 /* ProfileVC.swift */; };
 		843DC53D1C066D3B6AF2CCBE /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28942F0B6A189CA6A16CA5 /* Pods_Instagram.framework */; };
+		D81806C91C6A9D600046F0C3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81806C81C6A9D600046F0C3 /* Comment.swift */; };
+		D81806CB1C6A9D7D0046F0C3 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81806CA1C6A9D7D0046F0C3 /* Like.swift */; };
 		D89306261C69768C00154692 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89306251C69768C00154692 /* Post.swift */; };
 		D89306281C6976B400154692 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89306271C6976B400154692 /* User.swift */; };
 		D893062A1C697F7900154692 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89306291C697F7900154692 /* CloudManager.swift */; };
@@ -41,6 +43,8 @@
 		60EFB25F1C683123004DEFD2 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		911B198578C32D7085C8475A /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		CE28942F0B6A189CA6A16CA5 /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D81806C81C6A9D600046F0C3 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		D81806CA1C6A9D7D0046F0C3 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		D89306251C69768C00154692 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D89306271C6976B400154692 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D89306291C697F7900154692 /* CloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
@@ -166,8 +170,10 @@
 		D8EDC8C11C6410DE00FF79E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D89306251C69768C00154692 /* Post.swift */,
 				D89306271C6976B400154692 /* User.swift */,
+				D89306251C69768C00154692 /* Post.swift */,
+				D81806CA1C6A9D7D0046F0C3 /* Like.swift */,
+				D81806C81C6A9D600046F0C3 /* Comment.swift */,
 				D89306291C697F7900154692 /* CloudManager.swift */,
 			);
 			name = Model;
@@ -305,6 +311,7 @@
 				D89306331C699EEA00154692 /* ChecksError.swift in Sources */,
 				605AFEDB1C67F9320048F892 /* CameraVC.swift in Sources */,
 				6087952A1C6A69B000DD7D0A /* ProfileVCCell.swift in Sources */,
+				D81806CB1C6A9D7D0046F0C3 /* Like.swift in Sources */,
 				6096F8181C6429AE00C204DA /* PostCollectionViewCell.swift in Sources */,
 				D893062A1C697F7900154692 /* CloudManager.swift in Sources */,
 				60EFB2601C683123004DEFD2 /* ProfileVC.swift in Sources */,
@@ -312,6 +319,7 @@
 				D8EDC8A91C640ACE00FF79E3 /* AppDelegate.swift in Sources */,
 				6096F81B1C642F5A00C204DA /* MainFeedVC.swift in Sources */,
 				D893062E1C6980E600154692 /* RecordToClassProtocol.swift in Sources */,
+				D81806C91C6A9D600046F0C3 /* Comment.swift in Sources */,
 				605AFEDD1C67FBFE0048F892 /* ComposeVC.swift in Sources */,
 				D89306311C699AB500154692 /* DisplaysAlerts.swift in Sources */,
 				D89306281C6976B400154692 /* User.swift in Sources */,
