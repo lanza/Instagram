@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="foP-hT-zdu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="foP-hT-zdu">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,20 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bIC-eT-tOZ">
-                                <rect key="frame" x="160" y="74" width="160" height="128"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="Oll-Zx-z2Q"/>
-                                    <constraint firstAttribute="width" constant="160" id="zM9-4q-qzb"/>
-                                </constraints>
-                                <string key="text">user: @bobsmith
-posts: 12</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XDI-7f-RxL">
-                                <rect key="frame" x="0.0" y="220" width="320" height="299"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XDI-7f-RxL">
+                                <rect key="frame" x="0.0" y="214" width="320" height="305"/>
                                 <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Eay-bx-0jL">
                                     <size key="itemSize" width="105" height="106"/>
@@ -39,38 +27,65 @@ posts: 12</string>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FkU-Ol-a7g">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="FkU-Ol-a7g" customClass="ProfileVCCell" customModule="Instagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="105" height="106"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M7c-nd-lYD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="106"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="M7c-nd-lYD" secondAttribute="trailing" id="LHg-Eb-S5k"/>
+                                            <constraint firstItem="M7c-nd-lYD" firstAttribute="top" secondItem="FkU-Ol-a7g" secondAttribute="top" id="YNc-Zd-v0H"/>
+                                            <constraint firstItem="M7c-nd-lYD" firstAttribute="leading" secondItem="FkU-Ol-a7g" secondAttribute="leading" id="gtu-Nq-mbE"/>
+                                            <constraint firstAttribute="bottom" secondItem="M7c-nd-lYD" secondAttribute="bottom" id="wNq-3Z-rzb"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="M7c-nd-lYD" id="ExW-nn-eHs"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="0.0" y="220" width="568" height="299"/>
                                 </variation>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VLc-mT-KPG">
-                                <rect key="frame" x="12" y="74" width="128" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VLc-mT-KPG">
+                                <rect key="frame" x="0.0" y="64" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="WtP-xg-QU0"/>
-                                    <constraint firstAttribute="height" constant="160" id="fe8-Mv-u5M"/>
+                                    <constraint firstAttribute="height" constant="150" id="HFz-fb-Ph2"/>
+                                    <constraint firstAttribute="width" constant="150" id="W0b-e9-2QA"/>
                                 </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bIC-eT-tOZ">
+                                <rect key="frame" x="160" y="64" width="160" height="150"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="2be-DM-7IP"/>
+                                </constraints>
+                                <string key="text">user: @bobsmith
+posts: 12</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VLc-mT-KPG" firstAttribute="leading" secondItem="LzY-AG-gLx" secondAttribute="leading" id="CyC-4S-Bv5"/>
-                            <constraint firstAttribute="trailing" secondItem="bIC-eT-tOZ" secondAttribute="trailing" id="Gtd-WO-JTj"/>
-                            <constraint firstItem="XDI-7f-RxL" firstAttribute="leading" secondItem="LzY-AG-gLx" secondAttribute="leading" id="IWb-2j-SOi"/>
-                            <constraint firstItem="tJG-uV-vAZ" firstAttribute="top" secondItem="XDI-7f-RxL" secondAttribute="bottom" id="Mij-SE-2uB"/>
-                            <constraint firstItem="bIC-eT-tOZ" firstAttribute="leading" secondItem="VLc-mT-KPG" secondAttribute="trailing" id="deo-nn-PWs"/>
-                            <constraint firstItem="XDI-7f-RxL" firstAttribute="top" secondItem="bIC-eT-tOZ" secondAttribute="bottom" id="ko6-T1-jEe"/>
-                            <constraint firstAttribute="trailing" secondItem="XDI-7f-RxL" secondAttribute="trailing" id="sa4-bv-x1r"/>
+                            <constraint firstItem="XDI-7f-RxL" firstAttribute="top" secondItem="VLc-mT-KPG" secondAttribute="bottom" id="9jx-N0-MxW"/>
+                            <constraint firstItem="bIC-eT-tOZ" firstAttribute="leading" secondItem="VLc-mT-KPG" secondAttribute="trailing" constant="10" id="AbR-cr-H9H"/>
+                            <constraint firstAttribute="trailing" secondItem="bIC-eT-tOZ" secondAttribute="trailing" id="FHl-XF-oOC"/>
+                            <constraint firstItem="bIC-eT-tOZ" firstAttribute="top" secondItem="afx-mh-Byn" secondAttribute="bottom" id="QUn-GU-fUQ"/>
+                            <constraint firstItem="XDI-7f-RxL" firstAttribute="leading" secondItem="LzY-AG-gLx" secondAttribute="leading" id="fgQ-vA-MSw"/>
+                            <constraint firstAttribute="trailing" secondItem="XDI-7f-RxL" secondAttribute="trailing" id="kgB-FY-KEQ"/>
+                            <constraint firstItem="VLc-mT-KPG" firstAttribute="leading" secondItem="LzY-AG-gLx" secondAttribute="leading" id="uw4-Bz-fGD"/>
+                            <constraint firstItem="VLc-mT-KPG" firstAttribute="top" secondItem="afx-mh-Byn" secondAttribute="bottom" id="wcH-3g-1yt"/>
+                            <constraint firstItem="tJG-uV-vAZ" firstAttribute="top" secondItem="XDI-7f-RxL" secondAttribute="bottom" id="yH9-Wf-psw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iJd-Zm-6my"/>

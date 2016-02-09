@@ -22,8 +22,10 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        //        layout.itemSize = CGSize(width: collectionView.frame.size.width / 3, height: collectionView.frame.size.width / 3)
-        
+        // set Instagram logo image as title (but doesn't work)
+        let logo = UIImage(named: "Instagram_logo")
+        let topImageView = UIImageView(image:logo)
+        self.navigationItem.titleView = topImageView
     }
     
     // MARK: - UICollectionViewDataSource protocol
@@ -40,7 +42,6 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ProfileVCCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.textLabel.text = self.items[indexPath.item]
         cell.backgroundColor = UIColor.greenColor()
         cell.imageView.image = UIImage(named: "placeholder")
         

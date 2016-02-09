@@ -10,9 +10,8 @@ import UIKit
 
 class ProfileVCCell: UICollectionViewCell {
     
-    @IBOutlet weak var textLabel: UILabel!
-    
     @IBOutlet weak var imageView: UIImageView!
+
     
     
 }
