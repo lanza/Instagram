@@ -7,14 +7,19 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     // storyboard outlets
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     // properties
     var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView.delegate = self
+        
+        let placeHolderImage = NSURL(fileURLWithPath: "http://www.yosemitepark.com/Images/home-img-01.jpg")
+        let placeHolder = Post(withImageURL: placeHolderImage, andDescription: "This is a great picture!")
+        posts = [placeHolder]
+        
         manager.getCurrentUser { (user, error) -> () in
             if let error = error {
                 print(__FUNCTION__,error)
@@ -24,6 +29,32 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
             self.getPosts()
         }
     }
+    
+    // MARK: – Set the collectionView size:
+    
+    //Use for size
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            var size = CGSize(width: 200, height: 100)
+            return size
+    }
+    
+    //Use for interspacing
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+            return 1.0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+            return 1.0
+    }
+    
+    
+    // MARK: – Process posts.
     
     func getPosts() {
         manager.getPostsForUser(user) { (posts, error) -> () in
@@ -36,7 +67,7 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 self.collectionView.reloadData()
             })
         }
-    }   
+    }
     
     // MARK: - CollectionView delegate methods
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -44,7 +75,7 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! PostCollectionViewCell
         let post = posts[indexPath.row]
         print(post.posterName)
-        cell.imageView.image = UIImage(named: "placeholder")
+        //        cell.imageView.image = UIImage(named: "placeholder")
         
         return cell
     }
