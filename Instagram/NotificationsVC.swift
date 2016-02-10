@@ -9,12 +9,13 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUpUI()
 
         notificationsArray = ["Susan Smith liked your photo", "Jane Peters followed you", "Bob Mansfield liked your photo"]
         
         // set badge to # of objects in data array
         self.updateTabBadge("\(notificationsArray.count)")
-        
     }
     
     
@@ -38,7 +39,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func updateTabBadge(value: String) {
         
-        (tabBarController!.tabBar.items![3] ).badgeValue = value
+        (tabBarController!.tabBar.items![3]).badgeValue = value
     }
 
 }

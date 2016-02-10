@@ -22,10 +22,8 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        // set Instagram logo image as title (but doesn't work)
-        let logo = UIImage(named: "Instagram_logo")
-        let topImageView = UIImageView(image:logo)
-        self.navigationItem.titleView = topImageView
+        setUpUI()
+        
     }
     
     // MARK: - UICollectionViewDataSource protocol
@@ -44,16 +42,18 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         cell.backgroundColor = UIColor.greenColor()
         cell.imageView.image = UIImage(named: "placeholder")
-        
-        cell.layer.borderWidth = 0
-        
-        cell.frame.size.width = collectionView.frame.size.width / 3
-        cell.frame.size.height = collectionView.frame.size.width / 3
+
+//        cell.layer.borderWidth = 0
         
         return cell
     }
     
     // MARK: - UICollectionViewDelegate protocol
+    
+    override func viewWillLayoutSubviews() {
+        
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // handle tap events
@@ -61,13 +61,23 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
+        return 0.0
     }
-    
+
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsetsZero
+        return UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        let itemsCount : CGFloat = 3.0
+        let width : CGFloat = self.view.frame.size.width / itemsCount - 1
+        
+        return CGSize(width: width, height: width)
+    }
     
 }
