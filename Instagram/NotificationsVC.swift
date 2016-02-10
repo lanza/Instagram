@@ -2,6 +2,10 @@ import UIKit
 
 class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    // CloudKit
+    let manager = CloudManager.sharedManager
+    var user: User!
+    
     // shows a list of notifications
     @IBOutlet weak var tableView: UITableView!
     
@@ -12,6 +16,16 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         setUpUI()
 
+        // store iCloud user in local property
+        manager.getCurrentUser { (user, error) -> () in
+            if let error = error {
+                print(__FUNCTION__,error)
+            }
+            guard let user = user else { return }
+            self.user = user
+        }
+        
+        // placeholder data
         notificationsArray = ["Susan Smith liked your photo", "Jane Peters followed you", "Bob Mansfield liked your photo"]
         
         // set badge to # of objects in data array

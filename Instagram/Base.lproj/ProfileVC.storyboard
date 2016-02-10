@@ -92,6 +92,7 @@ posts: 12</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="collectionView" destination="XDI-7f-RxL" id="7cj-MN-Kpp"/>
+                        <outlet property="imageView" destination="VLc-mT-KPG" id="c5Q-Ha-GW1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SVj-OM-xIo" userLabel="First Responder" sceneMemberID="firstResponder"/>

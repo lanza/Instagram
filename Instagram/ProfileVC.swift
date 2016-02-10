@@ -10,10 +10,19 @@ import UIKit
 
 class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    // CloudKit
+    let manager = CloudManager.sharedManager
+    var user: User!
+    var posts = [Post]()
     
+    // storyboard
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var imageView: UIImageView!
+
+    // properties
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
+    // placeholder data to generate cells
     var items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48"]
     
     override func viewDidLoad() {
@@ -22,7 +31,16 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        setUpUI()
+        setUpUI() // colorize nav bar and add logo
+        
+        // store iCloud user in local property
+        manager.getCurrentUser { (user, error) -> () in
+            if let error = error {
+                print(__FUNCTION__,error)
+            }
+            guard let user = user else { return }
+            self.user = user
+        }
         
     }
     
