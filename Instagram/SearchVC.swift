@@ -12,6 +12,8 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpUI()
+        
         // set up SearchController
         self.resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -23,13 +25,6 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
             
             return controller
         })()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    
     }
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -43,7 +38,7 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
         self.tableView.reloadData()
     }
     
-    
+
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

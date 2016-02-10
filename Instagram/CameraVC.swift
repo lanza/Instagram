@@ -2,28 +2,41 @@ import UIKit
 
 class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let imagePicker = UIImagePickerController()
+    let imagePickerController = UIImagePickerController()
     var usersImage: UIImage!
     var imageURL: NSURL?
-
+    
+    
+    // subclass uiimagepickercontroller
+    // called 
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        setUpUI()
+        
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
     }
+    
+    
     
     @IBAction func onTakePhotoButtonTapped(sender: AnyObject) {
 
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+        presentViewController(imagePickerController, animated: true, completion: nil)
+        
     }
+    
+    
 
     @IBAction func onChoosePhotoButtonTapped(sender: AnyObject) {
         
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        guard let navCon = navigationController else { print("failed"); return }
+        navCon.pushViewController(imagePickerController, animated: true)
     }
+    
     
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -48,7 +61,9 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             self.performSegueWithIdentifier("ShowComposeVC", sender: nil)
         }
     }
-
+    
+    
+    
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -62,5 +77,6 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         destination.usersImage = self.usersImage
         destination.imageURL = self.imageURL
     }
+    
     
 }

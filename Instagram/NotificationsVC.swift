@@ -16,7 +16,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.updateTabBadge("\(notificationsArray.count)")
         
     }
-
+    
+    
+    
     // MARK: - Table view data source
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
