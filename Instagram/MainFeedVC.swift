@@ -17,19 +17,48 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         
         collectionView.delegate = self
         
-        let placeHolderImage = NSURL(fileURLWithPath: "http://www.yosemitepark.com/Images/home-img-01.jpg")
-        let placeHolder = Post(withImageURL: placeHolderImage, andDescription: "This is a great picture!")
-        posts = [placeHolder]
-        
         manager.getCurrentUser { (user, error) -> () in
             if let error = error {
                 print(__FUNCTION__,error)
             }
             guard let user = user else { return }
             self.user = user
-            self.getPosts()
+            self.getPostsOfFollowings()
         }
     }
+    
+    // MARK: – Process data.
+    
+    func getPostsOfFollowings() {
+        self.posts = [Post]()
+        manager.getFollowingsForUser(user) { (followedUsers, errorOne) -> () in
+            if let error = errorOne {
+                print("\(__FUNCTION__) has had an error: \(error)")
+            }
+            guard let followedUsers = followedUsers else { return }
+            
+            for followedUser in followedUsers {
+                self.getPostsForFollowedUser(followedUser)
+            }
+        }
+    }
+    
+    func getPostsForFollowedUser(followedUser: User ) {
+        self.manager.getPostsForUser(followedUser) { (posts, errorTwo) -> () in
+            if let error = errorTwo {
+                print("\(__FUNCTION__) has had an error: \(error)")
+            }
+            guard let posts = posts else { return }
+            for post in posts {
+                self.posts.append(post)
+            }
+            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                self.collectionView.reloadData()
+                print(self.posts)
+            }
+        }
+    }
+    
     
     // MARK: – Set the collectionView size:
     
@@ -55,20 +84,7 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     }
     
     
-    // MARK: – Process posts.
-    
-    func getPosts() {
-        manager.getPostsForUser(user) { (posts, error) -> () in
-            if let error = error {
-                print(__FUNCTION__,error)
-            }
-            guard let posts = posts else { return }
-            self.posts = posts
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                self.collectionView.reloadData()
-            })
-        }
-    }
+
     
     // MARK: - CollectionView delegate methods
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

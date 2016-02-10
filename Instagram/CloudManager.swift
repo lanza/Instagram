@@ -91,35 +91,35 @@ class CloudManager {
     
     
     func getFollowersForUser(user: User, withCompletionHandler completionHandler: ([User]?,ErrorType?) -> ()) {
-        let reference = CKReference(record: user.record, action: .None)
-        let predicate = NSPredicate(format: "Followings CONTAINS %@", reference)
-        let query = CKQuery(recordType: "User", predicate: predicate)
-        publicDatabase.performQuery(query, inZoneWithID: nil) { (records, error) -> Void in
-            guard let records = records else { return }
-            var users = [User]()
-            for record in records {
-                let user = User(fromRecord: record)
-                users.append(user)
-            }
-            completionHandler(users,error)
-        }
         
     }
     
     func getFollowingsForUser(user: User, withCompletionHandler completionHandler: ([User]?,ErrorType?) -> ()) {
-        let reference = CKReference(record: user.record, action: .None)
-        let predicate = NSPredicate(format: "Followers CONTAINS %@", reference)
-        let query = CKQuery(recordType: "User", predicate: predicate)
-        publicDatabase.performQuery(query, inZoneWithID: nil) { (records, error) -> Void in
-            guard let records = records else { return }
-            var users = [User]()
-            for record in records {
-                let user = User(fromRecord: record)
-                users.append(user)
-            }
-            completionHandler(users,error)
-        }
+        let references = user.record["Followings"]
         
+        guard let followingsReferences = user.record["Followings"] as? [CKReference] else {
+            print("no followingsReferences")
+            return
+        }
+        var followedUsers = [User]()
+        var recordIDs = [CKRecordID]()
+        for reference in followingsReferences {
+            let recordID = reference.recordID
+            recordIDs.append(recordID)
+        }
+        let operation = CKFetchRecordsOperation(recordIDs: recordIDs)
+        operation.fetchRecordsCompletionBlock = { recordsDictionary, error in
+            guard let recordsDictionary = recordsDictionary else { return }
+            for (_, record) in recordsDictionary {
+                let newFollowee = User(fromRecord: record)
+                followedUsers.append(newFollowee)
+            }
+            completionHandler(followedUsers, error)
+        }
+        operation.completionBlock = {
+            print("CKFetchRecordsOperation finished")
+        }
+        publicDatabase.addOperation(operation)
     }
     
     func getcommentsForPost(post: Post) {
