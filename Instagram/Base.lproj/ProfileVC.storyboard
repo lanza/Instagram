@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ProfileVC-->
         <scene sceneID="5aX-m3-yT6">
             <objects>
-                <viewController id="3rP-se-pOX" sceneMemberID="viewController">
+                <viewController id="3rP-se-pOX" customClass="ProfileVC" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="afx-mh-Byn"/>
                         <viewControllerLayoutGuide type="bottom" id="tJG-uV-vAZ"/>
@@ -17,25 +17,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VLc-mT-KPG">
+                                <rect key="frame" x="0.0" y="64" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="HFz-fb-Ph2"/>
+                                    <constraint firstAttribute="width" constant="150" id="W0b-e9-2QA"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bIC-eT-tOZ">
+                                <rect key="frame" x="160" y="64" width="160" height="150"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="2be-DM-7IP"/>
+                                </constraints>
+                                <string key="text">user: @bobsmith
+posts: 12</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XDI-7f-RxL">
                                 <rect key="frame" x="0.0" y="214" width="320" height="305"/>
-                                <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Eay-bx-0jL">
-                                    <size key="itemSize" width="105" height="106"/>
+                                    <size key="itemSize" width="120" height="120"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="13" minY="13" maxX="13" maxY="13"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="FkU-Ol-a7g" customClass="ProfileVCCell" customModule="Instagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="105" height="106"/>
+                                        <rect key="frame" x="13" y="13" width="120" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="105" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M7c-nd-lYD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="106"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -56,24 +74,6 @@
                                     <rect key="frame" x="0.0" y="220" width="568" height="299"/>
                                 </variation>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VLc-mT-KPG">
-                                <rect key="frame" x="0.0" y="64" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="HFz-fb-Ph2"/>
-                                    <constraint firstAttribute="width" constant="150" id="W0b-e9-2QA"/>
-                                </constraints>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bIC-eT-tOZ">
-                                <rect key="frame" x="160" y="64" width="160" height="150"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="2be-DM-7IP"/>
-                                </constraints>
-                                <string key="text">user: @bobsmith
-posts: 12</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -90,6 +90,10 @@ posts: 12</string>
                     </view>
                     <navigationItem key="navigationItem" id="iJd-Zm-6my"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="collectionView" destination="XDI-7f-RxL" id="7cj-MN-Kpp"/>
+                        <outlet property="imageView" destination="VLc-mT-KPG" id="c5Q-Ha-GW1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SVj-OM-xIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

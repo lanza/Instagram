@@ -1,7 +1,11 @@
 import UIKit
 
 class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    // CloudKit
+    let manager = CloudManager.sharedManager
+    var user: User!
+    
     // shows a list of notifications
     @IBOutlet weak var tableView: UITableView!
     
@@ -9,6 +13,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         CloudManager.sharedManager.getLikesForUser(CloudManager.sharedManager.currentUser) { (likes, error) -> () in
             if let error = error {
@@ -36,6 +41,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.updateTabBadge("\(likesAndComments.count)")
         
         
+        setUpUI()
     }
     
     
@@ -53,7 +59,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             text = "Such and such commented on your post"
         }
         cell.textLabel?.text = text
-            
+        
         //cell.imageView?.image = UIImage(named: "user")
         
         return cell
@@ -66,7 +72,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func updateTabBadge(value: String) {
         
-        (tabBarController!.tabBar.items![3] ).badgeValue = value
+        (tabBarController!.tabBar.items![3]).badgeValue = value
     }
-
+    
 }
