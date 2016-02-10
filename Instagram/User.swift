@@ -1,15 +1,21 @@
 import UIKit
 import CloudKit
 
-struct User: RecordToClassProtocol {
+class User: RecordToClassProtocol {
     var record: CKRecord
     
     var alias: String {
-        get { return record.objectForKey("Alias") as? String ?? "No Alias" }
-        set { record.setObject("Alias", forKey: newValue) }
+        get { return record.objectForKey("NameAlias") as? String ?? "No Alias" }
+        set { record.setObject("NameAlias", forKey: newValue) }
     }    
   
-    init() {
+    required init() {
         self.record = CKRecord.init(recordType: "User")
     }
+    
+    required convenience init(fromRecord record: CKRecord) {
+        self.init()
+        self.record = record
+    }
 }
+

@@ -1,11 +1,3 @@
-//
-//  ProfileVC.swift
-//  Instagram
-//
-//  Created by Steve Uffelman on 2/7/16.
-//  Copyright © 2016 Nathan Lanza. All rights reserved.
-//
-
 import UIKit
 
 class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

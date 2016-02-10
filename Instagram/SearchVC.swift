@@ -5,12 +5,23 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
     @IBOutlet weak var tableView: UITableView!
     
     // these arrays will need to hold Post objects
-    let tableData = ["Bob Smith", "Jane Benson", "Marcus Peters"] // dummy data for testing
-    var filteredTableData = [String]()
+    var users = [User]()
+    var filteredUsers = [User]()
     var resultSearchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        CloudManager.sharedManager.getAllUsers(NSPredicate(value: true)) { (users, error) -> () in
+            if let error = error {
+                print(error)
+            }
+            print("TEST")
+            guard let users = users else { return }
+            print("TEST2")
+            self.users = users
+            self.tableView.reloadData()
+        }
         
         setUpUI()
         
@@ -25,55 +36,50 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
             
             return controller
         })()
+        
     }
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
-        filteredTableData.removeAll(keepCapacity: false)
-        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
+        filteredUsers.removeAll(keepCapacity: false)
         
-        let array = (tableData as NSArray).filteredArrayUsingPredicate(searchPredicate)
-        filteredTableData = array as! [String]
+        filteredUsers = users.filter { (user) -> Bool in
+            guard let searchText = searchController.searchBar.text else { return true }
+            if user.alias.containsString(searchText) {
+                return true
+            } else {
+                return false
+            }
+        }
         
+
         self.tableView.reloadData()
     }
     
 
     // MARK: - Table view data source
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // if filter applied, re-calculate # of rows
-        if (self.resultSearchController.active) { return self.filteredTableData.count }
+        if (self.resultSearchController.active) { return self.filteredUsers.count }
             
-        else { return self.tableData.count }
+        else { return self.users.count }
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        // using a generic cell to list user names
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        
-        // if SearchController is active, show filtered data
         if (self.resultSearchController.active) {
-            
-            cell.textLabel?.text = filteredTableData[indexPath.row]
-            cell.detailTextLabel?.text = "User's Handle"
-            
+            let user = filteredUsers[indexPath.row]
+            cell.textLabel?.text = user.alias
+            cell.detailTextLabel?.text = "Something goes here."
             return cell
         } else {
-            
-            cell.textLabel?.text = tableData[indexPath.row]
-            cell.detailTextLabel?.text = "User's Handle"
-            
+            let user = users[indexPath.row]
+            cell.textLabel?.text = user.alias
+            cell.detailTextLabel?.text = "something goes here."
             return cell
         }
-        
     }
-
-
 }

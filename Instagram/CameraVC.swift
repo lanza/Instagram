@@ -33,9 +33,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBAction func onChoosePhotoButtonTapped(sender: AnyObject) {
         
         imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        guard let navCon = navigationController else { print("failed"); return }
-        navCon.pushViewController(imagePickerController, animated: true)
-    }
+        presentViewController(imagePickerController, animated: true, completion: nil)    }
     
     
 

@@ -1,11 +1,3 @@
-//
-//  UIColor+extension.swift
-//  Instagram
-//
-//  Created by Nicholas Naudé on 09/02/2016.
-//  Copyright © 2016 Nathan Lanza. All rights reserved.
-//
-
 import UIKit
 extension UIColor {
     

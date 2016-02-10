@@ -21,6 +21,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             guard let user = user else { return }
             self.user = user
             self.getPostsOfFollowings()
+            self.manager.checkIfInAllUsers()
         }
     }
     
@@ -54,7 +55,6 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             }
         }
     }
-
     
     
     // MARK: - TableView delegate methods
@@ -62,18 +62,36 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! FeedCell
         let post = posts[indexPath.row]
+        cell.delegate = self
+        
+        cell.userFullNameLabel.text = post.posterName
         cell.postImageView.image = post.image
         cell.descriptionLabel.text = post.description
         //        cell.friendsCommentsLabel.text = post.comments
         //        cell.avatarImageView.image = post.avatarImage
-        cell.userFullNameLabel.text = post.posterName
+        
+        var likersText = ""
+        for liker in post.likersAliases {
+            likersText.appendContentsOf(liker)
+            likersText.appendContentsOf(", ")
+        }
+        var commentsText = ""
+        for comment in post.commentStrings {
+            commentsText = commentsText + "\n" + comment
+        }
+        print(commentsText)
+        cell.likesLabel.text = likersText
+        cell.friendsCommentsLabel.text = commentsText
+        
         return cell
     }
     
-    
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
+    }
+    
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
     }
 }
 

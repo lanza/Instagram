@@ -1,11 +1,3 @@
-//
-//  UISetupExtension.swift
-//  Instagram
-//
-//  Created by Nicholas Naudé on 10/02/2016.
-//  Copyright © 2016 Nathan Lanza. All rights reserved.
-//
-
 import UIKit
 
 extension UIViewController {

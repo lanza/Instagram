@@ -5,15 +5,36 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // shows a list of notifications
     @IBOutlet weak var tableView: UITableView!
     
-    var notificationsArray = [String]()
+    var likesAndComments = [RecordToClassProtocol]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        notificationsArray = ["Susan Smith liked your photo", "Jane Peters followed you", "Bob Mansfield liked your photo"]
+        
+        CloudManager.sharedManager.getLikesForUser(CloudManager.sharedManager.currentUser) { (likes, error) -> () in
+            if let error = error {
+                print(error)
+            }
+            guard let likes = likes else { return }
+            for like in likes {
+                self.likesAndComments.append(like)
+            }
+            self.tableView.reloadData()
+        }
+        CloudManager.sharedManager.getCommentsForUser(CloudManager.sharedManager.currentUser) { (comments, error) -> () in
+            if let error = error {
+                print(error)
+            }
+            guard let comments = comments else { return }
+            for comment in comments {
+                self.likesAndComments.append(comment)
+            }
+            self.tableView.reloadData()
+            print(self.likesAndComments)
+        }
         
         // set badge to # of objects in data array
-        self.updateTabBadge("\(notificationsArray.count)")
+        self.updateTabBadge("\(likesAndComments.count)")
+        
         
     }
     
@@ -24,16 +45,23 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
         
-        cell.textLabel?.text = notificationsArray[indexPath.row]
-        
-        cell.imageView?.image = UIImage(named: "user")
+        let likeOrComment = likesAndComments[indexPath.row]
+        var text = ""
+        if let like = likeOrComment as? Like {
+            text = "Such and such liked your post"
+        } else if let comment = likeOrComment as? Comment {
+            text = "Such and such commented on your post"
+        }
+        cell.textLabel?.text = text
+            
+        //cell.imageView?.image = UIImage(named: "user")
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return notificationsArray.count
+        return likesAndComments.count
     }
     
     func updateTabBadge(value: String) {
