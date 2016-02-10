@@ -7,4 +7,13 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var userFullNameLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
+    
+    @IBAction func onLikeButtonTapped(sender: UIButton) {
+        // like
+    }
+    
+    
+    @IBAction func onCommentButtonTapped(sender: UIButton) {
+        // comment
+    }
 }

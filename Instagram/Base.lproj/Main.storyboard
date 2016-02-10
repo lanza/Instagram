@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="551"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cXx-lp-iQs" id="nbL-nS-WPo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="550.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6py-OD-Sc4">
@@ -74,11 +74,17 @@
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <state key="normal" title="Like"/>
+                                                                    <connections>
+                                                                        <action selector="onLikeButtonTapped:" destination="cXx-lp-iQs" eventType="touchUpInside" id="rnf-r4-ExL"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7J-OB-BlI">
                                                                     <rect key="frame" x="180" y="0.0" width="179" height="31"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <state key="normal" title="Comment"/>
+                                                                    <connections>
+                                                                        <action selector="onCommentButtonTapped:" destination="cXx-lp-iQs" eventType="touchUpInside" id="nJf-08-PoH"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
