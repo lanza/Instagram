@@ -1,6 +1,6 @@
 import UIKit
 
-class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ChecksError {
+class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError {
     
     let manager = CloudManager.sharedManager
     var user: User!
@@ -15,7 +15,20 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.delegate = self
+        // set the navbar image and color:
+        let logo = UIImage(named: "Instagram_logo")
+        let navImageView = UIImageView(image:logo)
+        self.navigationItem.titleView = navImageView
+        navImageView.frame = CGRectMake(0, 0, 50, 30)
+        
+        // set myInstagram
+        let instagramColor = UIColor(
+            red:0.165,
+            green:0.357,
+            blue:0.514,
+            alpha:1.0)
+        
+        navigationController!.navigationBar.barTintColor = instagramColor
         
         manager.getCurrentUser { (user, error) -> () in
             if let error = error {
@@ -60,45 +73,15 @@ class MainFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     }
     
     
-    // MARK: – Set the collectionView size:
+    // MARK: - TableView delegate methods
     
-    //Use for size
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            var size = CGSize(width: 200, height: 100)
-            return size
-    }
-    
-    //Use for interspacing
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-            return 1.0
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout
-        collectionViewLayout: UICollectionViewLayout,
-        minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-            return 1.0
-    }
-    
-    
-
-    
-    // MARK: - CollectionView delegate methods
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! PostCollectionViewCell
-        let post = posts[indexPath.row]
-        print(post.posterName)
-        cell.imageView.image = post.image
-        
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")!
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
-    
 }

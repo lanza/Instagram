@@ -11,9 +11,12 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
 
         notificationsArray = ["Susan Smith liked your photo", "Jane Peters followed you", "Bob Mansfield liked your photo"]
+        
+        // set badge to # of objects in data array
+        self.updateTabBadge("\(notificationsArray.count)")
+        
     }
-    
-    
+
     // MARK: - Table view data source
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -21,9 +24,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         cell.textLabel?.text = notificationsArray[indexPath.row]
         
-        // let imageView = UIImageView.init(frame: CGRectMake(0, 0, 30, 30))
-        // imageView.image = UIImage(named: "user")
-        // cell.contentView.addSubview(imageView)
+        cell.imageView?.image = UIImage(named: "user")
         
         return cell
     }
@@ -33,5 +34,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return notificationsArray.count
     }
     
+    func updateTabBadge(value: String) {
+        
+        (tabBarController!.tabBar.items![3] ).badgeValue = value
+    }
 
 }
