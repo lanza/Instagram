@@ -39,7 +39,8 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             if dataFormat == nil {
                 dataFormat = UIImagePNGRepresentation(pickedImage)
             }
-       
+            dataFormat?.writeToFile(pathString, atomically: true)
+        
             self.imageURL = NSURL(fileURLWithPath: pathString)
             picker.dismissViewControllerAnimated(true, completion: nil)
             

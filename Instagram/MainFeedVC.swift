@@ -50,7 +50,6 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             }
             NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                 self.tableVieew.reloadData()
-                print(self.posts)
             }
         }
     }

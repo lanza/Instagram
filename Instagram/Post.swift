@@ -14,7 +14,7 @@ struct Post: RecordToClassProtocol {
         }
     }
     var description: String {
-        get { return record.objectForKey("Desription") as! String }
+        get { return record.objectForKey("Desription") as? String ?? "No description"}
         set { record.setObject(newValue, forKey: "Description") }
     }
     

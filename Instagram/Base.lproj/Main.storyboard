@@ -243,6 +243,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="imageView" destination="wgL-Fd-yys" id="ODA-Z4-zPL"/>
+                        <outlet property="textFieldNickChangeThis" destination="kNw-18-vE0" id="Tpa-nQ-sPD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSs-Ak-ZDD" userLabel="First Responder" sceneMemberID="firstResponder"/>

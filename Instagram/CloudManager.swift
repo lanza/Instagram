@@ -50,8 +50,7 @@ class CloudManager {
             usersPosts = [referenceToPost]
             currentUser.record.setObject(usersPosts, forKey: "Posts")
         }
-        print("FUCK")
-        
+
         currentUser.saveRecord(inDatabase: publicDatabase) { () -> () in
             savePost(post)
         }
@@ -100,6 +99,7 @@ class CloudManager {
             print("no followingsReferences")
             return
         }
+        
         var followedUsers = [User]()
         var recordIDs = [CKRecordID]()
         for reference in followingsReferences {
@@ -107,6 +107,7 @@ class CloudManager {
             recordIDs.append(recordID)
         }
         let operation = CKFetchRecordsOperation(recordIDs: recordIDs)
+        operation.qualityOfService = .UserInitiated
         operation.fetchRecordsCompletionBlock = { recordsDictionary, error in
             guard let recordsDictionary = recordsDictionary else { return }
             for (_, record) in recordsDictionary {
