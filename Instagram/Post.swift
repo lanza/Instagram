@@ -24,6 +24,11 @@ struct Post: RecordToClassProtocol {
         }
     }
     
+    var likersAliases: [String] {
+        get { return record.objectForKey("LikersAliases") as? [String] ?? [String]() }
+        set { record.setObject("LikersAliases", forKey: "LikersAliases") }
+    }
+    
     init(){
         self.record = CKRecord.init(recordType: "Post")
     }
@@ -32,11 +37,7 @@ struct Post: RecordToClassProtocol {
         self.record = CKRecord(recordType: "Post")
         let imageAsset = CKAsset(fileURL: imageURL)
         self.record.setObject(imageAsset, forKey: "Image")
-        
-        if let data = NSData(contentsOfURL: imageURL) {
-            let image = UIImage(data: data)
-        }
-        
+       
         self.record.setObject(description, forKey: "Description")
         let reference = CKReference(record: poster.record, action: .None)
         self.record.setObject(reference, forKey: "Poster")

@@ -18,6 +18,7 @@ class ComposeVC: UIViewController {
         imageView.image = usersImage
     }
     
+    
     @IBAction func onShareTapped(sender: AnyObject) {
         
         guard let imageURL = imageURL else { return }
@@ -31,6 +32,4 @@ class ComposeVC: UIViewController {
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
 }

@@ -70,10 +70,8 @@ class CloudManager {
     }
     
 
-    
+    //get children for parent
     func getPostsForUser(user: User, withCompletionHandler completionHandler: ([Post]?,ErrorType?) -> ()) {
-       
-        
         let reference = CKReference(record: user.record, action: .None)
         let predicate = NSPredicate(format: "Poster == %@", reference)
         let query = CKQuery(recordType: "Post", predicate: predicate)
@@ -87,19 +85,15 @@ class CloudManager {
             completionHandler(posts,error)
         }
     }
-    //switch to child->parent relationships
     
-    func getFollowersForUser(user: User, withCompletionHandler completionHandler: ([User]?,ErrorType?) -> ()) {
-        
-    }
     
+    //get parents for child
     func getFollowingsForUser(user: User, withCompletionHandler completionHandler: ([User]?,ErrorType?) -> ()) {
         
         guard let followingsReferences = user.record["Followings"] as? [CKReference] else {
             print("no followingsReferences")
             return
         }
-        
         var followedUsers = [User]()
         var recordIDs = [CKRecordID]()
         for reference in followingsReferences {
@@ -124,5 +118,26 @@ class CloudManager {
     
     func getcommentsForPost(post: Post) {
         
+    }
+    
+    // Get children for parent
+    func getLikesForPost(post: Post, withCompletionHandler completionHandler: ([Like]?,ErrorType?) -> ()) {
+        let reference = CKReference(record: post.record, action: .None)
+        let predicate = NSPredicate(format: "Post == %@", reference)
+        let query = CKQuery(recordType: "Like", predicate: predicate)
+        publicDatabase.performQuery(query, inZoneWithID: nil) { (records, error) -> Void in
+            if let error = error {
+                print("\(__FUNCTION__) had error: \(error)")
+            }
+            
+            var likes = [Like]()
+            
+            guard let records = records else { completionHandler(nil,error); return }
+            for record in records {
+                let like = Like(fromRecord: record)
+                likes.append(like)
+            }
+            completionHandler(likes,error)
+        }
     }
 }
