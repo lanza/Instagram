@@ -3,7 +3,8 @@ import CloudKit
 
 struct Post: RecordToClassProtocol {
     var record: CKRecord
-    
+    //switch to child->parent relationships
+
     var image: UIImage? {
         get {
             guard let asset = record.objectForKey("Image") as? CKAsset else { return nil }

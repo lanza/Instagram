@@ -21,6 +21,7 @@
 		D81806C91C6A9D600046F0C3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81806C81C6A9D600046F0C3 /* Comment.swift */; };
 		D81806CB1C6A9D7D0046F0C3 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81806CA1C6A9D7D0046F0C3 /* Like.swift */; };
 		D84B4F871C6AC80700D795D9 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B4F861C6AC80700D795D9 /* FeedCell.swift */; };
+		D84B4F891C6B141000D795D9 /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B4F881C6B141000D795D9 /* TODO.swift */; };
 		D89306261C69768C00154692 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89306251C69768C00154692 /* Post.swift */; };
 		D89306281C6976B400154692 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89306271C6976B400154692 /* User.swift */; };
 		D893062A1C697F7900154692 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89306291C697F7900154692 /* CloudManager.swift */; };
@@ -51,6 +52,7 @@
 		D81806C81C6A9D600046F0C3 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		D81806CA1C6A9D7D0046F0C3 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		D84B4F861C6AC80700D795D9 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		D84B4F881C6B141000D795D9 /* TODO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
 		D89306251C69768C00154692 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D89306271C6976B400154692 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D89306291C697F7900154692 /* CloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		D8EDC8C11C6410DE00FF79E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D84B4F881C6B141000D795D9 /* TODO.swift */,
 				D89306271C6976B400154692 /* User.swift */,
 				D89306251C69768C00154692 /* Post.swift */,
 				D81806CA1C6A9D7D0046F0C3 /* Like.swift */,
@@ -318,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D84B4F891C6B141000D795D9 /* TODO.swift in Sources */,
 				605AFED91C67F60E0048F892 /* SearchVC.swift in Sources */,
 				D89306331C699EEA00154692 /* ChecksError.swift in Sources */,
 				605AFEDB1C67F9320048F892 /* CameraVC.swift in Sources */,
@@ -466,6 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Instagram/Instagram.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Instagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.lanza.Instagram;
@@ -480,6 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Instagram/Instagram.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Instagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.lanza.Instagram;

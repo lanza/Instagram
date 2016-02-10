@@ -3,6 +3,7 @@ import CloudKit
 
 struct Like: RecordToClassProtocol {
     var record: CKRecord
+    //switch to child->parent relationships
 
     init(){
         self.record = CKRecord.init(recordType: "Post")

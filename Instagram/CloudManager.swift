@@ -87,7 +87,7 @@ class CloudManager {
             completionHandler(posts,error)
         }
     }
-    
+    //switch to child->parent relationships
     
     func getFollowersForUser(user: User, withCompletionHandler completionHandler: ([User]?,ErrorType?) -> ()) {
         

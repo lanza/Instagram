@@ -3,6 +3,8 @@ import CloudKit
 
 struct User: RecordToClassProtocol {
     var record: CKRecord
+    
+    //switch to child->parent relationships
 
     func addNewPost(post: Post) {
         let referenceToPost = CKReference(record: post.record, action: .None)
