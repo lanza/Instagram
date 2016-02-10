@@ -32,8 +32,9 @@ struct Post: RecordToClassProtocol {
         let imageAsset = CKAsset(fileURL: imageURL)
         self.record.setObject(imageAsset, forKey: "Image")
         
-        let data = NSData(contentsOfURL: imageURL)!
-        let image = UIImage(data: data)
+        if let data = NSData(contentsOfURL: imageURL) {
+            let image = UIImage(data: data)
+        }
         
         self.record.setObject(description, forKey: "Description")
         let reference = CKReference(record: poster.record, action: .None)

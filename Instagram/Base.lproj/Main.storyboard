@@ -23,7 +23,7 @@
                                 <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="410" id="cXx-lp-iQs">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="410" id="cXx-lp-iQs" customClass="FeedCell" customModule="Instagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="383" height="410"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cXx-lp-iQs" id="nbL-nS-WPo">
@@ -62,7 +62,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vI-o0-pJd">
                                                             <rect key="frame" x="0.0" y="357" width="367" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends' comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7B-w9-IYc">
@@ -81,6 +81,11 @@
                                             <constraint firstAttribute="trailing" secondItem="6py-OD-Sc4" secondAttribute="trailing" constant="8" id="bO0-9R-aT5"/>
                                             <constraint firstItem="6py-OD-Sc4" firstAttribute="leading" secondItem="cXx-lp-iQs" secondAttribute="leading" constant="8" id="dIa-TB-TsQ"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="0vI-o0-pJd" id="re2-D5-gnh"/>
+                                            <outlet property="friendsCommentsLabel" destination="f7B-w9-IYc" id="gnP-8q-9qt"/>
+                                            <outlet property="postImageView" destination="wAr-Bh-qff" id="oqz-b1-bpc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -102,6 +107,9 @@
                         <barButtonItem key="rightBarButtonItem" title=" " id="grs-db-Ome"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableVieew" destination="7lI-qz-Wzg" id="oNd-Y8-tAK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>

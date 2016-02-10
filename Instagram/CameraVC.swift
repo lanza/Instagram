@@ -27,7 +27,6 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             
             self.usersImage = pickedImage
@@ -35,7 +34,6 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
             let path = paths[0] as NSString
             let pathString = path.stringByAppendingPathComponent("cached.png")
-            
             
             var dataFormat = UIImageJPEGRepresentation(pickedImage, 1.0)
             if dataFormat == nil {

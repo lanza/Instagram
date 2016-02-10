@@ -95,7 +95,6 @@ class CloudManager {
     }
     
     func getFollowingsForUser(user: User, withCompletionHandler completionHandler: ([User]?,ErrorType?) -> ()) {
-        let references = user.record["Followings"]
         
         guard let followingsReferences = user.record["Followings"] as? [CKReference] else {
             print("no followingsReferences")
