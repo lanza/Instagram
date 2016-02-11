@@ -93,6 +93,7 @@ posts: 12</string>
                     <connections>
                         <outlet property="collectionView" destination="XDI-7f-RxL" id="7cj-MN-Kpp"/>
                         <outlet property="imageView" destination="VLc-mT-KPG" id="c5Q-Ha-GW1"/>
+                        <outlet property="textView" destination="bIC-eT-tOZ" id="vJ2-Jc-Dwi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SVj-OM-xIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
