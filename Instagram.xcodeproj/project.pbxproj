@@ -12,7 +12,8 @@
 		4A0601851C6BC2F0000721DC /* UIRoundAvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601841C6BC2F0000721DC /* UIRoundAvatarImage.swift */; };
 		4A0601871C6BCDE7000721DC /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601861C6BCDE7000721DC /* Globals.swift */; };
 		4A64DEF91C6C07B1002B4824 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DEF81C6C07B1002B4824 /* CommentVC.swift */; };
-		4A64DEFB1C6C26D6002B4824 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DEFA1C6C26D6002B4824 /* OnboardingVC.swift */; };
+		4A64DEFB1C6C26D6002B4824 /* OnboardingUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DEFA1C6C26D6002B4824 /* OnboardingUsernameVC.swift */; };
+		4A64DEFD1C6C338E002B4824 /* OnboardingProfilePicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DEFC1C6C338E002B4824 /* OnboardingProfilePicVC.swift */; };
 		4A96B4471C6A8BAF0093C4CB /* ProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */; };
 		4A96B44A1C6A8C100093C4CB /* NotificationsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4481C6A8C100093C4CB /* NotificationsVC.storyboard */; };
 		605AFED91C67F60E0048F892 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605AFED81C67F60E0048F892 /* SearchVC.swift */; };
@@ -49,7 +50,8 @@
 		4A0601841C6BC2F0000721DC /* UIRoundAvatarImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundAvatarImage.swift; sourceTree = "<group>"; };
 		4A0601861C6BCDE7000721DC /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		4A64DEF81C6C07B1002B4824 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
-		4A64DEFA1C6C26D6002B4824 /* OnboardingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
+		4A64DEFA1C6C26D6002B4824 /* OnboardingUsernameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingUsernameVC.swift; sourceTree = "<group>"; };
+		4A64DEFC1C6C338E002B4824 /* OnboardingProfilePicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingProfilePicVC.swift; sourceTree = "<group>"; };
 		4A96B4461C6A8BAF0093C4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProfileVC.storyboard; sourceTree = "<group>"; };
 		4A96B4491C6A8C100093C4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NotificationsVC.storyboard; sourceTree = "<group>"; };
 		605AFED81C67F60E0048F892 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -170,7 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				D8EDC8AE1C640ACE00FF79E3 /* Main.storyboard */,
-				4A64DEFA1C6C26D6002B4824 /* OnboardingVC.swift */,
+				4A64DEFC1C6C338E002B4824 /* OnboardingProfilePicVC.swift */,
+				4A64DEFA1C6C26D6002B4824 /* OnboardingUsernameVC.swift */,
 				4A64DEF81C6C07B1002B4824 /* CommentVC.swift */,
 				4A96B4481C6A8C100093C4CB /* NotificationsVC.storyboard */,
 				4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */,
@@ -349,6 +352,7 @@
 				605AFEDB1C67F9320048F892 /* CameraVC.swift in Sources */,
 				D8ADC64A1C6BBF760095DBAC /* MainFeedVC-FeedCellProtocol.swift in Sources */,
 				D81806CB1C6A9D7D0046F0C3 /* Like.swift in Sources */,
+				4A64DEFD1C6C338E002B4824 /* OnboardingProfilePicVC.swift in Sources */,
 				D893062A1C697F7900154692 /* CloudManager.swift in Sources */,
 				60EFB2601C683123004DEFD2 /* ProfileVC.swift in Sources */,
 				60EFB25E1C683119004DEFD2 /* NotificationsVC.swift in Sources */,
@@ -361,7 +365,7 @@
 				608A4F351C6BF60E00290D69 /* PostVC.swift in Sources */,
 				D89306311C699AB500154692 /* DisplaysAlerts.swift in Sources */,
 				4A0601871C6BCDE7000721DC /* Globals.swift in Sources */,
-				4A64DEFB1C6C26D6002B4824 /* OnboardingVC.swift in Sources */,
+				4A64DEFB1C6C26D6002B4824 /* OnboardingUsernameVC.swift in Sources */,
 				D89306281C6976B400154692 /* User.swift in Sources */,
 				D89306261C69768C00154692 /* Post.swift in Sources */,
 				D84B4F871C6AC80700D795D9 /* FeedCell.swift in Sources */,
