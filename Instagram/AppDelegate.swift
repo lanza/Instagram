@@ -7,9 +7,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.boolForKey("didSetAlias") == true {
+            let tbc = storyBoard.instantiateInitialViewController() as! UITabBarController
+            self.window!.rootViewController = tbc
+        } else {
+            let ouvc = storyBoard.instantiateViewControllerWithIdentifier("OnboardingVC")
+            self.window!.rootViewController = ouvc
+        }        
         CloudManager.sharedManager.getCurrentUser { (user, error) -> () in
             print("crocodile")
         }
+        CloudManager.sharedManager.getCurrentUser { (user, error) in
+            if let error = error {
+                print(error)
+            }
+            guard let _ = user else { return }
+            CloudManager.sharedManager.checkIfInAllUsers()
+        }
+        
+        
+        self.window!.makeKeyAndVisible()
         return true
     }
 

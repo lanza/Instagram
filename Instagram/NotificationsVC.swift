@@ -15,7 +15,20 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getLikesAndComments()
         
+        // set badge to # of objects in data array
+        self.updateTabBadge("\(likesAndComments.count)")
+        
+        setUpUI()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        getLikesAndComments()
+    }
+    
+    func getLikesAndComments() {
         CloudManager.sharedManager.getLikesForUser(CloudManager.sharedManager.currentUser) { (likes, error) -> () in
             if let error = error {
                 print(error)
@@ -40,13 +53,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.tableView.reloadData()
             }
         }
-        
-        // set badge to # of objects in data array
-        self.updateTabBadge("\(likesAndComments.count)")
-        
-        
-        setUpUI()
     }
+    
+    
     
     //MARK: - Table view delegate
     

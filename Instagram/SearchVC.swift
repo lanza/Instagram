@@ -11,21 +11,8 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        CloudManager.sharedManager.getAllUsers(NSPredicate(value: true)) { (users, error) -> () in
-            if let error = error {
-                print(error)
-            }
-            print("TEST")
-            guard let users = users else { return }
-            print("TEST2")
-            self.users = users
-            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-                self.tableView.reloadData()
-            }            
-        }
-        
         setUpUI()
+        loadAllUsers()
         
         // set up SearchController
         self.resultSearchController = ({
@@ -38,8 +25,29 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
             
             return controller
         })()
-        
     }
+    
+    func loadAllUsers() {
+        CloudManager.sharedManager.getAllUsers(NSPredicate(value: true)) { (users, error) -> () in
+            if let error = error {
+                print(error)
+            }
+            print("TEST")
+            guard let users = users else { return }
+            print("TEST2")
+            self.users = users
+            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadAllUsers()
+    }
+    
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         

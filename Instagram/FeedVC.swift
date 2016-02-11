@@ -31,13 +31,23 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     }
     
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.getPostsOfFollowings()
+    }
+    
+    
+    
+    
     // MARK: – Process data.
     
     func getPostsOfFollowings() {
         self.posts = [Post]()
+        guard let user = user else { return }
         manager.getFollowingsForUser(user) { (followedUsers, errorOne) -> () in
             if let error = errorOne {
-                print("\(__FUNCTION__) has had an error: \(error)")
+                print("\(__FUNCTION__) has had an erreor: \(error)")
             }
             guard let followedUsers = followedUsers else { return }
             
