@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommentViewController: UIViewController {
+class CommentVC: UIViewController {
     
     @IBOutlet weak var commentTextView: UITextView!
     
@@ -24,6 +24,10 @@ class CommentViewController: UIViewController {
     }
     
     @IBAction func onSaveButtonTapped(sender: UIBarButtonItem) {
+        
+//        let storyboard = UIStoryboard(name: "somestoryboard", bundle: nil)
+//        storyboard.instantiateViewControllerWithIdentifier(<#T##identifier: String##String#>)
+        
     }
 
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem) {

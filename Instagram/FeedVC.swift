@@ -1,6 +1,6 @@
 import UIKit
 
-class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError {
     @IBOutlet var tableVieew: UITableView!
 
     let manager = CloudManager.sharedManager
@@ -94,6 +94,10 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
        
         return cell
     }
+    
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//       
+//    }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
