@@ -2,9 +2,12 @@ import UIKit
 import CloudKit
 
 class Post: RecordToClassProtocol {
+    
+    var avatarImage: UIImageView?
+    
     var record: CKRecord
     //switch to child->parent relationships
-
+    
     var image: UIImage? {
         get {
             guard let asset = record.objectForKey("Image") as? CKAsset else { return nil }
@@ -34,6 +37,7 @@ class Post: RecordToClassProtocol {
         set { record.setObject(newValue, forKey: "CommentStrings") }
     }
     
+    
     required init(){
         self.record = CKRecord.init(recordType: "Post")
     }
@@ -42,13 +46,14 @@ class Post: RecordToClassProtocol {
         self.record = CKRecord(recordType: "Post")
         let imageAsset = CKAsset(fileURL: imageURL)
         self.record.setObject(imageAsset, forKey: "Image")
-       
+        
         self.record.setObject(description, forKey: "Description")
         let reference = CKReference(record: poster.record, action: .None)
         self.record.setObject(reference, forKey: "Poster")
         
         self.posterName = poster.alias
     }
+    
     required convenience init(fromRecord record: CKRecord) {
         self.init()
         self.record = record

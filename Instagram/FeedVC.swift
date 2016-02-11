@@ -3,6 +3,8 @@ import UIKit
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError {
     @IBOutlet var tableVieew: UITableView!
 
+    
+    
     let manager = CloudManager.sharedManager
     var user: User!   
     
@@ -28,6 +30,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
             self.getPostsOfFollowings()
             self.manager.checkIfInAllUsers()
         }
+        
+        tableVieew.estimatedRowHeight = 500
+        tableVieew.rowHeight = UITableViewAutomaticDimension
     }
     
     
@@ -76,10 +81,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         cell.userFullNameLabel.text = post.posterName
         cell.postImageView.image = post.image
         cell.descriptionLabel.text = post.description
-        cell.avatarImageView.image = UIImage(named: "Instagram_logo")
+        cell.avatarImageView.image = UIImage(named: "Nathan")
         
-        //        cell.friendsCommentsLabel.text = post.comments
-        //        cell.avatarImageView.image = post.avatarImage
+        post.avatarImage?.layer.cornerRadius = 67.0
+        post.avatarImage?.clipsToBounds = true
+        
         
         var likersText = ""
         for liker in post.likersAliases {
@@ -98,9 +104,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         print("here is the commentsText \(commentsText)")
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
-
+        cell.friendsCommentsLabel.sizeToFit()
         cell.userFullNameLabel.text = post.posterName
-       
+        cell.sizeToFit()
+        
         return cell
     }
     
