@@ -17,6 +17,7 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getPosts()
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -24,6 +25,15 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         setUpUI()
         
         // store iCloud user in local property
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        getPosts()
+        
+    }
+    
+    func getPosts() {
         manager.getPostsForUser(manager.currentUser) { (posts, error) -> () in
             if let error = error {
                 print("\(__FUNCTION__) failed with error: \(error)")
