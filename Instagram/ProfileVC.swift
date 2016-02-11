@@ -9,7 +9,8 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     // storyboard
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageView: UIImageView!
-
+    @IBOutlet weak var textView: UITextView!
+    
     // properties
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     

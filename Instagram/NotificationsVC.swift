@@ -64,6 +64,8 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         //cell.imageView?.image = UIImage(named: "user")
         
+        cell.textLabel?.numberOfLines = 0
+        
         return cell
     }
     
