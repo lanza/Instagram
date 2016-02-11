@@ -9,11 +9,10 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     // storyboard
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var textView: UITextView!
-    
-    // properties
-    let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var postsNumberLabel: UILabel!
+    @IBOutlet weak var followersNumberLabel: UILabel!
+    @IBOutlet weak var followingNumberLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
