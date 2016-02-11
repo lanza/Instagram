@@ -8,8 +8,7 @@ protocol FeedCellDelegate {
 class FeedCell: UITableViewCell {
     
     var delegate: FeedCellDelegate!
-    
-    
+
     @IBOutlet var postImageView: UIImageView!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var friendsCommentsLabel: UILabel!
@@ -19,10 +18,5 @@ class FeedCell: UITableViewCell {
     
     @IBAction func onLikeButtonTapped(sender: UIButton) {
         delegate.feedCell(self, likeButtonTapped: sender)
-    }
-    
-    
-    @IBAction func onCommentButtonTapped(sender: UIButton) {
-        delegate.feedCell(self, commentButtonTapped: sender)
     }
 }

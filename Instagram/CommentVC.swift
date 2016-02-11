@@ -1,12 +1,9 @@
 import UIKit
 
-protocol CommentVCProtocol {
-    func commentVC(commentVC: CommentViewController, saveButtonTapped: UIButton)
-}
-
 class CommentVC: UIViewController {
     
-    var delegate: CommentVCProtocol!
+    var post: Post!
+    
     
     @IBOutlet weak var commentTextView: UITextView!
     
@@ -16,27 +13,18 @@ class CommentVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func saveComment() {
-        guard let indexPath = tableVieew.indexPathForCell(feedCell) else {
-            print("\(__FUNCTION__) could not get indexPath")
-            return
-        }
-        let commentString = "No comment yet"
-        let post = posts[indexPath.row]
+    func saveComment(commentString: String) {
         post.commentStrings.append(commentString)
-        manager.addComment("No comment yet", toPost: post)
-        post.saveRecord(inDatabase: manager.publicDatabase) { () -> () in
+        CloudManager.sharedManager.addComment(commentString, toPost: post)
+        post.saveRecord(inDatabase: CloudManager.sharedManager.publicDatabase) { () -> () in
             print("comment added to post")
         }
-        tableVieew.reloadData()
-    }
+     }
     
     @IBAction func onSaveButtonTapped(sender: UIBarButtonItem) {
-        
+        guard let commentText = commentTextView.text else { return }
+        saveComment(commentText)
         self.dismissViewControllerAnimated(true, completion: nil)
-        
-        //        let storyboard = UIStoryboard(name: "somestoryboard", bundle: nil)
-        //        storyboard.instantiateViewControllerWithIdentifier(<#T##identifier: String##String#>)
     }
     
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem) {

@@ -112,6 +112,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+    }
 
 }
 
