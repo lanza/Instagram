@@ -10,8 +10,6 @@
 		4A0601611C6AFD4E000721DC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601601C6AFD4E000721DC /* UIColorExtension.swift */; };
 		4A0601811C6BB3D1000721DC /* UISetupExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601801C6BB3D1000721DC /* UISetupExtension.swift */; };
 		4A64DEF91C6C07B1002B4824 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DEF81C6C07B1002B4824 /* CommentVC.swift */; };
-		4A64DEFB1C6C26D6002B4824 /* OnboardingUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DEFA1C6C26D6002B4824 /* OnboardingUsernameVC.swift */; };
-		4A64DEFD1C6C338E002B4824 /* OnboardingProfilePicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DEFC1C6C338E002B4824 /* OnboardingProfilePicVC.swift */; };
 		4A64DF011C6C374F002B4824 /* OnboardingFriendsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DF001C6C374F002B4824 /* OnboardingFriendsTVC.swift */; };
 		4A96B4471C6A8BAF0093C4CB /* ProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */; };
 		4A96B44A1C6A8C100093C4CB /* NotificationsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4481C6A8C100093C4CB /* NotificationsVC.storyboard */; };
@@ -19,7 +17,6 @@
 		605AFEDB1C67F9320048F892 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605AFEDA1C67F9320048F892 /* CameraVC.swift */; };
 		605AFEDD1C67FBFE0048F892 /* ComposeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605AFEDC1C67FBFE0048F892 /* ComposeVC.swift */; };
 		608795561C6BCC8600DD7D0A /* ProfileVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608795551C6BCC8600DD7D0A /* ProfileVCCell.swift */; };
-		608A4F351C6BF60E00290D69 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A4F331C6BF60E00290D69 /* PostVC.swift */; };
 		6096F81B1C642F5A00C204DA /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096F81A1C642F5A00C204DA /* FeedVC.swift */; };
 		60EFB25E1C683119004DEFD2 /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFB25D1C683119004DEFD2 /* NotificationsVC.swift */; };
 		60EFB2601C683123004DEFD2 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFB25F1C683123004DEFD2 /* ProfileVC.swift */; };
@@ -59,7 +56,6 @@
 		605AFEDA1C67F9320048F892 /* CameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
 		605AFEDC1C67FBFE0048F892 /* ComposeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeVC.swift; sourceTree = "<group>"; };
 		608795551C6BCC8600DD7D0A /* ProfileVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVCCell.swift; sourceTree = "<group>"; };
-		608A4F331C6BF60E00290D69 /* PostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		6096F81A1C642F5A00C204DA /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		60EFB25D1C683119004DEFD2 /* NotificationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
 		60EFB25F1C683123004DEFD2 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -133,6 +129,7 @@
 		D8ADC64C1C6C21A40095DBAC /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				605AFED81C67F60E0048F892 /* SearchVC.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -140,6 +137,8 @@
 		D8ADC64D1C6C21AA0095DBAC /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				605AFEDA1C67F9320048F892 /* CameraVC.swift */,
+				605AFEDC1C67FBFE0048F892 /* ComposeVC.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -147,6 +146,7 @@
 		D8ADC64E1C6C21B20095DBAC /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				60EFB25D1C683119004DEFD2 /* NotificationsVC.swift */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -154,8 +154,31 @@
 		D8ADC64F1C6C21C30095DBAC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				60EFB25F1C683123004DEFD2 /* ProfileVC.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		D8BB58EC1C6C43040053A414 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				D8ADC6491C6BBF760095DBAC /* FeedVC-FeedCellProtocol.swift */,
+				6096F81A1C642F5A00C204DA /* FeedVC.swift */,
+				4A64DEF81C6C07B1002B4824 /* CommentVC.swift */,
+			);
+			name = Feed;
+			sourceTree = "<group>";
+		};
+		D8BB58ED1C6C435B0053A414 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D8BB58E81C6C38A60053A414 /* OnboardingProfilePicVC.swift */,
+				D8BB58E91C6C38A60053A414 /* OnboardingUsernameVC.swift */,
+				4A64DF001C6C374F002B4824 /* OnboardingFriendsTVC.swift */,
+				4A64DEFC1C6C338E002B4824 /* OnboardingProfilePicVC.swift */,
+				4A64DEFA1C6C26D6002B4824 /* OnboardingUsernameVC.swift */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 		D8EDC89C1C640ACE00FF79E3 = {
@@ -207,12 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				D8EDC8AE1C640ACE00FF79E3 /* Main.storyboard */,
-				D8BB58E81C6C38A60053A414 /* OnboardingProfilePicVC.swift */,
-				D8BB58E91C6C38A60053A414 /* OnboardingUsernameVC.swift */,
-				4A64DF001C6C374F002B4824 /* OnboardingFriendsTVC.swift */,
-				4A64DEFC1C6C338E002B4824 /* OnboardingProfilePicVC.swift */,
-				4A64DEFA1C6C26D6002B4824 /* OnboardingUsernameVC.swift */,
-				4A64DEF81C6C07B1002B4824 /* CommentVC.swift */,
 				4A96B4481C6A8C100093C4CB /* NotificationsVC.storyboard */,
 				4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */,
 				608795551C6BCC8600DD7D0A /* ProfileVCCell.swift */,
@@ -224,19 +241,12 @@
 		D8EDC8BE1C640DED00FF79E3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D8BB58ED1C6C435B0053A414 /* Onboarding */,
+				D8BB58EC1C6C43040053A414 /* Feed */,
 				D8ADC64C1C6C21A40095DBAC /* Search */,
 				D8ADC64D1C6C21AA0095DBAC /* Camera */,
 				D8ADC64E1C6C21B20095DBAC /* Notifications */,
 				D8ADC64F1C6C21C30095DBAC /* Profile */,
-				6096F81A1C642F5A00C204DA /* FeedVC.swift */,
-				D8ADC6491C6BBF760095DBAC /* FeedVC-FeedCellProtocol.swift */,
-				4A64DEF81C6C07B1002B4824 /* CommentVC.swift */,
-				605AFED81C67F60E0048F892 /* SearchVC.swift */,
-				605AFEDA1C67F9320048F892 /* CameraVC.swift */,
-				605AFEDC1C67FBFE0048F892 /* ComposeVC.swift */,
-				60EFB25D1C683119004DEFD2 /* NotificationsVC.swift */,
-				60EFB25F1C683123004DEFD2 /* ProfileVC.swift */,
-				608A4F331C6BF60E00290D69 /* PostVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -404,7 +414,6 @@
 				D893062E1C6980E600154692 /* RecordToClassProtocol.swift in Sources */,
 				D81806C91C6A9D600046F0C3 /* Comment.swift in Sources */,
 				605AFEDD1C67FBFE0048F892 /* ComposeVC.swift in Sources */,
-				608A4F351C6BF60E00290D69 /* PostVC.swift in Sources */,
 				D89306311C699AB500154692 /* DisplaysAlerts.swift in Sources */,
 				D89306281C6976B400154692 /* User.swift in Sources */,
 				D89306261C69768C00154692 /* Post.swift in Sources */,
