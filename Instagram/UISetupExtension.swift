@@ -14,7 +14,8 @@ extension UIViewController {
         titleView = UIImageView(frame:CGRectMake(0, 0, 15, 35))
         titleView.contentMode = .ScaleAspectFit
         titleView.image = UIImage(named: "Instagram_logo")
-        self.navigationItem.titleView = titleView
-//        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        
+// navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }

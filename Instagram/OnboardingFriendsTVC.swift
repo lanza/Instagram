@@ -31,9 +31,15 @@ class OnboardingFriendsTVC: UIViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-
+        
         cell.textLabel!.text = self.tempFriendsArray[indexPath.row]
         
         return cell
     }
+    
+    @IBAction func onCancelTapped(sender: UIButton)
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

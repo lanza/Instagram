@@ -12,7 +12,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpUI()       
+        setUpUI()
         
         manager.getCurrentUser { (user, error) -> () in
             if let error = error {
