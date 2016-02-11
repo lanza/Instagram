@@ -18,13 +18,17 @@ class CommentVC: UIViewController {
         }
     }
     
-    @IBAction func onSaveButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func onSaveButtonTapped(sender: UIBarButtonItem)
+    {
         guard let commentText = commentTextView.text else { return }
         saveComment(commentText)
         let nvc = self.navigationController
         nvc?.popViewControllerAnimated(true)
     }
     
-    @IBAction func onCancelButtonTapped(sender: UIBarButtonItem) {
+    
+    @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)
+    {
+    self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

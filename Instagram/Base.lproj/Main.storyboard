@@ -181,13 +181,13 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="tableVieew" destination="7lI-qz-Wzg" id="oNd-Y8-tAK"/>
-                        <segue destination="GOp-FW-eAP" kind="show" identifier="commentSegue" id="pU4-vx-yKa"/>
+                        <segue destination="GOp-FW-eAP" kind="push" identifier="commentSegue" id="pU4-vx-yKa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="5dU-Jd-SyP"/>
             </objects>
-            <point key="canvasLocation" x="-441" y="1532"/>
+            <point key="canvasLocation" x="-394" y="1532"/>
         </scene>
         <!--Comment-->
         <scene sceneID="ENO-cx-yFQ">
@@ -217,11 +217,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Comment" id="yOf-CS-uUb">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="yXW-sD-YOr">
-                            <connections>
-                                <action selector="onCancelButtonTapped:" destination="GOp-FW-eAP" id="RMS-et-ZSV"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Mzv-Lz-EDT"/>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="LIP-u8-jFu">
                             <connections>
                                 <action selector="onSaveButtonTapped:" destination="GOp-FW-eAP" id="yKN-3c-Uxy"/>
@@ -304,7 +300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50" y="1448"/>
+            <point key="canvasLocation" x="5" y="1448"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -320,7 +316,7 @@
                     <connections>
                         <segue destination="qNB-Gy-Phs" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="C1v-gX-qoB" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="0O0-2i-GH7" kind="relationship" relationship="viewControllers" id="xXZ-HJ-3pc"/>
+                        <segue destination="tJR-tg-6FV" kind="relationship" relationship="viewControllers" id="Gu9-Pu-qS7"/>
                         <segue destination="qbG-Qj-3rx" kind="relationship" relationship="viewControllers" id="sh8-7T-6hU"/>
                         <segue destination="a0H-Hl-Vd8" kind="relationship" relationship="viewControllers" id="agA-vB-XyD"/>
                     </connections>
@@ -369,7 +365,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQw-as-zHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10" y="787"/>
+            <point key="canvasLocation" x="5" y="787"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="Cwj-cO-nJr">
@@ -381,6 +377,16 @@
             </objects>
             <point key="canvasLocation" x="548.5" y="531"/>
         </scene>
+        <!--CameraVC-->
+        <scene sceneID="e3Q-Yl-Hdb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CameraVC" id="tJR-tg-6FV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="x07-fw-39S"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Scf-Hm-L1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="255" y="531"/>
+        </scene>
         <!--NotificationsVC-->
         <scene sceneID="edu-EW-mse">
             <objects>
@@ -389,17 +395,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdc-rN-vox" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="414.5" y="531"/>
-        </scene>
-        <!--CameraNav-->
-        <scene sceneID="aZB-OW-efc">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="CameraNav" storyboardName="CameraVC" referencedIdentifier="CameraNav" id="0O0-2i-GH7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="L8e-7C-9ZO"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FKO-kU-lab" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="261" y="531"/>
+            <point key="canvasLocation" x="408.5" y="531"/>
         </scene>
     </scenes>
     <resources>

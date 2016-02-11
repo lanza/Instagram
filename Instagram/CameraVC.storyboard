@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ho3-y0-rsz">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -160,7 +160,7 @@
         <scene sceneID="rD0-Ra-zFj">
             <objects>
                 <navigationController storyboardIdentifier="CameraNav" automaticallyAdjustsScrollViewInsets="NO" id="ho3-y0-rsz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Camera" image="1C8260A6-5EAB-43AF-AAA2-D5E5506399A0" id="flK-h4-raz"/>
+                    <tabBarItem key="tabBarItem" title="Camera" image="B9030E86-96E4-4A50-9077-C386F1269832" id="flK-h4-raz"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -179,7 +179,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1C8260A6-5EAB-43AF-AAA2-D5E5506399A0" width="25" height="25">
+        <image name="B9030E86-96E4-4A50-9077-C386F1269832" width="25" height="25">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

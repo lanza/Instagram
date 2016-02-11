@@ -83,6 +83,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         cell.descriptionLabel.text = post.description
         cell.avatarImageView.image = UIImage(named: "Nathan")
         
+//        post.avatarImage!.layer.cornerRadius = post.avatarImage!.frame.size.width/2
         post.avatarImage?.layer.cornerRadius = 67.0
         post.avatarImage?.clipsToBounds = true
         
