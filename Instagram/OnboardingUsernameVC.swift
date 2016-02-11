@@ -8,18 +8,9 @@
 
 import UIKit
 
-class OnboardingVC: UIViewController {
+class OnboardingUsernameVC: UIViewController {
     
     @IBOutlet weak var usernameLoginTextField: UITextField!
-    
-    @IBOutlet weak var passwordLoginTextField: UITextField!
-    
-    @IBOutlet weak var emailSignUpTextField: UITextField!
-    
-    @IBOutlet weak var usernameSignUpTextField: UITextField!
-    
-    @IBOutlet weak var passwordSignUpTextField: UITextField!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +22,4 @@ class OnboardingVC: UIViewController {
     {
         //
     }
-    
-    @IBAction func onSignUpButtonTapped(sender: UIButton)
-    {
-        //
-    }
-    
 }
