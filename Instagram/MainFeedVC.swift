@@ -2,7 +2,7 @@ import UIKit
 
 class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError {
     @IBOutlet var tableVieew: UITableView!
-    
+
     let manager = CloudManager.sharedManager
     var user: User!
     
@@ -14,6 +14,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         setUpUI()
         
+        
         manager.getCurrentUser { (user, error) -> () in
             if let error = error {
                 print(__FUNCTION__,error)
@@ -24,6 +25,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             self.manager.checkIfInAllUsers()
         }
     }
+    
     
     // MARK: – Process data.
     
@@ -40,6 +42,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             }
         }
     }
+    
     
     func getPostsForFollowedUser(followedUser: User ) {
         self.manager.getPostsForUser(followedUser) { (posts, errorTwo) -> () in
@@ -62,6 +65,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! FeedCell
         let post = posts[indexPath.row]
+
         cell.delegate = self
         
         cell.userFullNameLabel.text = post.posterName
@@ -82,14 +86,20 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         print(commentsText)
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
+
+        let avatarImageToBeRounded = post.image!
         
+        cell.postImageView.image = maskRoundedImage(avatarImageToBeRounded, radius: 0)
+        cell.userFullNameLabel.text = post.posterName
+       
         return cell
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
     
+
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }

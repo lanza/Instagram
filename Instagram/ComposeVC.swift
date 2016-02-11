@@ -5,7 +5,7 @@ class ComposeVC: UIViewController {
     // show the image chosen or taken
     @IBOutlet weak var imageView: UIImageView!
     
-    //WARNING NICK CHANGE THIS
+    //WARNING NICK CHANGE THIS... WHY? – Nicholas
     @IBOutlet var textFieldNickChangeThis: UITextView!
     
     
@@ -14,13 +14,12 @@ class ComposeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         imageView.image = usersImage
     }
     
     
     @IBAction func onShareTapped(sender: AnyObject) {
-        
+    
         guard let imageURL = imageURL else { return }
         if let text = textFieldNickChangeThis.text {
             CloudManager.sharedManager.postImage(imageURL, description: text)
@@ -28,8 +27,17 @@ class ComposeVC: UIViewController {
         }
     }
     
+    
     @IBAction func onCancelTapped(sender: AnyObject) {
-        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // resign first responder:
+    func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.
+    {
+        textField.resignFirstResponder()
+        return true;
+    }    //
+    
+    
 }

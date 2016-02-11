@@ -8,13 +8,13 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     
     // subclass uiimagepickercontroller
-    // called 
-   
+    // called
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpUI()
-        
+
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
     }
@@ -22,21 +22,21 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     
     @IBAction func onTakePhotoButtonTapped(sender: AnyObject) {
-
+        
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePickerController, animated: true, completion: nil)
         
     }
     
     
-
+    
     @IBAction func onChoosePhotoButtonTapped(sender: AnyObject) {
-        
         imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePickerController, animated: true, completion: nil)    }
-    
-    
+        presentViewController(imagePickerController, animated: true, completion: nil)
+    }
 
+    
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             
@@ -51,7 +51,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 dataFormat = UIImagePNGRepresentation(pickedImage)
             }
             dataFormat?.writeToFile(pathString, atomically: true)
-        
+            
             self.imageURL = NSURL(fileURLWithPath: pathString)
             picker.dismissViewControllerAnimated(true, completion: nil)
             
@@ -63,7 +63,6 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        
         picker.dismissViewControllerAnimated(true, completion: nil)
         
     }
