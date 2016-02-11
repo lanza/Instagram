@@ -170,9 +170,9 @@
 		D8BB58ED1C6C435B0053A414 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				4A64DF001C6C374F002B4824 /* OnboardingFriendsTVC.swift */,
 				4A64DF041C6D168B002B4824 /* OnboardingUsernameVC.swift */,
 				4A64DF021C6D15AD002B4824 /* OnboardingProfilePicVC.swift */,
+				4A64DF001C6C374F002B4824 /* OnboardingFriendsTVC.swift */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";

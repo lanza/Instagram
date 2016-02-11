@@ -1,11 +1,3 @@
-//
-//  OnboardingVC.swift
-//  Instagram
-//
-//  Created by Nicholas Naudé on 10/02/2016.
-//  Copyright © 2016 Nathan Lanza. All rights reserved.
-//
-
 import UIKit
 
 class OnboardingUsernameVC: UIViewController {
@@ -15,11 +7,18 @@ class OnboardingUsernameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
     
-    @IBAction func onLoginButtonTapped(sender: UIButton)
-    {
-        //
+    @IBAction func onLoginButtonTapped(sender: UIButton) {
+        
+        guard let aliasText = usernameLoginTextField.text else { return }
+        
+        CloudManager.sharedManager.currentUser.alias = aliasText
+        CloudManager.sharedManager.currentUser.saveRecord(inDatabase: CloudManager.sharedManager.publicDatabase) { 
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                self.performSegueWithIdentifier("onboardingProfilePicSegue", sender: nil)
+            }
+        }
+        
     }
 }
