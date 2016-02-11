@@ -76,6 +76,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         cell.userFullNameLabel.text = post.posterName
         cell.postImageView.image = post.image
         cell.descriptionLabel.text = post.description
+        cell.avatarImageView.image = UIImage(named: "Instagram_logo")
+        
         //        cell.friendsCommentsLabel.text = post.comments
         //        cell.avatarImageView.image = post.avatarImage
         
@@ -97,9 +99,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
 
-        let avatarImageToBeRounded = post.image!
-        
-        cell.postImageView.image = maskRoundedImage(avatarImageToBeRounded, radius: 0)
         cell.userFullNameLabel.text = post.posterName
        
         return cell
