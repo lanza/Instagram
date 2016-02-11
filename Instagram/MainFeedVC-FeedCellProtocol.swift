@@ -1,7 +1,7 @@
 import UIKit
 import CloudKit
 
-extension MainFeedVC: FeedCellDelegate {
+extension FeedVC: FeedCellDelegate {
     func feedCell(feedCell: FeedCell, likeButtonTapped likeButton: UIButton) {
         guard let indexPath = tableVieew.indexPathForCell(feedCell) else {
             print("\(__FUNCTION__) could not get indexPath")

@@ -4,7 +4,7 @@ protocol CommentVCProtocol {
     func commentVC(commentVC: CommentViewController, saveButtonTapped: UIButton)
 }
 
-class CommentViewController: UIViewController {
+class CommentVC: UIViewController {
     
     var delegate: CommentVCProtocol!
     
@@ -15,7 +15,7 @@ class CommentViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     func saveComment() {
         guard let indexPath = tableVieew.indexPathForCell(feedCell) else {
             print("\(__FUNCTION__) could not get indexPath")
@@ -34,8 +34,11 @@ class CommentViewController: UIViewController {
     @IBAction func onSaveButtonTapped(sender: UIBarButtonItem) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
+        
+        //        let storyboard = UIStoryboard(name: "somestoryboard", bundle: nil)
+        //        storyboard.instantiateViewControllerWithIdentifier(<#T##identifier: String##String#>)
     }
-
+    
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
