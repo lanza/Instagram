@@ -1,6 +1,6 @@
 import UIKit
 
-class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CloudManagerDelegate {
     
     // CloudKit
     let manager = CloudManager.sharedManager
@@ -28,21 +28,14 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        CloudManager.sharedManager.delegate = self
         getPosts()
         
     }
     
     func getPosts() {
-        manager.getPostsForUser(manager.currentUser) { (posts, error) -> () in
-            if let error = error {
-                print("\(__FUNCTION__) failed with error: \(error)")
-            }
-            guard let posts = posts else { return }
-            self.posts = posts
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                self.collectionView.reloadData()
-            })
-        }
+        self.posts = []
+        manager.getPostsForCurrentUser(withCompletionHandler: nil)
     }
     
     // MARK: - UICollectionViewDataSource protocol
@@ -100,6 +93,17 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         let width : CGFloat = self.view.frame.size.width / itemsCount - 1
         
         return CGSize(width: width, height: width)
+    }
+    
+    func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {}
+    func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?) {}
+    func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {}
+    func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {
+        guard let post = post else { return }
+        self.posts.append(post)
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.collectionView.reloadData()
+        }
     }
     
 }

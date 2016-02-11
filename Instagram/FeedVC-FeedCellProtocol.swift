@@ -9,8 +9,8 @@ extension FeedVC: FeedCellDelegate {
         }
         let post = posts[indexPath.row]
         
-        if !post.likersAliases.contains(user.alias) {
-            post.likersAliases.append(user.alias)
+        if !post.likersAliases.contains(manager.currentUser.alias) {
+            post.likersAliases.append(manager.currentUser.alias)
             manager.addLike(toPost: post)
             post.saveRecord(inDatabase: manager.publicDatabase) { () -> () in
                 print("like added to post")
@@ -33,8 +33,8 @@ extension FeedVC: FeedCellDelegate {
             return
         }
         let post = posts[indexPath.row]
-        if !post.likersAliases.contains(user.alias) {
-            post.likersAliases.append(user.alias)
+        if !post.likersAliases.contains(manager.currentUser.alias) {
+            post.likersAliases.append(manager.currentUser.alias)
             manager.addLike(toPost: post)
             post.saveRecord(inDatabase: manager.publicDatabase) { () -> () in
                 print("like added to post")

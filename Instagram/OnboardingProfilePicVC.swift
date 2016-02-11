@@ -1,12 +1,5 @@
-//
-//  OnboardingProfilePicVC.swift
-//  Instagram
-//
-//  Created by Nicholas Naudé on 10/02/2016.
-//  Copyright © 2016 Nathan Lanza. All rights reserved.
-//
-
 import UIKit
+import CloudKit
 
 class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -25,8 +18,17 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
 
         profilePictureImageView.layer.cornerRadius = 67.0
         profilePictureImageView.clipsToBounds = true
-    
-
+        
+        let height = UIScreen.mainScreen().bounds.height
+        let width = UIScreen.mainScreen().bounds.width
+        
+        let frame = CGRectMake(width/2 - 15, height - 100, 100, 30)
+        let continueButton = UIButton(frame: frame)
+        continueButton.addTarget(self, action: "onContinueButtonTapped:", forControlEvents: .TouchUpInside)
+        continueButton.setTitle("Continue", forState: .Normal)
+        continueButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        self.view.addSubview(continueButton)
+        print("HI")
     }
     
     @IBAction func onSetPictureTapped(sender: UIButton) {
@@ -40,6 +42,18 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func onCameraButtonTapped(sender: UIButton) {
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func onContinueButtonTapped(sender: UIButton) {
+        guard let imageURL = imageURL else { return }
+        let asset = CKAsset(fileURL: imageURL)
+        
+        CloudManager.sharedManager.currentUser.record.setObject(asset, forKey: "Avatar")
+        CloudManager.sharedManager.currentUser.saveRecord(inDatabase: CloudManager.sharedManager.publicDatabase) {
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                self.performSegueWithIdentifier("showFriendsSegue", sender: nil)
+            }
+        }
     }
     
     //
@@ -62,7 +76,6 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
             picker.dismissViewControllerAnimated(true, completion: nil)
             
             profilePictureImageView.image = usersImage
-            
         }
     }
     

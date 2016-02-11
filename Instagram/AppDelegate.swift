@@ -11,24 +11,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        if defaults.boolForKey("didSetAlias") == true {
+        if defaults.boolForKey("didOnboard") == true {
             let tbc = storyBoard.instantiateInitialViewController() as! UITabBarController
             self.window!.rootViewController = tbc
         } else {
             let ouvc = storyBoard.instantiateViewControllerWithIdentifier("OnboardingVC")
             self.window!.rootViewController = ouvc
         }        
-        CloudManager.sharedManager.getCurrentUser { (user, error) -> () in
-            print("crocodile")
-        }
-        CloudManager.sharedManager.getCurrentUser { (user, error) in
-            if let error = error {
-                print(error)
-            }
-            guard let _ = user else { return }
-            CloudManager.sharedManager.checkIfInAllUsers()
-        }
-        
+  
         
         self.window!.makeKeyAndVisible()
         return true

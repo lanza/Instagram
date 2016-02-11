@@ -16,8 +16,8 @@ class FeedCell: UITableViewCell {
         doubleTap.delegate = self
         doubleTap.numberOfTapsRequired = 2
         self.addGestureRecognizer(doubleTap)
-        self.avatarImageView.layer.cornerRadius = 67.0
-        self.avatarImageView.clipsToBounds = true
+//        self.avatarImageView.layer.cornerRadius = 67.0
+//        self.avatarImageView.clipsToBounds = true
     }
     
     var delegate: FeedCellDelegate!

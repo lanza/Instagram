@@ -1,10 +1,9 @@
 import UIKit
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError, CloudManagerDelegate {
     @IBOutlet var tableVieew: UITableView!
-
+    
     let manager = CloudManager.sharedManager
-    var user: User!   
     
     // properties
     var posts = [Post]()
@@ -12,24 +11,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        manager.delegate = self
         
         setUpUI()
         
         if let _ = singlePost {
-//            self.navigationItem.titleView = nil
+            self.navigationItem.titleView = nil
             self.navigationItem.title = "Photo"
         }
-        manager.getCurrentUser { (user, error) -> () in
-            if let error = error {
-                print(__FUNCTION__,error)
-            }
-            guard let user = user else { return }
-            self.user = user
-            self.getPostsOfFollowings()
-            self.manager.checkIfInAllUsers()
-        }
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,50 +27,18 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         self.getPostsOfFollowings()
     }
     
-    
-    
-    
-    // MARK: – Process data.
-    
     func getPostsOfFollowings() {
-        self.posts = [Post]()
-        guard let user = user else { return }
-        manager.getFollowingsForUser(user) { (followedUsers, errorOne) -> () in
-            if let error = errorOne {
-                print("\(__FUNCTION__) has had an erreor: \(error)")
-            }
-            guard let followedUsers = followedUsers else { return }
-            
-            for followedUser in followedUsers {
-                self.getPostsForUser(followedUser)
-            }
-            self.getPostsForUser(self.user) 
-        }
+        self.posts = []
+        manager.getFeedPosts(withCompletionHandler: nil)
     }
-    
-    
-    func getPostsForUser(followedUser: User ) {
-        self.manager.getPostsForUser(followedUser) { (posts, errorTwo) -> () in
-            if let error = errorTwo {
-                print("\(__FUNCTION__) has had an error: \(error)")
-            }
-            guard let posts = posts else { return }
-            for post in posts {
-                self.posts.append(post)
-            }
-            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-                self.tableVieew.reloadData()
-            }
-        }
-    }
-    
+
     
     // MARK: - TableView delegate methods
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! FeedCell
         let post = singlePost ?? posts[indexPath.row]
-
+        
         cell.delegate = self
         
         cell.userFullNameLabel.text = post.posterName
@@ -96,6 +54,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
             likersText.appendContentsOf(liker)
             likersText.appendContentsOf(", ")
         }
+        if likersText.characters.count > 0 {
+            likersText.removeAtIndex(likersText.endIndex.predecessor())
+        }
+        
+        
         var commentsText = ""
         for comment in post.commentStrings {
             commentsText = commentsText + "\n" + comment
@@ -108,13 +71,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         print("here is the commentsText \(commentsText)")
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
-
+        
         cell.userFullNameLabel.text = post.posterName
-       
+        
         return cell
     }
     
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let _ = singlePost {
             return 1
@@ -123,7 +86,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         }
     }
     
-
+    
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
@@ -135,6 +98,19 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
             cVC.post = post
         }
     }
-
+    
+    func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
+        getPostsOfFollowings()
+    }
+    func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?) {}
+    func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {
+        guard let post = post else { return }
+        self.posts.append(post)
+        NSOperationQueue.mainQueue().addOperationWithBlock { 
+            self.tableVieew.reloadData()
+        }
+    }
+    func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {}
+    
 }
 

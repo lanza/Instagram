@@ -1,11 +1,3 @@
-//
-//  OnboardingFriendsTVC.swift
-//  Instagram
-//
-//  Created by Nicholas Naudé on 10/02/2016.
-//  Copyright © 2016 Nathan Lanza. All rights reserved.
-//
-
 import UIKit
 
 class OnboardingFriendsTVC: UIViewController {
@@ -16,13 +8,29 @@ class OnboardingFriendsTVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let height = UIScreen.mainScreen().bounds.height
+        let width = UIScreen.mainScreen().bounds.width
+        
+        let frame = CGRectMake(width/2 - 15, height - 100, 100, 30)
+        let continueButton = UIButton(frame: frame)
+        continueButton.addTarget(self, action: "onContinueButtonTapped:", forControlEvents: .TouchUpInside)
+        continueButton.setTitle("Continue", forState: .Normal)
+        continueButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        self.view.addSubview(continueButton)
+        print("HI")
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func onContinueButtonTapped(sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tbc = storyboard.instantiateInitialViewController() as! UITabBarController
+        presentViewController(tbc, animated: true, completion: nil)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(true, forKey: "didOnboard")
     }
+
     
+ 
     // MARK: - Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
