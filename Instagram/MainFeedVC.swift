@@ -12,8 +12,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpUI()
-        
+        setUpUI()       
         
         manager.getCurrentUser { (user, error) -> () in
             if let error = error {
@@ -38,13 +37,14 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             guard let followedUsers = followedUsers else { return }
             
             for followedUser in followedUsers {
-                self.getPostsForFollowedUser(followedUser)
+                self.getPostsForUser(followedUser)
             }
+            self.getPostsForUser(self.user) 
         }
     }
     
     
-    func getPostsForFollowedUser(followedUser: User ) {
+    func getPostsForUser(followedUser: User ) {
         self.manager.getPostsForUser(followedUser) { (posts, errorTwo) -> () in
             if let error = errorTwo {
                 print("\(__FUNCTION__) has had an error: \(error)")
@@ -83,7 +83,12 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         for comment in post.commentStrings {
             commentsText = commentsText + "\n" + comment
         }
-        print(commentsText)
+        if commentsText.characters.count > 3 {
+            commentsText.removeRange(Range<String.Index>(start: commentsText.startIndex, end: commentsText.startIndex.advancedBy(1)))
+        }
+        
+        
+        print("here is the commentsText \(commentsText)")
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
 

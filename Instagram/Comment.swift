@@ -13,6 +13,11 @@ class Comment: RecordToClassProtocol {
         set { record.setObject(newValue, forKey: "CommentString") }
     }
     
+    var commenterAlias: String {
+        get { return record.objectForKey("CommenterAlias") as? String ?? "No Alias" }
+        set { record.setObject(newValue, forKey: "CommenterAlias") }
+    }
+    
     init(withComment comment: String, andCommenter commenter: User, andPost post: Post) {
         self.record = CKRecord(recordType: "Comment")
         
@@ -25,6 +30,7 @@ class Comment: RecordToClassProtocol {
         let referenceToUser = post.record.objectForKey("Poster")
         self.record.setObject(referenceToUser, forKey: "ToUser")
         
+        self.record.setObject(commenter.alias, forKey: "CommenterAlias")        
     }
     
     required convenience init(fromRecord record: CKRecord) {

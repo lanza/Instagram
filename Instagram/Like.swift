@@ -9,6 +9,11 @@ class Like: RecordToClassProtocol {
         self.record = CKRecord.init(recordType: "Comment")
     }
     
+    var likerAlias: String {
+        get { return record.objectForKey("LikerAlias") as? String ?? "No Alias" }
+        set { record.setObject(newValue, forKey: "LikerAlias") }
+    }
+    
     init(withLiker liker: User, andPost post: Post) {
         self.record = CKRecord(recordType: "Like")
         
@@ -20,7 +25,9 @@ class Like: RecordToClassProtocol {
         
     
         let referenceToUser = post.record.objectForKey("Poster")
-        self.record.setObject(referenceToUser, forKey: "ToUser")        
+        self.record.setObject(referenceToUser, forKey: "ToUser")
+        
+        self.record.setObject(liker.alias, forKey: "LikerAlias")
     }
     
     required convenience init(fromRecord record: CKRecord) {

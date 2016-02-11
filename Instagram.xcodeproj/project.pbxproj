@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A0601611C6AFD4E000721DC /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601601C6AFD4E000721DC /* UIColor+extension.swift */; };
+		4A0601611C6AFD4E000721DC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601601C6AFD4E000721DC /* UIColorExtension.swift */; };
 		4A0601811C6BB3D1000721DC /* UISetupExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601801C6BB3D1000721DC /* UISetupExtension.swift */; };
-		4A0601851C6BC2F0000721DC /* UIRoundAvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601841C6BC2F0000721DC /* UIRoundAvatarImage.swift */; };
-		4A0601871C6BCDE7000721DC /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601861C6BCDE7000721DC /* Globals.swift */; };
+		4A0601871C6BCDE7000721DC /* GlobalDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0601861C6BCDE7000721DC /* GlobalDefinitions.swift */; };
 		4A64DEF91C6C07B1002B4824 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DEF81C6C07B1002B4824 /* CommentViewController.swift */; };
 		4A96B4471C6A8BAF0093C4CB /* ProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */; };
 		4A96B44A1C6A8C100093C4CB /* NotificationsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4481C6A8C100093C4CB /* NotificationsVC.storyboard */; };
@@ -43,10 +42,9 @@
 
 /* Begin PBXFileReference section */
 		19D6C26040CD99F937A0B8C1 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
-		4A0601601C6AFD4E000721DC /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
+		4A0601601C6AFD4E000721DC /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		4A0601801C6BB3D1000721DC /* UISetupExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISetupExtension.swift; sourceTree = "<group>"; };
-		4A0601841C6BC2F0000721DC /* UIRoundAvatarImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundAvatarImage.swift; sourceTree = "<group>"; };
-		4A0601861C6BCDE7000721DC /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		4A0601861C6BCDE7000721DC /* GlobalDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefinitions.swift; sourceTree = "<group>"; };
 		4A64DEF81C6C07B1002B4824 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		4A96B4461C6A8BAF0093C4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProfileVC.storyboard; sourceTree = "<group>"; };
 		4A96B4491C6A8C100093C4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NotificationsVC.storyboard; sourceTree = "<group>"; };
@@ -122,6 +120,49 @@
 			name = Protocol;
 			sourceTree = "<group>";
 		};
+		D8ADC64B1C6C219C0095DBAC /* MainFeed */ = {
+			isa = PBXGroup;
+			children = (
+				6096F81A1C642F5A00C204DA /* MainFeedVC.swift */,
+				D8ADC6491C6BBF760095DBAC /* MainFeedVC-FeedCellProtocol.swift */,
+				4A64DEF81C6C07B1002B4824 /* CommentViewController.swift */,
+			);
+			name = MainFeed;
+			sourceTree = "<group>";
+		};
+		D8ADC64C1C6C21A40095DBAC /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				605AFED81C67F60E0048F892 /* SearchVC.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		D8ADC64D1C6C21AA0095DBAC /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				605AFEDA1C67F9320048F892 /* CameraVC.swift */,
+				605AFEDC1C67FBFE0048F892 /* ComposeVC.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		D8ADC64E1C6C21B20095DBAC /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				60EFB25D1C683119004DEFD2 /* NotificationsVC.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		D8ADC64F1C6C21C30095DBAC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				60EFB25F1C683123004DEFD2 /* ProfileVC.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 		D8EDC89C1C640ACE00FF79E3 = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +184,9 @@
 		D8EDC8A71C640ACE00FF79E3 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
-				D8B26DFB1C69A05200B32556 /* Instagram.entitlements */,
+				4A0601861C6BCDE7000721DC /* GlobalDefinitions.swift */,
+				4A0601601C6AFD4E000721DC /* UIColorExtension.swift */,
+				4A0601801C6BB3D1000721DC /* UISetupExtension.swift */,
 				D893062F1C6981DC00154692 /* Protocol */,
 				D8EDC8C11C6410DE00FF79E3 /* Model */,
 				D8EDC8BE1C640DED00FF79E3 /* Controller */,
@@ -156,6 +199,7 @@
 		D8EDC8BC1C640DA400FF79E3 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D8B26DFB1C69A05200B32556 /* Instagram.entitlements */,
 				D8EDC8B11C640ACE00FF79E3 /* Assets.xcassets */,
 				D8EDC8B31C640ACE00FF79E3 /* LaunchScreen.storyboard */,
 				D8EDC8B61C640ACE00FF79E3 /* Info.plist */,
@@ -168,15 +212,9 @@
 			isa = PBXGroup;
 			children = (
 				D8EDC8AE1C640ACE00FF79E3 /* Main.storyboard */,
-				4A64DEF81C6C07B1002B4824 /* CommentViewController.swift */,
 				4A96B4481C6A8C100093C4CB /* NotificationsVC.storyboard */,
 				4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */,
 				608795551C6BCC8600DD7D0A /* ProfileVCCell.swift */,
-				4A0601601C6AFD4E000721DC /* UIColor+extension.swift */,
-				4A0601841C6BC2F0000721DC /* UIRoundAvatarImage.swift */,
-				4A0601801C6BB3D1000721DC /* UISetupExtension.swift */,
-				6087954E1C6AA7FF00DD7D0A /* PostCollectionViewCell.swift */,
-				608795291C6A69AF00DD7D0A /* ProfileVCCell.swift */,
 				D84B4F861C6AC80700D795D9 /* FeedCell.swift */,
 			);
 			name = View;
@@ -185,15 +223,12 @@
 		D8EDC8BE1C640DED00FF79E3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6096F81A1C642F5A00C204DA /* MainFeedVC.swift */,
-				D8ADC6491C6BBF760095DBAC /* MainFeedVC-FeedCellProtocol.swift */,
-				605AFED81C67F60E0048F892 /* SearchVC.swift */,
-				605AFEDA1C67F9320048F892 /* CameraVC.swift */,
-				605AFEDC1C67FBFE0048F892 /* ComposeVC.swift */,
-				60EFB25D1C683119004DEFD2 /* NotificationsVC.swift */,
-				60EFB25F1C683123004DEFD2 /* ProfileVC.swift */,
+				D8ADC64B1C6C219C0095DBAC /* MainFeed */,
+				D8ADC64C1C6C21A40095DBAC /* Search */,
+				D8ADC64D1C6C21AA0095DBAC /* Camera */,
+				D8ADC64E1C6C21B20095DBAC /* Notifications */,
+				D8ADC64F1C6C21C30095DBAC /* Profile */,
 				608A4F331C6BF60E00290D69 /* PostVC.swift */,
-				4A0601861C6BCDE7000721DC /* Globals.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -246,7 +281,7 @@
 				TargetAttributes = {
 					D8EDC8A41C640ACE00FF79E3 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 5VAY37GE36;
+						DevelopmentTeam = 72MNHNDUNH;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -347,7 +382,6 @@
 				D89306331C699EEA00154692 /* ChecksError.swift in Sources */,
 				605AFEDB1C67F9320048F892 /* CameraVC.swift in Sources */,
 				D8ADC64A1C6BBF760095DBAC /* MainFeedVC-FeedCellProtocol.swift in Sources */,
-				6087952A1C6A69B000DD7D0A /* ProfileVCCell.swift in Sources */,
 				D81806CB1C6A9D7D0046F0C3 /* Like.swift in Sources */,
 				D893062A1C697F7900154692 /* CloudManager.swift in Sources */,
 				60EFB2601C683123004DEFD2 /* ProfileVC.swift in Sources */,
@@ -360,12 +394,11 @@
 				605AFEDD1C67FBFE0048F892 /* ComposeVC.swift in Sources */,
 				608A4F351C6BF60E00290D69 /* PostVC.swift in Sources */,
 				D89306311C699AB500154692 /* DisplaysAlerts.swift in Sources */,
-				4A0601871C6BCDE7000721DC /* Globals.swift in Sources */,
+				4A0601871C6BCDE7000721DC /* GlobalDefinitions.swift in Sources */,
 				D89306281C6976B400154692 /* User.swift in Sources */,
 				D89306261C69768C00154692 /* Post.swift in Sources */,
 				D84B4F871C6AC80700D795D9 /* FeedCell.swift in Sources */,
-				4A0601851C6BC2F0000721DC /* UIRoundAvatarImage.swift in Sources */,
-				4A0601611C6AFD4E000721DC /* UIColor+extension.swift in Sources */,
+				4A0601611C6AFD4E000721DC /* UIColorExtension.swift in Sources */,
 				4A64DEF91C6C07B1002B4824 /* CommentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

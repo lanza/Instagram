@@ -53,9 +53,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let likeOrComment = likesAndComments[indexPath.row]
         var text = ""
         if let like = likeOrComment as? Like {
-            text = "Such and such liked your post"
+            text = "\(like.likerAlias) liked your post"
         } else if let comment = likeOrComment as? Comment {
-            text = "Such and such commented on your post"
+            text = "\(comment.commenterAlias) commented on your post"
         }
         cell.textLabel?.text = text
         
