@@ -105,9 +105,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         return cell
     }
     
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//       
-//    }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let _ = singlePost {

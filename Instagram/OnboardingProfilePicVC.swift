@@ -16,22 +16,27 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
     var imageURL: NSURL?
     
     @IBOutlet weak var profilePictureImageView: UIImageView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
-    }
 
+        profilePictureImageView.layer.cornerRadius = 67.0
+        profilePictureImageView.clipsToBounds = true
+    
+
+    }
+    
     @IBAction func onSetPictureTapped(sender: UIButton) {
         imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         presentViewController(imagePickerController, animated: true, completion: nil)
     }
-
+    
     @IBAction func onSkipTapped(sender: UIButton) {
     }
-
+    
     @IBAction func onCameraButtonTapped(sender: UIButton) {
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePickerController, animated: true, completion: nil)
@@ -57,8 +62,7 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
             picker.dismissViewControllerAnimated(true, completion: nil)
             
             profilePictureImageView.image = usersImage
-// segue to ComposeVC
-// self.performSegueWithIdentifier("composeSegue", sender: nil)
+            
         }
     }
     

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -57,7 +57,7 @@
                                                                 <constraint firstItem="pwj-9x-tnA" firstAttribute="height" secondItem="XPl-eb-khX" secondAttribute="height" id="cV6-rE-as5"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wAr-Bh-qff">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wAr-Bh-qff">
                                                             <rect key="frame" x="0.0" y="50" width="359" height="350"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="350" id="QB6-el-UpY"/>
@@ -469,7 +469,7 @@
         <!--Onboarding UsernameVC-->
         <scene sceneID="IEU-7x-Hct">
             <objects>
-                <viewController id="qCc-Sh-sNG" customClass="OnboardingUsernameVC" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingVC" id="qCc-Sh-sNG" customClass="OnboardingUsernameVC" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XyD-13-09J"/>
                         <viewControllerLayoutGuide type="bottom" id="oso-II-S8T"/>
@@ -532,12 +532,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tq3-yb-OZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="-40"/>
+            <point key="canvasLocation" x="845" y="-40"/>
         </scene>
         <!--Onboarding Profile PicVC-->
         <scene sceneID="DsW-Mq-3fX">
             <objects>
-                <viewController id="LUb-rT-vUW" customClass="OnboardingProfilePicVC" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingProfilePicture" id="LUb-rT-vUW" customClass="OnboardingProfilePicVC" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FO1-99-oMF"/>
                         <viewControllerLayoutGuide type="bottom" id="6GK-XN-FeU"/>
@@ -561,10 +561,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rir-2u-KVt">
-                                <rect key="frame" x="95" y="149" width="130" height="130"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gD-jC-Pi3">
                                 <rect key="frame" x="108" y="292" width="105" height="30"/>
                                 <state key="normal" title="Choose picture"/>
@@ -587,25 +583,33 @@
                                     <segue destination="BOK-FC-oxN" kind="show" identifier="showFriendsSegue" id="ZpA-IH-N58"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rir-2u-KVt">
+                                <rect key="frame" x="95" y="149" width="130" height="130"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="ERS-SO-vpZ"/>
+                                    <constraint firstAttribute="height" constant="130" id="Tfj-A4-fFJ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HRJ-OH-tTC" firstAttribute="leading" secondItem="4TW-Ha-XT3" secondAttribute="leadingMargin" constant="-8" id="0ux-Y0-Fvy"/>
                             <constraint firstItem="HRJ-OH-tTC" firstAttribute="top" secondItem="jJa-XZ-FEk" secondAttribute="bottom" constant="1" id="1ec-HI-BlT"/>
                             <constraint firstItem="0gD-jC-Pi3" firstAttribute="leading" secondItem="Q4f-Af-N0S" secondAttribute="trailing" constant="34" id="8d1-I6-0OH"/>
-                            <constraint firstItem="0gD-jC-Pi3" firstAttribute="centerX" secondItem="Rir-2u-KVt" secondAttribute="centerX" id="9w5-1p-eeH"/>
                             <constraint firstItem="jJa-XZ-FEk" firstAttribute="top" secondItem="FO1-99-oMF" secondAttribute="bottom" constant="8" symbolic="YES" id="Ett-vp-MdM"/>
                             <constraint firstItem="0gD-jC-Pi3" firstAttribute="baseline" secondItem="ahY-VO-act" secondAttribute="baseline" id="MYU-fS-oNe"/>
+                            <constraint firstItem="Rir-2u-KVt" firstAttribute="centerX" secondItem="4TW-Ha-XT3" secondAttribute="centerX" id="Q5F-lK-ouN"/>
                             <constraint firstItem="jJa-XZ-FEk" firstAttribute="centerX" secondItem="HRJ-OH-tTC" secondAttribute="centerX" id="Zse-qP-cRU"/>
-                            <constraint firstItem="0gD-jC-Pi3" firstAttribute="top" secondItem="Rir-2u-KVt" secondAttribute="bottom" constant="13" id="fPA-ko-h1I"/>
+                            <constraint firstItem="Rir-2u-KVt" firstAttribute="top" secondItem="HRJ-OH-tTC" secondAttribute="bottom" constant="16" id="dCH-pj-Juy"/>
                             <constraint firstItem="jJa-XZ-FEk" firstAttribute="leading" secondItem="4TW-Ha-XT3" secondAttribute="leadingMargin" constant="24" id="h1q-PZ-moB"/>
                             <constraint firstItem="6GK-XN-FeU" firstAttribute="top" secondItem="Q4f-Af-N0S" secondAttribute="bottom" constant="158" id="i2e-ty-667"/>
-                            <constraint firstItem="Rir-2u-KVt" firstAttribute="top" secondItem="HRJ-OH-tTC" secondAttribute="bottom" constant="16" id="jzK-od-RSy"/>
-                            <constraint firstItem="Rir-2u-KVt" firstAttribute="centerX" secondItem="4TW-Ha-XT3" secondAttribute="centerX" id="krz-HF-Xfw"/>
+                            <constraint firstItem="0gD-jC-Pi3" firstAttribute="top" secondItem="Rir-2u-KVt" secondAttribute="bottom" constant="13" id="ioP-pt-SyA"/>
+                            <constraint firstItem="Rir-2u-KVt" firstAttribute="centerX" secondItem="HRJ-OH-tTC" secondAttribute="centerX" id="l7S-9r-vPw"/>
                             <constraint firstItem="ahY-VO-act" firstAttribute="leading" secondItem="0gD-jC-Pi3" secondAttribute="trailing" constant="57" id="luH-Ai-jkY"/>
+                            <constraint firstItem="Rir-2u-KVt" firstAttribute="leading" secondItem="4TW-Ha-XT3" secondAttribute="leadingMargin" constant="79" id="nwC-6o-NCL"/>
                             <constraint firstItem="0gD-jC-Pi3" firstAttribute="baseline" secondItem="Q4f-Af-N0S" secondAttribute="baseline" id="pgf-aF-zIz"/>
-                            <constraint firstItem="Rir-2u-KVt" firstAttribute="centerX" secondItem="HRJ-OH-tTC" secondAttribute="centerX" id="siD-Pc-fmd"/>
-                            <constraint firstItem="Rir-2u-KVt" firstAttribute="leading" secondItem="4TW-Ha-XT3" secondAttribute="leadingMargin" constant="79" id="tQj-AM-wUl"/>
+                            <constraint firstItem="Rir-2u-KVt" firstAttribute="centerX" secondItem="0gD-jC-Pi3" secondAttribute="centerX" id="sQ4-zT-Cud"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -615,12 +619,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHr-35-X1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="-40"/>
+            <point key="canvasLocation" x="1260" y="-40"/>
         </scene>
         <!--Onboarding FriendsTVC-->
         <scene sceneID="nk1-eZ-k55">
             <objects>
-                <viewController id="BOK-FC-oxN" customClass="OnboardingFriendsTVC" customModule="Instagram" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingFriends" id="BOK-FC-oxN" customClass="OnboardingFriendsTVC" customModule="Instagram" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H6h-P5-oZd"/>
                         <viewControllerLayoutGuide type="bottom" id="Bg3-uy-iDi"/>
