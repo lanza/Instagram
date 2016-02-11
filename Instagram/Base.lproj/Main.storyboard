@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LUb-rT-vUW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -652,7 +652,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H2O-kP-hmh" id="w9o-kQ-G4d">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -672,9 +672,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00z-Wo-Ekj">
                                 <rect key="frame" x="270" y="442" width="30" height="30"/>
                                 <state key="normal" title="Skip"/>
-                                <connections>
-                                    <segue destination="49e-Tb-3d3" kind="show" id="39O-hz-j9V"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -707,7 +704,7 @@
         <!--Feed-->
         <scene sceneID="iBx-y7-y1e">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qNB-Gy-Phs" customClass="Feed" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FeedNav" automaticallyAdjustsScrollViewInsets="NO" id="qNB-Gy-Phs" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Feed" image="home" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iRi-4L-D8y">
@@ -715,6 +712,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Bvr-Kc-6dK">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="aCt-qR-TLk"/>
                     </connections>
@@ -726,7 +727,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Ffi-q1-i74">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C1v-gX-qoB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SearchNav" automaticallyAdjustsScrollViewInsets="NO" id="C1v-gX-qoB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lld-Ix-tGE">
@@ -745,7 +746,7 @@
         <!--Camera-->
         <scene sceneID="rD0-Ra-zFj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ho3-y0-rsz" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CameraNav" automaticallyAdjustsScrollViewInsets="NO" id="ho3-y0-rsz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Camera" image="camera" id="flK-h4-raz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="X88-Od-D02">

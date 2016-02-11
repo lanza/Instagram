@@ -162,8 +162,8 @@
 		D8BB58EC1C6C43040053A414 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				D8ADC6491C6BBF760095DBAC /* FeedVC-FeedCellProtocol.swift */,
 				6096F81A1C642F5A00C204DA /* FeedVC.swift */,
+				D8ADC6491C6BBF760095DBAC /* FeedVC-FeedCellProtocol.swift */,
 				4A64DEF81C6C07B1002B4824 /* CommentVC.swift */,
 			);
 			name = Feed;

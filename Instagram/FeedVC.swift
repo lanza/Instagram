@@ -4,9 +4,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     @IBOutlet var tableVieew: UITableView!
 
     let manager = CloudManager.sharedManager
-    var user: User!
-    
-    
+    var user: User!   
     
     // properties
     var posts = [Post]()
@@ -16,8 +14,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         super.viewDidLoad()
         
         setUpUI()
+        
         if let _ = singlePost {
-            self.navigationItem.titleView = nil
+//            self.navigationItem.titleView = nil
             self.navigationItem.title = "Photo"
         }
         manager.getCurrentUser { (user, error) -> () in
