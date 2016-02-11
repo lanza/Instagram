@@ -1,4 +1,5 @@
 import UIKit
+import CloudKit
 
 class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -45,6 +46,30 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         
         setUpUI()
+    }
+    
+    //MARK: - Table view delegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let likeOrComment = likesAndComments[indexPath.row]
+        let postReference = likeOrComment.record.objectForKey("Post") as! CKReference
+        let postRecord = postReference.recordID
+        
+        CloudManager.sharedManager.publicDatabase.fetchRecordWithID(postRecord) { (record, error) -> Void in
+            if let error = error {
+                print(error)
+            }
+            guard let record = record else { return }
+            let post = Post(fromRecord: record)
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let feedVC = storyboard.instantiateViewControllerWithIdentifier("FeedVC") as! FeedVC
+                feedVC.singlePost = post
+                self.navigationController?.pushViewController(feedVC, animated: true)
+            }
+        }
     }
     
     

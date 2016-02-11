@@ -6,14 +6,20 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     let manager = CloudManager.sharedManager
     var user: User!
     
+    
+    
     // properties
     var posts = [Post]()
+    var singlePost: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpUI()       
-        
+        if let _ = singlePost {
+            self.navigationItem.titleView = nil
+            self.navigationItem.title = "Photo"
+        }
         manager.getCurrentUser { (user, error) -> () in
             if let error = error {
                 print(__FUNCTION__,error)
@@ -64,7 +70,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! FeedCell
-        let post = posts[indexPath.row]
+        let post = singlePost ?? posts[indexPath.row]
 
         cell.delegate = self
         
@@ -105,7 +111,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
 //    }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        if let _ = singlePost {
+            return 1
+        } else {
+            return posts.count
+        }
     }
     
 

@@ -9,11 +9,11 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     // storyboard
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageView: UIImageView!
-
+    
     // properties
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,8 +51,8 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         cell.backgroundColor = UIColor.greenColor()
         cell.imageView.image = post.image
-
-//        cell.layer.borderWidth = 0
+        
+        //        cell.layer.borderWidth = 0    
         
         return cell
     }
@@ -65,14 +65,17 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
+        let post = posts[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let feedVC = storyboard.instantiateViewControllerWithIdentifier("FeedVC") as! FeedVC
+        feedVC.singlePost = post
+        self.navigationController?.pushViewController(feedVC, animated: true)        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 0.0
     }
-
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 0, 0, 0)
     }

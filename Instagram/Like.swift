@@ -23,7 +23,6 @@ class Like: RecordToClassProtocol {
         let referenceToPost = CKReference(record: post.record, action: .None)
         self.record.setObject(referenceToPost, forKey: "Post")
         
-    
         let referenceToUser = post.record.objectForKey("Poster")
         self.record.setObject(referenceToUser, forKey: "ToUser")
         
