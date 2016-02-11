@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LUb-rT-vUW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -531,7 +531,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tq3-yb-OZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="797" y="-40"/>
+            <point key="canvasLocation" x="857" y="-40"/>
         </scene>
         <!--Onboarding Profile PicVC-->
         <scene sceneID="DsW-Mq-3fX">
@@ -576,7 +576,7 @@
                                 <state key="normal" title="Skip"/>
                                 <connections>
                                     <action selector="onSkipTapped:" destination="LUb-rT-vUW" eventType="touchUpInside" id="Y1V-AJ-mEf"/>
-                                    <segue destination="BOK-FC-oxN" kind="show" id="ZpA-IH-N58"/>
+                                    <segue destination="BOK-FC-oxN" kind="show" identifier="showFriendsSegue" id="ZpA-IH-N58"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -605,12 +605,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHr-35-X1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1209" y="-40"/>
+            <point key="canvasLocation" x="1229" y="-40"/>
         </scene>
         <!--Onboarding FriendsTVC-->
         <scene sceneID="nk1-eZ-k55">
             <objects>
-                <viewController id="BOK-FC-oxN" customClass="OnboardingFriendsTVC" customModule="ImagePicker" sceneMemberID="viewController">
+                <viewController id="BOK-FC-oxN" customClass="OnboardingFriendsTVC" customModule="Instagram" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H6h-P5-oZd"/>
                         <viewControllerLayoutGuide type="bottom" id="Bg3-uy-iDi"/>

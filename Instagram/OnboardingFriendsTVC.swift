@@ -8,13 +8,14 @@
 
 import UIKit
 
-class OnboardingFriendsTVC: UITableViewController {
+class OnboardingFriendsTVC: UIViewController {
     
     @IBOutlet weak var friendsTableView: UITableView!
     
+    var tempFriendsArray = ["Nathan", "Nicholas", "Steve", "Susan", "Mike", "Evgeny"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -23,16 +24,15 @@ class OnboardingFriendsTVC: UITableViewController {
     }
     
     // MARK: - Table view data source
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.tempFriendsArray.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        
-        // Configure the cell...
+
+        cell.textLabel!.text = self.tempFriendsArray[indexPath.row]
         
         return cell
     }
