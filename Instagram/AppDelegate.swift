@@ -7,9 +7,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-            
-        
+        CloudManager.sharedManager.getCurrentUser { (user, error) -> () in
+            print("crocodile")
+        }
         return true
     }
 

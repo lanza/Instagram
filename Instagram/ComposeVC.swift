@@ -14,12 +14,13 @@ class ComposeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
         imageView.image = usersImage
     }
     
     
     @IBAction func onShareTapped(sender: AnyObject) {
-    
+        
         guard let imageURL = imageURL else { return }
         if let text = textFieldNickChangeThis.text {
             CloudManager.sharedManager.postImage(imageURL, description: text)

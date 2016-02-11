@@ -15,7 +15,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpUI()       
+        setUpUI()
         if let _ = singlePost {
             self.navigationItem.titleView = nil
             self.navigationItem.title = "Photo"

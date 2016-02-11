@@ -6,6 +6,10 @@ class CommentVC: UIViewController {
     
     @IBOutlet weak var commentTextView: UITextView!
     
+    override func viewDidLoad() {
+        setUpUI()
+    }
+    
     func saveComment(commentString: String) {
         post.commentStrings.append(commentString)
         CloudManager.sharedManager.addComment(commentString, toPost: post)
@@ -18,7 +22,7 @@ class CommentVC: UIViewController {
         guard let commentText = commentTextView.text else { return }
         saveComment(commentText)
         let nvc = self.navigationController
-        nvc?.popViewControllerAnimated(true)    
+        nvc?.popViewControllerAnimated(true)
     }
     
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem) {
