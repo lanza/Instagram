@@ -23,7 +23,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             for like in likes {
                 self.likesAndComments.append(like)
             }
-            self.tableView.reloadData()
+            NSOperationQueue.mainQueue().addOperationWithBlock{ () -> Void in
+                self.tableView.reloadData()
+            }
         }
         CloudManager.sharedManager.getCommentsForUser(CloudManager.sharedManager.currentUser) { (comments, error) -> () in
             if let error = error {
@@ -33,8 +35,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             for comment in comments {
                 self.likesAndComments.append(comment)
             }
-            self.tableView.reloadData()
-            print(self.likesAndComments)
+            NSOperationQueue.mainQueue().addOperationWithBlock{ () -> Void in
+                self.tableView.reloadData()
+            }
         }
         
         // set badge to # of objects in data array

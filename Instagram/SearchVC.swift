@@ -20,7 +20,9 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
             guard let users = users else { return }
             print("TEST2")
             self.users = users
-            self.tableView.reloadData()
+            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                self.tableView.reloadData()
+            }            
         }
         
         setUpUI()

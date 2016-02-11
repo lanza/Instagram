@@ -56,7 +56,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             picker.dismissViewControllerAnimated(true, completion: nil)
             
             // segue to ComposeVC
-            self.performSegueWithIdentifier("ShowComposeVC", sender: nil)
+            self.performSegueWithIdentifier("composeSegue", sender: nil)
         }
     }
     
