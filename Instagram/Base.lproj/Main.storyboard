@@ -528,6 +528,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="usernameLoginTextField" destination="jx8-bj-0Sw" id="5W6-um-pcb"/>
+                        <segue destination="LUb-rT-vUW" kind="show" identifier="onboardingProfilePicSegue" id="Syr-lD-8fB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tq3-yb-OZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
