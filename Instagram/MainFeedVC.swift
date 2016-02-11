@@ -2,7 +2,7 @@ import UIKit
 
 class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError {
     @IBOutlet var tableVieew: UITableView!
-    
+
     let manager = CloudManager.sharedManager
     var user: User!
     
@@ -14,6 +14,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         setUpUI()
         
+        
         manager.getCurrentUser { (user, error) -> () in
             if let error = error {
                 print(__FUNCTION__,error)
@@ -23,6 +24,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             self.getPostsOfFollowings()
         }
     }
+    
     
     // MARK: – Process data.
     
@@ -40,6 +42,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
     }
     
+    
     func getPostsForFollowedUser(followedUser: User ) {
         self.manager.getPostsForUser(followedUser) { (posts, errorTwo) -> () in
             if let error = errorTwo {
@@ -54,7 +57,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             }
         }
     }
-
+    
     
     
     // MARK: - TableView delegate methods
@@ -62,18 +65,22 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! FeedCell
         let post = posts[indexPath.row]
-        cell.postImageView.image = post.image
         cell.descriptionLabel.text = post.description
-        //        cell.friendsCommentsLabel.text = post.comments
-        //        cell.avatarImageView.image = post.avatarImage
+        
+        
+        // implement the roundedCorner function on the avatar images when we have them.
+        let avatarImageToBeRounded = post.image!
+        
+        cell.postImageView.image = maskRoundedImage(avatarImageToBeRounded, radius: 0)
         cell.userFullNameLabel.text = post.posterName
+        
         return cell
     }
-    
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
+    
 }
 

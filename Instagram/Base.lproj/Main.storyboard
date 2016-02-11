@@ -30,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6py-OD-Sc4">
-                                                    <rect key="frame" x="8" y="8" width="359" height="500"/>
+                                                    <rect key="frame" x="8" y="8" width="359" height="505"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UeJ-1g-brB">
                                                             <rect key="frame" x="0.0" y="0.0" width="359" height="50"/>
@@ -58,66 +58,65 @@
                                                             </constraints>
                                                         </stackView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wAr-Bh-qff">
-                                                            <rect key="frame" x="0.0" y="50" width="359" height="293"/>
-                                                            <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                            <rect key="frame" x="0.0" y="50" width="359" height="350"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="293" id="5bl-sG-0ID"/>
+                                                                <constraint firstAttribute="height" constant="350" id="QB6-el-UpY"/>
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ud-F0-gdZ">
-                                                            <rect key="frame" x="0.0" y="343" width="359" height="31"/>
+                                                            <rect key="frame" x="0.0" y="400" width="359" height="30"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSB-wo-IZx">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="31"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSB-wo-IZx">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="30"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="180" id="eZc-Ob-97s"/>
+                                                                        <constraint firstAttribute="width" constant="180" id="6lf-Gw-uzA"/>
+                                                                        <constraint firstAttribute="height" constant="30" id="Xkp-oj-7nY"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                    <state key="normal" title="Like"/>
+                                                                    <state key="normal" image="like"/>
                                                                     <connections>
                                                                         <action selector="onLikeButtonTapped:" destination="cXx-lp-iQs" eventType="touchUpInside" id="rnf-r4-ExL"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7J-OB-BlI">
-                                                                    <rect key="frame" x="180" y="0.0" width="179" height="31"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                    <state key="normal" title="Comment"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7J-OB-BlI">
+                                                                    <rect key="frame" x="180" y="0.0" width="179" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="30" id="b8C-Fq-hr6"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="comment"/>
                                                                     <connections>
-                                                                        <action selector="onCommentButtonTapped:" destination="cXx-lp-iQs" eventType="touchUpInside" id="nJf-08-PoH"/>
+                                                                        <segue destination="GOp-FW-eAP" kind="show" id="0wz-x1-Mx1"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="0 likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP0-wE-kZe">
-                                                            <rect key="frame" x="0.0" y="374" width="359" height="31"/>
+                                                            <rect key="frame" x="0.0" y="430" width="359" height="25"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="Zw2-dY-ZaF"/>
+                                                                <constraint firstAttribute="height" constant="25" id="4Fo-kA-KFq"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                             <color key="textColor" red="0.21176470589999999" green="0.51372549020000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vI-o0-pJd">
-                                                            <rect key="frame" x="0.0" y="405" width="359" height="70"/>
+                                                            <rect key="frame" x="0.0" y="455" width="359" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="zqy-wE-EuC"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Friends' comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7B-w9-IYc">
-                                                            <rect key="frame" x="0.0" y="475" width="359" height="25"/>
+                                                            <rect key="frame" x="0.0" y="480" width="359" height="25"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="25" id="vRL-P5-ayV"/>
+                                                                <constraint firstAttribute="height" constant="25" id="sS4-WO-K7b"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="0.46496394230769234" green="0.46496394230769234" blue="0.46496394230769234" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="wP0-wE-kZe" secondAttribute="bottom" constant="95" id="0ff-hd-1ij"/>
-                                                        <constraint firstItem="wP0-wE-kZe" firstAttribute="height" secondItem="8ud-F0-gdZ" secondAttribute="height" id="aJe-DC-hmG"/>
-                                                        <constraint firstItem="wAr-Bh-qff" firstAttribute="top" secondItem="6py-OD-Sc4" secondAttribute="top" constant="50" id="yV5-gd-dPD"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -169,6 +168,53 @@
             </objects>
             <point key="canvasLocation" x="-393.5" y="1532.5"/>
         </scene>
+        <!--Comment-->
+        <scene sceneID="ENO-cx-yFQ">
+            <objects>
+                <viewController id="GOp-FW-eAP" customClass="CommentViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ceb-iv-GBo"/>
+                        <viewControllerLayoutGuide type="bottom" id="erV-JM-RuS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cAk-Wx-r6A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Comment here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ac8-1E-GxW">
+                                <rect key="frame" x="16" y="72" width="343" height="538"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ac8-1E-GxW" firstAttribute="top" secondItem="Ceb-iv-GBo" secondAttribute="bottom" constant="8" id="0yy-gQ-tol"/>
+                            <constraint firstItem="erV-JM-RuS" firstAttribute="top" secondItem="ac8-1E-GxW" secondAttribute="bottom" constant="8" id="2VP-rR-wGh"/>
+                            <constraint firstItem="ac8-1E-GxW" firstAttribute="trailing" secondItem="cAk-Wx-r6A" secondAttribute="trailingMargin" id="ACE-fZ-BPD"/>
+                            <constraint firstItem="ac8-1E-GxW" firstAttribute="leading" secondItem="cAk-Wx-r6A" secondAttribute="leadingMargin" id="H32-2Y-YFj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Comment" id="yOf-CS-uUb">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="yXW-sD-YOr">
+                            <connections>
+                                <action selector="onCancelButtonTapped:" destination="GOp-FW-eAP" id="RMS-et-ZSV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="LIP-u8-jFu">
+                            <connections>
+                                <action selector="onSaveButtonTapped:" destination="GOp-FW-eAP" id="yKN-3c-Uxy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="commentTextView" destination="ac8-1E-GxW" id="mPG-uk-Q8T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pfb-BG-5z2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-393.5" y="2352.5"/>
+        </scene>
         <!--CameraVC-->
         <scene sceneID="Z0T-o7-onl">
             <objects>
@@ -194,7 +240,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmi-N9-Iwh">
                                         <rect key="frame" x="0.0" y="228" width="328" height="228"/>
-                                        <color key="backgroundColor" red="0.80000001190000003" green="0.37754112473064411" blue="0.41360379302526923" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.66402243585897436" green="0.66402243585897436" blue="0.66402243585897436" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Choose Photo"/>
                                         <connections>
                                             <action selector="onChoosePhotoButtonTapped:" destination="ocI-bn-exh" eventType="touchUpInside" id="f4p-f1-kGA"/>
@@ -242,80 +288,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4W3-E5-gNe">
-                                <rect key="frame" x="-4" y="20" width="328" height="548"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNE-hq-pt6">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Add your description and #hashtags #here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kNw-18-vE0">
-                                        <rect key="frame" x="0.0" y="0.0" width="328" height="58"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="58" id="9bv-kW-FNn"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="386" width="568" height="58"/>
-                                        </variation>
-                                    </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wgL-Fd-yys">
-                                        <rect key="frame" x="0.0" y="58" width="328" height="445"/>
-                                        <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="58" width="568" height="568"/>
-                                        </variation>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="abY-5P-Osu">
-                                        <rect key="frame" x="0.0" y="503" width="328" height="45"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4W3-E5-gNe">
+                                        <rect key="frame" x="-4" y="0.0" width="328" height="548"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjf-db-ltJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="164" height="45"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nD-6I-oTJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="328" height="45"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="QSR-Yu-kCI"/>
+                                                    <constraint firstAttribute="height" constant="45" id="X6f-h0-cn3"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="Cancel">
-                                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onCancelTapped:" destination="4PD-Zc-h4i" eventType="touchUpInside" id="GyT-fu-F6y"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d43-cV-1Rn">
-                                                <rect key="frame" x="164" y="0.0" width="164" height="45"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <items>
+                                                    <navigationItem title="Your post" id="nzm-uH-KLN">
+                                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Luj-g7-ocg">
+                                                            <connections>
+                                                                <action selector="onCancelTapped:" destination="4PD-Zc-h4i" id="Ajy-uT-47u"/>
+                                                            </connections>
+                                                        </barButtonItem>
+                                                        <barButtonItem key="rightBarButtonItem" title="Share" id="kyx-sV-eCJ">
+                                                            <connections>
+                                                                <action selector="onShareTapped:" destination="4PD-Zc-h4i" id="RFH-Og-O0R"/>
+                                                            </connections>
+                                                        </barButtonItem>
+                                                    </navigationItem>
+                                                </items>
+                                            </navigationBar>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wgL-Fd-yys">
+                                                <rect key="frame" x="0.0" y="45" width="328" height="334"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="vKU-IP-QPE"/>
+                                                    <constraint firstAttribute="height" constant="334" id="SR8-kU-iaB"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="Share"/>
-                                                <connections>
-                                                    <action selector="onShareTapped:" destination="4PD-Zc-h4i" eventType="touchUpInside" id="ixL-yq-aTp"/>
-                                                </connections>
-                                            </button>
+                                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="58" width="568" height="568"/>
+                                                </variation>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" text="Add your description and #hashtags #here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kNw-18-vE0">
+                                                <rect key="frame" x="0.0" y="379" width="328" height="169"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="386" width="568" height="58"/>
+                                                </variation>
+                                            </textView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="d43-cV-1Rn" firstAttribute="width" secondItem="Vjf-db-ltJ" secondAttribute="width" id="Ljm-HT-ag4"/>
-                                            <constraint firstAttribute="height" constant="45" id="LmA-c8-fvt"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="abY-5P-Osu" firstAttribute="leading" secondItem="4W3-E5-gNe" secondAttribute="leading" id="ISm-Ki-fJi"/>
-                                    <constraint firstAttribute="trailing" secondItem="abY-5P-Osu" secondAttribute="trailing" id="M1H-1L-HXt"/>
-                                    <constraint firstAttribute="bottom" secondItem="abY-5P-Osu" secondAttribute="bottom" id="RXA-8m-gdE"/>
+                                    <constraint firstAttribute="bottom" secondItem="4W3-E5-gNe" secondAttribute="bottom" id="6k1-4j-sql"/>
+                                    <constraint firstItem="4W3-E5-gNe" firstAttribute="centerX" secondItem="fNE-hq-pt6" secondAttribute="centerX" id="M4w-Ii-adj"/>
+                                    <constraint firstAttribute="trailing" secondItem="4W3-E5-gNe" secondAttribute="trailing" constant="-4" id="XXY-gO-lqQ"/>
+                                    <constraint firstItem="4W3-E5-gNe" firstAttribute="leading" secondItem="fNE-hq-pt6" secondAttribute="leading" constant="-4" id="dM5-1D-2to"/>
+                                    <constraint firstItem="4W3-E5-gNe" firstAttribute="top" secondItem="fNE-hq-pt6" secondAttribute="top" id="nKm-Rj-cVx"/>
+                                    <constraint firstItem="4W3-E5-gNe" firstAttribute="centerY" secondItem="fNE-hq-pt6" secondAttribute="centerY" id="xGH-oD-fDA"/>
                                 </constraints>
-                            </stackView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNE-hq-pt6">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4W3-E5-gNe" firstAttribute="leading" secondItem="o1Y-JE-9j3" secondAttribute="leadingMargin" constant="-20" id="gyA-ri-aVo"/>
-                            <constraint firstItem="6XK-Xb-ng6" firstAttribute="top" secondItem="4W3-E5-gNe" secondAttribute="bottom" id="lk5-nO-R9v"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4W3-E5-gNe" secondAttribute="trailing" constant="-20" id="r0D-hK-snC"/>
-                            <constraint firstItem="4W3-E5-gNe" firstAttribute="top" secondItem="7eY-zZ-maZ" secondAttribute="bottom" id="w1f-zf-VAH"/>
+                            <constraint firstItem="fNE-hq-pt6" firstAttribute="bottom" secondItem="6XK-Xb-ng6" secondAttribute="top" id="3Ke-tN-T04"/>
+                            <constraint firstItem="fNE-hq-pt6" firstAttribute="leading" secondItem="o1Y-JE-9j3" secondAttribute="leading" id="jtS-Sg-lM6"/>
+                            <constraint firstItem="fNE-hq-pt6" firstAttribute="top" secondItem="7eY-zZ-maZ" secondAttribute="bottom" id="tiA-NQ-1qF"/>
+                            <constraint firstAttribute="trailing" secondItem="fNE-hq-pt6" secondAttribute="trailing" id="wP5-5y-R2E"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -326,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSs-Ak-ZDD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="379" y="2203"/>
+            <point key="canvasLocation" x="379" y="2186"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="wg7-f3-ORb">
@@ -500,7 +536,9 @@
     </scenes>
     <resources>
         <image name="camera" width="25" height="25"/>
+        <image name="comment" width="37" height="37"/>
         <image name="home" width="25" height="25"/>
+        <image name="like" width="37" height="37"/>
         <image name="user " width="25" height="25"/>
     </resources>
 </document>
