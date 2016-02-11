@@ -114,7 +114,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
+        if segue.identifier == "commentSegue" {
+            let post = sender as! Post
+            let cVC = segue.destinationViewController as! CommentVC
+            cVC.post = post
+        }
     }
 
 }

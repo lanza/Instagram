@@ -12,7 +12,6 @@
 		2668B0C2E398A4CA06C8127325C08483 /* ButtonPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAC6BB72E9D24EAC8687E93FB62B15 /* ButtonPicker.swift */; };
 		2D27BC43FFA9C52A4973732A5F0F6905 /* Pods-Instagram-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3469C5E1F8FC486DA10E176F370732BF /* Pods-Instagram-dummy.m */; };
 		44F219BC30C92CB2411F2249992213AF /* ConstraintsSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8ECCF303140E762FE9615DDD71DA822 /* ConstraintsSetup.swift */; };
-		4A64DEFF1C6C3431002B4824 /* OnboardingFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DEFE1C6C3431002B4824 /* OnboardingFriendsVC.swift */; };
 		4D915BCF7979F0E57B245822464CEAEE /* ImageStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB58C4ED771FDAC0289B7338A0C7513 /* ImageStack.swift */; };
 		57D87A4FDF665BF572C3AB6098461F9C /* cameraIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A377BFA48BE6A00C9609045474FA75 /* cameraIcon@3x.png */; };
 		7AC9534F13E2F90388BE1AFA3060B7AE /* ImageGalleryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE57F970093C69E58357EF9FFA58D4 /* ImageGalleryViewCell.swift */; };
@@ -66,7 +65,6 @@
 		40E791101331623BBE74453FC92B8FE1 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Source/Configuration.swift; sourceTree = "<group>"; };
 		49D402D4E48E0A2C16D36B7D60FD8106 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A02204456655DC493C67E3A6C5DEE95 /* Photos.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Photos.swift; path = Source/Photos.swift; sourceTree = "<group>"; };
-		4A64DEFE1C6C3431002B4824 /* OnboardingFriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFriendsVC.swift; sourceTree = "<group>"; };
 		52B4CB7B97F862E95E31D959DBA134B9 /* focusIcon@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "focusIcon@3x.png"; path = "Images/focusIcon@3x.png"; sourceTree = "<group>"; };
 		52DE57F970093C69E58357EF9FFA58D4 /* ImageGalleryViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageGalleryViewCell.swift; path = Source/ImageGallery/ImageGalleryViewCell.swift; sourceTree = "<group>"; };
 		55CAC812F923D6E83B5085C43DCB276F /* Pods-Instagram-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Instagram-umbrella.h"; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
-				4A64DEFE1C6C3431002B4824 /* OnboardingFriendsVC.swift */,
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
 				5B9C18BDCC22A304E36B376D79C7A8E5 /* Pods */,
@@ -392,7 +389,6 @@
 				FBBA2A99042EA623ABAE97E9B4CD31D5 /* ImageGalleryViewDataSource.swift in Sources */,
 				18069FA2F83F861FC63627C37BEF2F5E /* ImagePicker-dummy.m in Sources */,
 				A4A7EA55C59C157EEC37723056AEB76F /* ImagePickerController.swift in Sources */,
-				4A64DEFF1C6C3431002B4824 /* OnboardingFriendsVC.swift in Sources */,
 				4D915BCF7979F0E57B245822464CEAEE /* ImageStack.swift in Sources */,
 				A823C80ED7B24469B449F3C0B1B221CB /* Photos.swift in Sources */,
 				9340C5EB35D94576DBF2B6B8B4061E23 /* StackView.swift in Sources */,

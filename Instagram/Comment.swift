@@ -30,7 +30,8 @@ class Comment: RecordToClassProtocol {
         let referenceToUser = post.record.objectForKey("Poster")
         self.record.setObject(referenceToUser, forKey: "ToUser")
         
-        self.record.setObject(commenter.alias, forKey: "CommenterAlias")        
+        self.record.setObject(commenter.alias, forKey: "CommenterAlias")
+        self.commentString = comment    
     }
     
     required convenience init(fromRecord record: CKRecord) {

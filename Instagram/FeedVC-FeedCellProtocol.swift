@@ -16,6 +16,16 @@ extension FeedVC: FeedCellDelegate {
                 print("like added to post")
             }
             tableVieew.reloadData()
-        }       
+        }
+    }
+    func feedCell(feedCell: FeedCell, commentButtonTapped likeButton: UIButton) {
+        guard let indexPath = tableVieew.indexPathForCell(feedCell) else {
+            print("\(__FUNCTION__) could not get indexPath")
+            return
+        }
+        let post = posts[indexPath.row]
+        performSegueWithIdentifier("commentSegue", sender: post)
     }
 }
+
+

@@ -19,4 +19,8 @@ class FeedCell: UITableViewCell {
     @IBAction func onLikeButtonTapped(sender: UIButton) {
         delegate.feedCell(self, likeButtonTapped: sender)
     }
+    
+    @IBAction func onCommentButtonTapped(sender: UIButton) {
+        delegate.feedCell(self, commentButtonTapped: sender)
+    }
 }
