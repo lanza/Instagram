@@ -4,7 +4,6 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     // CloudKit
     let manager = CloudManager.sharedManager
-    var user: User!
     var posts = [Post]()
     
     // storyboard
@@ -14,33 +13,33 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     // properties
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
-    // placeholder data to generate cells
-    var items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48"]
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        setUpUI() // colorize nav bar and add logo
+        setUpUI()
         
         // store iCloud user in local property
-        manager.getCurrentUser { (user, error) -> () in
+        manager.getPostsForUser(manager.currentUser) { (posts, error) -> () in
             if let error = error {
-                print(__FUNCTION__,error)
+                print("\(__FUNCTION__) failed with error: \(error)")
             }
-            guard let user = user else { return }
-            self.user = user
+            guard let posts = posts else { return }
+            self.posts = posts
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                self.collectionView.reloadData()
+            })
         }
-        
     }
     
     // MARK: - UICollectionViewDataSource protocol
     
     // tell the collection view how many cells to make
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
+        return self.posts.count
     }
     
     // make a cell for each cell index path
@@ -48,10 +47,10 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ProfileVCCell
-        
+        let post = posts[indexPath.row]
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         cell.backgroundColor = UIColor.greenColor()
-        cell.imageView.image = UIImage(named: "placeholder")
+        cell.imageView.image = post.image
 
 //        cell.layer.borderWidth = 0
         

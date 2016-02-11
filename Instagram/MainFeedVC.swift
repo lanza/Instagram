@@ -108,5 +108,6 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
+
 }
 
