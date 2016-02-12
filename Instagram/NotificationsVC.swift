@@ -141,23 +141,29 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return likesAndComments.count
     }
+    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         return 60
     }
     
+    
     func updateTabBadge(value: String) {
         (tabBarController!.tabBar.items![3]).badgeValue = value
     }
+    
     
     func cloudManager(cloudManager: CloudManager, gotUser user: User?) {}
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
         getLikesAndComments()
     }
+    
+    
     func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?) {}
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {}
     func cloudManager(cloudManager: CloudManager, gotUserPost post: Post?) {}

@@ -12,6 +12,7 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
         
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
@@ -19,15 +20,6 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
         profilePictureImageView.layer.cornerRadius = 67.0
         profilePictureImageView.clipsToBounds = true
         
-        let height = UIScreen.mainScreen().bounds.height
-        let width = UIScreen.mainScreen().bounds.width
-        
-        let frame = CGRectMake(width/2 - 15, height - 100, 100, 30)
-        let continueButton = UIButton(frame: frame)
-        continueButton.addTarget(self, action: "onContinueButtonTapped:", forControlEvents: .TouchUpInside)
-        continueButton.setTitle("Continue", forState: .Normal)
-        continueButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        self.view.addSubview(continueButton)
     }
     
     @IBAction func onSetPictureTapped(sender: UIButton) {
@@ -35,14 +27,13 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
         presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
-    @IBAction func onSkipTapped(sender: UIButton) {
-    }
     
     @IBAction func onCameraButtonTapped(sender: UIButton) {
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
+    //connect
     @IBAction func onContinueButtonTapped(sender: UIButton) {
         guard let imageURL = imageURL else { return }
         let asset = CKAsset(fileURL: imageURL)
