@@ -29,9 +29,7 @@ class SearchVC: UIViewController, UISearchResultsUpdating, CloudManagerDelegate,
     
     func loadAllUsers() {
         CloudManager.sharedManager.getAllUsers(NSPredicate(value: true)) { (users, error) -> () in
-            if let error = error {
-                print(error)
-            }
+
             guard let users = users else { return }
             self.users = users
             NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
