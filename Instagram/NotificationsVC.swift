@@ -49,6 +49,8 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.currentlyWaitingForGetLikesToReturn = false
+        self.currentlyWaitingForGetCommentsToReturn = false
         CloudManager.sharedManager.delegate = self
         getLikesAndComments()
     }

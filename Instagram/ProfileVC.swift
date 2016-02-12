@@ -31,6 +31,7 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.currentlyWaitingForGetPostsToReturn = false
         CloudManager.sharedManager.delegate = self
         if !self.userIsFriend {
             self.user = CloudManager.sharedManager.currentUser

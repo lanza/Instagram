@@ -44,6 +44,10 @@ class Post: RecordToClassProtocol {
         set { record.setObject(newValue, forKey: "CommentStrings") }
     }
     
+    var postTime: NSDate {
+        get { return record.creationDate! }
+    }
+    
     
     required init(){
         self.record = CKRecord.init(recordType: "Post")

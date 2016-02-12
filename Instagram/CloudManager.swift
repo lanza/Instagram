@@ -110,6 +110,7 @@ class CloudManager {
             }
             operation.completionBlock = {
                 "getFeedPosts finished"
+                completion?(nil,nil)
             }
             publicDatabase.addOperation(operation)
         }     

@@ -25,6 +25,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.currentlyWaitingForPosts = false
         manager.delegate = self
         self.getPostsOfFollowings()
     }
@@ -66,22 +67,25 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         cell.postImageView.image = post.image
         cell.descriptionLabel.text = post.description
         
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .ShortStyle
+        formatter.timeStyle = .ShortStyle
+        cell.timeStamp.text = formatter.stringFromDate(post.postTime)
+        
         var likersText = ""
         for liker in post.likersAliases {
+            if likersText != "" {
+                likersText.appendContentsOf(", ")
+            }
             likersText.appendContentsOf(liker)
-            likersText.appendContentsOf(", ")
-        }
-        if likersText.characters.count > 0 {
-            likersText.removeAtIndex(likersText.endIndex.predecessor())
-        }
-        
+        }       
         
         var commentsText = ""
         for comment in post.commentStrings {
-            commentsText = commentsText + "\n" + comment
-        }
-        if commentsText.characters.count > 3 {
-            commentsText.removeRange(Range<String.Index>(start: commentsText.startIndex, end: commentsText.startIndex.advancedBy(1)))
+            if commentsText != "" {
+                commentsText.appendContentsOf("\n")
+            }
+            commentsText.appendContentsOf(comment)
         }
         
         cell.likesLabel.text = likersText
@@ -128,6 +132,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         guard let post = post else { return }
         self.posts.append(post)
         NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.posts.sortInPlace { (postOne, postTwo) -> Bool in
+                if postOne.postTime.compare(postTwo.postTime) == .OrderedAscending {
+                    return false
+                } else {
+                    return true
+                }
+            }
             self.tableVieew.reloadData()
         }
     }
