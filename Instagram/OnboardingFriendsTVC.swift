@@ -17,7 +17,6 @@ class OnboardingFriendsTVC: UIViewController {
         continueButton.setTitle("Continue", forState: .Normal)
         continueButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
         self.view.addSubview(continueButton)
-        print("HI")
     }
     
     @IBAction func onContinueButtonTapped(sender: UIButton) {

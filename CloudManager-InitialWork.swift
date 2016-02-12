@@ -10,16 +10,18 @@ extension CloudManager {
                 return
             }
             guard let userRecordID = userRecordID else { return }
-            self.publicDatabase.fetchRecordWithID(userRecordID, completionHandler: { (userRecord, errorTwo) -> Void in
-                if let errorTwo = errorTwo {
-                    completionHandler?(nil,errorTwo)
-                    return
-                }
-                guard let userRecord = userRecord else { return }
-                let user = User(fromRecord: userRecord)
-                self.currentUser = user
-                completionHandler?(user,nil)
-            })
+            let operation = CKFetchRecordsOperation(recordIDs: [userRecordID])
+            operation.qualityOfService = .UserInteractive
+            operation.fetchRecordsCompletionBlock = { dictionary, error in
+                guard let dictionary = dictionary else { return }
+                self.currentUser = User(fromRecord: Array(dictionary.values)[0])
+                self.delegate?.cloudManager(self, gotCurrentUser: self.currentUser)
+            }
+            operation.completionBlock = {
+                print("getCurrentUser finished")
+                completionHandler?(nil,nil)
+            }
+            self.publicDatabase.addOperation(operation)
         }
     }
     func checkIfInAllUsers() {

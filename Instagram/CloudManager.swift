@@ -7,6 +7,7 @@ protocol CloudManagerDelegate {
     func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?)
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?)
     func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?)
+    func cloudManager(cloudManager: CloudManager, gotCurrentUser currentUser: User?)
 }
 
 class CloudManager {
@@ -31,7 +32,6 @@ class CloudManager {
         container = CKContainer.defaultContainer()
         publicDatabase = container.publicCloudDatabase
         getCurrentUser { (user, error) in
-            guard let _ = user else { return }
             self.getFollowingsForUser(self.currentUser) { (users, error) in
                 self.getFeedPosts(withCompletionHandler: nil)
             }
@@ -89,7 +89,7 @@ class CloudManager {
             completionHandler?(self.followings, error)
         }
         operation.completionBlock = {
-            print("CKFetchRecordsOperation finished")
+            print("Get followings for user finished")
             self.delegate?.cloudManager(self, gotFollowings: self.followings)
         }
         publicDatabase.addOperation(operation)
@@ -128,6 +128,7 @@ class CloudManager {
         }
         operation.completionBlock = {
             print("got posts for user finished")
+            completionHandler?(nil,nil)
         }
         publicDatabase.addOperation(operation)
     }

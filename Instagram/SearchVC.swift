@@ -1,7 +1,7 @@
 import UIKit
 
-class SearchVC: UIViewController, UISearchResultsUpdating {
-
+class SearchVC: UIViewController, UISearchResultsUpdating, CloudManagerDelegate {
+    
     @IBOutlet weak var tableView: UITableView!
     
     // these arrays will need to hold Post objects
@@ -11,8 +11,8 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpUI()
-        loadAllUsers()
         
         // set up SearchController
         self.resultSearchController = ({
@@ -32,23 +32,22 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
             if let error = error {
                 print(error)
             }
-            print("TEST")
             guard let users = users else { return }
-            print("TEST2")
             self.users = users
             NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                 self.tableView.reloadData()
+                print("load all users done")
             }
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        CloudManager.sharedManager.delegate = self
         loadAllUsers()
     }
     
-
+    
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         filteredUsers.removeAll(keepCapacity: false)
@@ -62,11 +61,11 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
             }
         }
         
-
+        
         self.tableView.reloadData()
     }
     
-
+    
     // MARK: - Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,4 +91,12 @@ class SearchVC: UIViewController, UISearchResultsUpdating {
             return cell
         }
     }
+    func cloudManager(cloudManager: CloudManager, gotCurrentUser currentUser: User?) {}
+    func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
+        loadAllUsers()
+    }
+    func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?) {}
+    func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {}
+    func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {}
 }
+

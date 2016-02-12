@@ -28,7 +28,6 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
         continueButton.setTitle("Continue", forState: .Normal)
         continueButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
         self.view.addSubview(continueButton)
-        print("HI")
     }
     
     @IBAction func onSetPictureTapped(sender: UIButton) {

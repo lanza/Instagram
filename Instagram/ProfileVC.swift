@@ -16,86 +16,37 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getPosts()
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         setUpUI()
-        
-        // store iCloud user in local property
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         CloudManager.sharedManager.delegate = self
+        self.usernameTextView.text = CloudManager.sharedManager.currentUser.alias
         getPosts()
-        
     }
     
+    var currentlyWaitingForGetPostsToReturn = false
     func getPosts() {
-        self.posts = []
-        manager.getPostsForCurrentUser(withCompletionHandler: nil)
+        if !currentlyWaitingForGetPostsToReturn {
+            self.posts = []
+            self.currentlyWaitingForGetPostsToReturn = true
+            manager.getPostsForCurrentUser { (post, error) in
+                self.currentlyWaitingForGetPostsToReturn = false
+            }
+        }
     }
-    
-    // MARK: - UICollectionViewDataSource protocol
-    
-    // tell the collection view how many cells to make
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.posts.count
+    func cloudManager(cloudManager: CloudManager, gotCurrentUser currentUser: User?) {
+        NSOperationQueue.mainQueue().addOperationWithBlock { 
+            self.usernameTextView.text = currentUser?.alias
+        }
     }
-    
-    // make a cell for each cell index path
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        // get a reference to our storyboard cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ProfileVCCell
-        let post = posts[indexPath.row]
-        // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.backgroundColor = UIColor.greenColor()
-        cell.imageView.image = post.image
-        
-        //        cell.layer.borderWidth = 0    
-        
-        return cell
+    func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
+        getPosts()
     }
-    
-    // MARK: - UICollectionViewDelegate protocol
-    
-    override func viewWillLayoutSubviews() {
-        
-        collectionView.collectionViewLayout.invalidateLayout()
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let post = posts[indexPath.row]
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let feedVC = storyboard.instantiateViewControllerWithIdentifier("FeedVC") as! FeedVC
-        feedVC.singlePost = post
-        self.navigationController?.pushViewController(feedVC, animated: true)        
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0.0
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 0, 0, 0)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        let itemsCount : CGFloat = 3.0
-        let width : CGFloat = self.view.frame.size.width / itemsCount - 1
-        
-        return CGSize(width: width, height: width)
-    }
-    
-    func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {}
     func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?) {}
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {}
     func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {
@@ -103,7 +54,9 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         self.posts.append(post)
         NSOperationQueue.mainQueue().addOperationWithBlock {
             self.collectionView.reloadData()
+            self.postsNumberLabel.text  = "\(self.posts.count)"
         }
     }
     
 }
+

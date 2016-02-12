@@ -11,7 +11,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.delegate = self
+        
         
         setUpUI()
         
@@ -26,12 +26,23 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        manager.delegate = self        
+        self.getPostsOfFollowings()
+    }
+    
+    func setUpPullToRefresh() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "pulledToRefresh", forControlEvents: .ValueChanged)
+        self.tableVieew.addSubview(refreshControl)
+    }
+    
+    func pulledToRefresh() {
         self.getPostsOfFollowings()
     }
     
     func getPostsOfFollowings() {
         self.posts = []
+        tableVieew.reloadData()
         manager.getFeedPosts(withCompletionHandler: nil)
     }
 
@@ -72,8 +83,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
             commentsText.removeRange(Range<String.Index>(start: commentsText.startIndex, end: commentsText.startIndex.advancedBy(1)))
         }
         
-        
-        print("here is the commentsText \(commentsText)")
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
 
@@ -106,6 +115,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         }
     }
     
+    
+    func cloudManager(cloudManager: CloudManager, gotCurrentUser currentUser: User?) {}
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
         getPostsOfFollowings()
     }
