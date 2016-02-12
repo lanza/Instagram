@@ -9,6 +9,8 @@ protocol FeedCellDelegate {
 
 class FeedCell: UITableViewCell {
     
+    @IBOutlet weak var likeButtonImageView: UIButton!
+    
     @IBOutlet weak var labelStackView: UIStackView!
     
     var doubleTap = UITapGestureRecognizer()
@@ -19,10 +21,6 @@ class FeedCell: UITableViewCell {
         doubleTap.delegate = self
         doubleTap.numberOfTapsRequired = 2
         self.addGestureRecognizer(doubleTap)
-        
-        //        self.avatarImageView.layer.cornerRadius = 67.0
-        //        self.avatarImageView.clipsToBounds = true
-        
     }
     
     var delegate: FeedCellDelegate!
@@ -34,10 +32,19 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var userFullNameLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var timeStamp: UILabel!
     
     
     @IBAction func onLikeButtonTapped(sender: UIButton) {
         delegate.feedCell(self, likeButtonTapped: sender)
+        
+        // Nathan...
+        // Fix them there code!
+        // if  {
+        // self.likeButtonImageView.imageView?.image = UIImage(named: "liked")
+        // } else {
+        // return
+        // }
     }
     
     @IBAction func onCommentButtonTapped(sender: UIButton) {

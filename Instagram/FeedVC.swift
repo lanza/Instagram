@@ -2,7 +2,7 @@ import UIKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError, CloudManagerDelegate {
     @IBOutlet var tableVieew: UITableView!
-   
+    
     let manager = CloudManager.sharedManager
     
     // properties
@@ -14,6 +14,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         
         
         setUpUI()
+
         
         if let _ = singlePost {
             self.navigationItem.titleView = nil
@@ -55,15 +56,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         
         cell.delegate = self
         
+        cell.avatarImageView.image = UIImage(named: "Nathan")!.circle
+        
         cell.userFullNameLabel.text = post.posterName
         cell.postImageView.image = post.image
         cell.descriptionLabel.text = post.description
-        cell.avatarImageView.image = UIImage(named: "Nathan")
-        
-//        post.avatarImage!.layer.cornerRadius = post.avatarImage!.frame.size.width/2
-        post.avatarImage?.layer.cornerRadius = 67.0
-        post.avatarImage?.clipsToBounds = true
-        
         
         var likersText = ""
         for liker in post.likersAliases {
@@ -82,7 +79,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         if commentsText.characters.count > 3 {
             commentsText.removeRange(Range<String.Index>(start: commentsText.startIndex, end: commentsText.startIndex.advancedBy(1)))
         }
-        
+
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
 
@@ -129,6 +126,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         }
     }
     func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {}
-    
+
 }
 
