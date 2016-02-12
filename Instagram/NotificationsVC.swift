@@ -108,6 +108,11 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return likesAndComments.count
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        return 70
+    }
+    
     func updateTabBadge(value: String) {
         
         (tabBarController!.tabBar.items![3]).badgeValue = value
