@@ -11,11 +11,20 @@ extension UIViewController {
         let titleView = UIImageView(frame:CGRectMake(0, 0, 15, 35))
         titleView.contentMode = .ScaleAspectFit
         titleView.image = UIImage(named: "Instagram_logo")
-       
+        
         navigationItem.titleView = titleView
         
-        self.tabBarController?.tabBar.tintColor = UIColor.instagramTabBarIconGray()
+        self.tabBarController?.tabBar.tintColor = UIColor.whiteColor()
+        
         self.tabBarController?.tabBar.barTintColor = UIColor.instagramTabBarLightGray()
-//        self.tabBarController?.tabBar.selectedItem = UIColor.instagramTabBarSelected()
+        
+        // Set Navigation bar background image
+//        let navBgImage:UIImage = UIImage(named: "Nathan")!
+//        UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
+        
+        
+//        self.tabBarController!.tabBar.selectedImageTintColor = UIColor.redColor()
+        
+        //        self.tabBarController?.tabBar.selectedItem = UIColor.instagramTabBarSelected()
     }
 }

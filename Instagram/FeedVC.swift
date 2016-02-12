@@ -1,40 +1,59 @@
 import UIKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError, CloudManagerDelegate {
-    @IBOutlet var tableVieew: UITableView!
+    @IBOutlet var tableView: UITableView!
     
     let manager = CloudManager.sharedManager
     
     // properties
     var posts = [Post]()
     var singlePost: Post?
+    var hidingNavBarManager: HidingNavigationBarManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
         setUpUI()
-
         
-        if let _ = singlePost {
-            self.navigationItem.titleView = nil
-            self.navigationItem.title = "Photo"
-        }
+//        if let _ = singlePost {
+//            //self.navigationItem.titleView = nil
+//            self.navigationItem.title = "Photo"
+//        }
         
-        tableVieew.estimatedRowHeight = 500
-        tableVieew.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 500
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
+    
+    //
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        hidingNavBarManager?.viewDidLayoutSubviews()
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        hidingNavBarManager?.viewWillDisappear(animated)
+    }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        manager.delegate = self        
+        manager.delegate = self
         self.getPostsOfFollowings()
+        hidingNavBarManager?.viewWillAppear(animated)
+        
     }
+    //
     
     func setUpPullToRefresh() {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "pulledToRefresh", forControlEvents: .ValueChanged)
-        self.tableVieew.addSubview(refreshControl)
+        self.tableView.addSubview(refreshControl)
     }
     
     func pulledToRefresh() {
@@ -43,10 +62,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     
     func getPostsOfFollowings() {
         self.posts = []
-        tableVieew.reloadData()
+        tableView.reloadData()
         manager.getFeedPosts(withCompletionHandler: nil)
     }
-
+    
     
     // MARK: - TableView delegate methods
     
@@ -79,10 +98,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         if commentsText.characters.count > 3 {
             commentsText.removeRange(Range<String.Index>(start: commentsText.startIndex, end: commentsText.startIndex.advancedBy(1)))
         }
-
+        
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
-
+        
         cell.friendsCommentsLabel.sizeToFit()
         cell.userFullNameLabel.text = post.posterName
         cell.sizeToFit()
@@ -121,11 +140,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {
         guard let post = post else { return }
         self.posts.append(post)
-        NSOperationQueue.mainQueue().addOperationWithBlock { 
-            self.tableVieew.reloadData()
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.tableView.reloadData()
         }
     }
     func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {}
-
+    
 }
 

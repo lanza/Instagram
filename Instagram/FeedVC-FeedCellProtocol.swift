@@ -3,7 +3,7 @@ import CloudKit
 
 extension FeedVC: FeedCellDelegate {
     func feedCell(feedCell: FeedCell, likeButtonTapped likeButton: UIButton) {
-        guard let indexPath = tableVieew.indexPathForCell(feedCell) else {
+        guard let indexPath = tableView.indexPathForCell(feedCell) else {
             print("\(__FUNCTION__) could not get indexPath")
             return
         }
@@ -15,11 +15,11 @@ extension FeedVC: FeedCellDelegate {
             post.saveRecord(inDatabase: manager.publicDatabase) { () -> () in
                 print("like added to post")
             }
-            tableVieew.reloadData()
+            tableView.reloadData()
         }
     }
     func feedCell(feedCell: FeedCell, commentButtonTapped likeButton: UIButton) {
-        guard let indexPath = tableVieew.indexPathForCell(feedCell) else {
+        guard let indexPath = tableView.indexPathForCell(feedCell) else {
             print("\(__FUNCTION__) could not get indexPath")
             return
         }
@@ -28,7 +28,7 @@ extension FeedVC: FeedCellDelegate {
     }
     
     func feedCell(feedCell: FeedCell, onImageDoubleTapped image: UIImage) {
-        guard let indexPath = tableVieew.indexPathForCell(feedCell) else {
+        guard let indexPath = tableView.indexPathForCell(feedCell) else {
             print("\(__FUNCTION__) could not get indexPath")
             return
         }
@@ -39,7 +39,7 @@ extension FeedVC: FeedCellDelegate {
             post.saveRecord(inDatabase: manager.publicDatabase) { () -> () in
                 print("like added to post")
             }
-            tableVieew.reloadData()
+            tableView.reloadData()
         }
     }
 }
