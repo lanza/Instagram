@@ -3,11 +3,9 @@ import UIKit
 extension UIViewController {
     
     func setUpUI() {
-        // set myInstagram
-        navigationController?.navigationBar.barTintColor = UIColor.instagramColor()
         
-        //navigationController?.setNavigationBarHidden(true, animated: true)
-        //navigationController?.interactivePopGestureRecognizer!.delegate = self
+        // set top navigation bar color:
+        navigationController?.navigationBar.barTintColor = UIColor.instagramColor()
         
         //add the Instagram logo:
         let titleView = UIImageView(frame:CGRectMake(0, 0, 15, 35))
@@ -17,6 +15,8 @@ extension UIViewController {
         
         navigationItem.titleView = titleView
         
-        //navigationController?.setNavigationBarHidden(true, animated: true)
+        self.tabBarController?.tabBar.tintColor = UIColor.instagramTabBarIconGray()
+        self.tabBarController?.tabBar.barTintColor = UIColor.instagramTabBarLightGray()
+//        self.tabBarController?.tabBar.selectedItem = UIColor.instagramTabBarSelected()
     }
 }

@@ -2,11 +2,11 @@ import UIKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError {
     @IBOutlet var tableVieew: UITableView!
-
+    
     
     
     let manager = CloudManager.sharedManager
-    var user: User!   
+    var user: User!
     
     // properties
     var posts = [Post]()
@@ -16,9 +16,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         super.viewDidLoad()
         
         setUpUI()
+
         
         if let _ = singlePost {
-//            self.navigationItem.titleView = nil
+            //            self.navigationItem.titleView = nil
             self.navigationItem.title = "Photo"
         }
         manager.getCurrentUser { (user, error) -> () in
@@ -49,7 +50,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
             for followedUser in followedUsers {
                 self.getPostsForUser(followedUser)
             }
-            self.getPostsForUser(self.user) 
+            self.getPostsForUser(self.user)
         }
     }
     
@@ -75,18 +76,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! FeedCell
         let post = singlePost ?? posts[indexPath.row]
-
+        
         cell.delegate = self
+        
+        cell.avatarImageView.image = UIImage(named: "Nathan")!.circle
         
         cell.userFullNameLabel.text = post.posterName
         cell.postImageView.image = post.image
         cell.descriptionLabel.text = post.description
-        cell.avatarImageView.image = UIImage(named: "Nathan")
-        
-//        post.avatarImage!.layer.cornerRadius = post.avatarImage!.frame.size.width/2
-        post.avatarImage?.layer.cornerRadius = 67.0
-        post.avatarImage?.clipsToBounds = true
-        
         
         var likersText = ""
         for liker in post.likersAliases {
@@ -102,7 +99,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         }
         
         
-        print("here is the commentsText \(commentsText)")
+        print("Them there comments... here is the commentsText \(commentsText)")
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
         cell.friendsCommentsLabel.sizeToFit()
@@ -112,7 +109,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         return cell
     }
     
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let _ = singlePost {
             return 1
@@ -121,7 +118,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         }
     }
     
-
+    
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
@@ -133,6 +130,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
             cVC.post = post
         }
     }
-
+    
 }
 

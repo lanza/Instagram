@@ -15,6 +15,7 @@
 		4A64DF051C6D168B002B4824 /* OnboardingUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DF041C6D168B002B4824 /* OnboardingUsernameVC.swift */; };
 		4A860BB91C6D4A390089AFB1 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A860BB71C6D4A380089AFB1 /* Onboarding.storyboard */; };
 		4A860BC01C6D4F1A0089AFB1 /* CameraVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A860BBF1C6D4F1A0089AFB1 /* CameraVC.storyboard */; };
+		4A860BC21C6D57E10089AFB1 /* RoundedUIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A860BC11C6D57E10089AFB1 /* RoundedUIImageViewExtension.swift */; };
 		4A96B4471C6A8BAF0093C4CB /* ProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */; };
 		4A96B44A1C6A8C100093C4CB /* NotificationsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4481C6A8C100093C4CB /* NotificationsVC.storyboard */; };
 		605AFED91C67F60E0048F892 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605AFED81C67F60E0048F892 /* SearchVC.swift */; };
@@ -54,6 +55,7 @@
 		4A64DF041C6D168B002B4824 /* OnboardingUsernameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingUsernameVC.swift; sourceTree = "<group>"; };
 		4A860BB81C6D4A390089AFB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
 		4A860BBF1C6D4F1A0089AFB1 /* CameraVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CameraVC.storyboard; sourceTree = "<group>"; };
+		4A860BC11C6D57E10089AFB1 /* RoundedUIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedUIImageViewExtension.swift; sourceTree = "<group>"; };
 		4A96B4461C6A8BAF0093C4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProfileVC.storyboard; sourceTree = "<group>"; };
 		4A96B4491C6A8C100093C4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NotificationsVC.storyboard; sourceTree = "<group>"; };
 		605AFED81C67F60E0048F892 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				D8BB58E61C6C388F0053A414 /* GlobalDefinitions.swift */,
 				4A0601601C6AFD4E000721DC /* UIColorExtension.swift */,
 				4A0601801C6BB3D1000721DC /* UISetupExtension.swift */,
+				4A860BC11C6D57E10089AFB1 /* RoundedUIImageViewExtension.swift */,
 				D893062F1C6981DC00154692 /* Protocol */,
 				D8EDC8C11C6410DE00FF79E3 /* Model */,
 				D8EDC8BE1C640DED00FF79E3 /* Controller */,
@@ -417,6 +420,7 @@
 				6096F81B1C642F5A00C204DA /* FeedVC.swift in Sources */,
 				D893062E1C6980E600154692 /* RecordToClassProtocol.swift in Sources */,
 				D81806C91C6A9D600046F0C3 /* Comment.swift in Sources */,
+				4A860BC21C6D57E10089AFB1 /* RoundedUIImageViewExtension.swift in Sources */,
 				605AFEDD1C67FBFE0048F892 /* ComposeVC.swift in Sources */,
 				D89306311C699AB500154692 /* DisplaysAlerts.swift in Sources */,
 				D89306281C6976B400154692 /* User.swift in Sources */,
