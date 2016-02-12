@@ -15,8 +15,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableVieew.estimatedRowHeight = 500
-        tableVieew.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 500
+        tableView.rowHeight = UITableViewAutomaticDimension
         setUpUI()
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
         
@@ -68,7 +68,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         if !currentlyWaitingForPosts {
             currentlyWaitingForPosts = true
             self.posts = []
-            tableVieew.reloadData()
+            tableView.reloadData()
             manager.getFeedPosts { (post, error) in
                 self.currentlyWaitingForPosts = false
             }
@@ -162,7 +162,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
                     return true
                 }
             }
-            self.tableVieew.reloadData()
+            self.tableView.reloadData()
         }
     }
     func cloudManager(cloudManager: CloudManager, gotUserPost post: Post?) {}
