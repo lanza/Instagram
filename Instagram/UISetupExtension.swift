@@ -18,12 +18,18 @@ extension UIViewController {
         
         self.tabBarController?.tabBar.barTintColor = UIColor.instagramTabBarLightGray()
         
+        //
+        navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        
+        
         // Set Navigation bar background image
-//        let navBgImage:UIImage = UIImage(named: "Nathan")!
-//        UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
+        //        let navBgImage:UIImage = UIImage(named: "Nathan")!
+        //        UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
         
         
-//        self.tabBarController!.tabBar.selectedImageTintColor = UIColor.redColor()
+        //        self.tabBarController!.tabBar.selectedImageTintColor = UIColor.redColor()
         
         //        self.tabBarController?.tabBar.selectedItem = UIColor.instagramTabBarSelected()
     }

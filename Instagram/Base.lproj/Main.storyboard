@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="92" width="414" height="500"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cXx-lp-iQs" id="nbL-nS-WPo">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="499.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSB-wo-IZx">
@@ -323,12 +323,11 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="qNB-Gy-Phs" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="C1v-gX-qoB" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="tJR-tg-6FV" kind="relationship" relationship="viewControllers" id="Gu9-Pu-qS7"/>
+                        <segue destination="tJR-tg-6FV" kind="relationship" relationship="viewControllers" id="JgV-vf-4JD"/>
                         <segue destination="qbG-Qj-3rx" kind="relationship" relationship="viewControllers" id="sh8-7T-6hU"/>
                         <segue destination="a0H-Hl-Vd8" kind="relationship" relationship="viewControllers" id="agA-vB-XyD"/>
                     </connections>
