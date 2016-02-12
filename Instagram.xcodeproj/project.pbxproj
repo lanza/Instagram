@@ -13,6 +13,8 @@
 		4A64DF011C6C374F002B4824 /* OnboardingFriendsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DF001C6C374F002B4824 /* OnboardingFriendsTVC.swift */; };
 		4A64DF031C6D15AD002B4824 /* OnboardingProfilePicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DF021C6D15AD002B4824 /* OnboardingProfilePicVC.swift */; };
 		4A64DF051C6D168B002B4824 /* OnboardingUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A64DF041C6D168B002B4824 /* OnboardingUsernameVC.swift */; };
+		4A860BB91C6D4A390089AFB1 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A860BB71C6D4A380089AFB1 /* Onboarding.storyboard */; };
+		4A860BC01C6D4F1A0089AFB1 /* CameraVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A860BBF1C6D4F1A0089AFB1 /* CameraVC.storyboard */; };
 		4A96B4471C6A8BAF0093C4CB /* ProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */; };
 		4A96B44A1C6A8C100093C4CB /* NotificationsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A96B4481C6A8C100093C4CB /* NotificationsVC.storyboard */; };
 		605AFED91C67F60E0048F892 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605AFED81C67F60E0048F892 /* SearchVC.swift */; };
@@ -53,6 +55,8 @@
 		4A64DF001C6C374F002B4824 /* OnboardingFriendsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFriendsTVC.swift; sourceTree = "<group>"; };
 		4A64DF021C6D15AD002B4824 /* OnboardingProfilePicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingProfilePicVC.swift; sourceTree = "<group>"; };
 		4A64DF041C6D168B002B4824 /* OnboardingUsernameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingUsernameVC.swift; sourceTree = "<group>"; };
+		4A860BB81C6D4A390089AFB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
+		4A860BBF1C6D4F1A0089AFB1 /* CameraVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CameraVC.storyboard; sourceTree = "<group>"; };
 		4A96B4461C6A8BAF0093C4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProfileVC.storyboard; sourceTree = "<group>"; };
 		4A96B4491C6A8C100093C4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NotificationsVC.storyboard; sourceTree = "<group>"; };
 		605AFED81C67F60E0048F892 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -243,6 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				D8EDC8AE1C640ACE00FF79E3 /* Main.storyboard */,
+				4A860BBF1C6D4F1A0089AFB1 /* CameraVC.storyboard */,
+				4A860BB71C6D4A380089AFB1 /* Onboarding.storyboard */,
 				4A96B4481C6A8C100093C4CB /* NotificationsVC.storyboard */,
 				4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */,
 				608795551C6BCC8600DD7D0A /* ProfileVCCell.swift */,
@@ -347,6 +353,8 @@
 				D8EDC8B51C640ACE00FF79E3 /* LaunchScreen.storyboard in Resources */,
 				4A96B4471C6A8BAF0093C4CB /* ProfileVC.storyboard in Resources */,
 				D8EDC8B21C640ACE00FF79E3 /* Assets.xcassets in Resources */,
+				4A860BC01C6D4F1A0089AFB1 /* CameraVC.storyboard in Resources */,
+				4A860BB91C6D4A390089AFB1 /* Onboarding.storyboard in Resources */,
 				4A96B44A1C6A8C100093C4CB /* NotificationsVC.storyboard in Resources */,
 				D8EDC8B01C640ACE00FF79E3 /* Main.storyboard in Resources */,
 			);
@@ -442,6 +450,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4A860BB71C6D4A380089AFB1 /* Onboarding.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A860BB81C6D4A390089AFB1 /* Base */,
+			);
+			name = Onboarding.storyboard;
+			sourceTree = "<group>";
+		};
 		4A96B4451C6A8BAF0093C4CB /* ProfileVC.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

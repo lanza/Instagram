@@ -2,7 +2,7 @@ import UIKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError, CloudManagerDelegate {
     @IBOutlet var tableVieew: UITableView!
-    
+   
     let manager = CloudManager.sharedManager
     
     // properties
@@ -19,6 +19,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
             self.navigationItem.titleView = nil
             self.navigationItem.title = "Photo"
         }
+        
+        tableVieew.estimatedRowHeight = 500
+        tableVieew.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,10 +47,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         cell.userFullNameLabel.text = post.posterName
         cell.postImageView.image = post.image
         cell.descriptionLabel.text = post.description
-        cell.avatarImageView.image = UIImage(named: "Instagram_logo")
+        cell.avatarImageView.image = UIImage(named: "Nathan")
         
-        //        cell.friendsCommentsLabel.text = post.comments
-        //        cell.avatarImageView.image = post.avatarImage
+//        post.avatarImage!.layer.cornerRadius = post.avatarImage!.frame.size.width/2
+        post.avatarImage?.layer.cornerRadius = 67.0
+        post.avatarImage?.clipsToBounds = true
+        
         
         var likersText = ""
         for liker in post.likersAliases {
@@ -71,8 +76,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         print("here is the commentsText \(commentsText)")
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
-        
+
+        cell.friendsCommentsLabel.sizeToFit()
         cell.userFullNameLabel.text = post.posterName
+        cell.sizeToFit()
         
         return cell
     }

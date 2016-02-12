@@ -8,6 +8,9 @@ protocol FeedCellDelegate {
 }
 
 class FeedCell: UITableViewCell {
+    
+    @IBOutlet weak var labelStackView: UIStackView!
+    
     var doubleTap = UITapGestureRecognizer()
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -16,13 +19,15 @@ class FeedCell: UITableViewCell {
         doubleTap.delegate = self
         doubleTap.numberOfTapsRequired = 2
         self.addGestureRecognizer(doubleTap)
-//        self.avatarImageView.layer.cornerRadius = 67.0
-//        self.avatarImageView.clipsToBounds = true
+        
+        //        self.avatarImageView.layer.cornerRadius = 67.0
+        //        self.avatarImageView.clipsToBounds = true
+        
     }
     
     var delegate: FeedCellDelegate!
     
-
+    
     @IBOutlet var postImageView: UIImageView!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var friendsCommentsLabel: UILabel!
