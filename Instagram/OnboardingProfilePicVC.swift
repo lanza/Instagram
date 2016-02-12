@@ -14,6 +14,8 @@ class OnboardingProfilePicVC: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         setUpUI()
         
+        profilePictureImageView.image = UIImage(named: "profileplaceholder")
+        
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
 
