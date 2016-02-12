@@ -21,7 +21,7 @@ class User: RecordToClassProtocol {
     }    
   
     required init() {
-        self.record = CKRecord.init(recordType: "User")
+        self.record = CKRecord.init(recordType: "Users")
     }
     
     required convenience init(fromRecord record: CKRecord) {

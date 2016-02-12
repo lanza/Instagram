@@ -9,27 +9,26 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     var posts = [Post]()
     var singlePost: Post?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setUpUI()
-
-        
         if let _ = singlePost {
             self.navigationItem.titleView = nil
             self.navigationItem.title = "Photo"
         }
-        
         tableVieew.estimatedRowHeight = 500
         tableVieew.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        manager.delegate = self        
+        manager.delegate = self
         self.getPostsOfFollowings()
     }
+    var currentlyWaitingForPosts = false
     
     func setUpPullToRefresh() {
         let refreshControl = UIRefreshControl()
@@ -42,11 +41,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     }
     
     func getPostsOfFollowings() {
-        self.posts = []
-        tableVieew.reloadData()
-        manager.getFeedPosts(withCompletionHandler: nil)
+        if !currentlyWaitingForPosts {
+            currentlyWaitingForPosts = true
+            self.posts = []
+            tableVieew.reloadData()
+            manager.getFeedPosts { (post, error) in
+                self.currentlyWaitingForPosts = false
+            }
+        }
     }
-
+    
     
     // MARK: - TableView delegate methods
     
@@ -56,7 +60,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         
         cell.delegate = self
         
-        cell.avatarImageView.image = UIImage(named: "Nathan")!.circle
+        cell.avatarImageView.image = post.posterAvatar?.circle
         
         cell.userFullNameLabel.text = post.posterName
         cell.postImageView.image = post.image
@@ -79,10 +83,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         if commentsText.characters.count > 3 {
             commentsText.removeRange(Range<String.Index>(start: commentsText.startIndex, end: commentsText.startIndex.advancedBy(1)))
         }
-
+        
         cell.likesLabel.text = likersText
         cell.friendsCommentsLabel.text = commentsText
-
+        
         cell.friendsCommentsLabel.sizeToFit()
         cell.userFullNameLabel.text = post.posterName
         cell.sizeToFit()
@@ -113,7 +117,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     }
     
     
-    func cloudManager(cloudManager: CloudManager, gotCurrentUser currentUser: User?) {}
+    func cloudManager(cloudManager: CloudManager, gotUser user: User?) {
+
+    }
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
         getPostsOfFollowings()
     }
@@ -121,11 +127,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {
         guard let post = post else { return }
         self.posts.append(post)
-        NSOperationQueue.mainQueue().addOperationWithBlock { 
+        NSOperationQueue.mainQueue().addOperationWithBlock {
             self.tableVieew.reloadData()
         }
     }
-    func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {}
-
+    func cloudManager(cloudManager: CloudManager, gotUserPost post: Post?) {}
+    
 }
 

@@ -1,6 +1,6 @@
 import UIKit
 
-class SearchVC: UIViewController, UISearchResultsUpdating, CloudManagerDelegate {
+class SearchVC: UIViewController, UISearchResultsUpdating, CloudManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -64,7 +64,16 @@ class SearchVC: UIViewController, UISearchResultsUpdating, CloudManagerDelegate 
         
         self.tableView.reloadData()
     }
+    // MARK: - Table view delegate
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let user = users[indexPath.row]
+        let storyboard = UIStoryboard(name: "ProfileVC", bundle: nil)
+        let pvc = storyboard.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileVC
+        pvc.user = user
+        pvc.userIsFriend = true
+        self.navigationController?.pushViewController(pvc, animated: true)
+    }
     
     // MARK: - Table view data source
     
@@ -91,12 +100,12 @@ class SearchVC: UIViewController, UISearchResultsUpdating, CloudManagerDelegate 
             return cell
         }
     }
-    func cloudManager(cloudManager: CloudManager, gotCurrentUser currentUser: User?) {}
+    func cloudManager(cloudManager: CloudManager, gotUser user: User?) {}
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
         loadAllUsers()
     }
     func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?) {}
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {}
-    func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {}
+    func cloudManager(cloudManager: CloudManager, gotUserPost post: Post?) {}
 }
 

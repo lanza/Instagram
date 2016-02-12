@@ -5,6 +5,8 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     // CloudKit
     let manager = CloudManager.sharedManager
     var posts = [Post]()
+    var user: User!
+    var userIsFriend = false
     
     // storyboard
     @IBOutlet weak var collectionView: UICollectionView!
@@ -14,8 +16,13 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var followersNumberLabel: UILabel!
     @IBOutlet weak var followingNumberLabel: UILabel!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.user = CloudManager.sharedManager.currentUser
+    }
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()       
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -25,23 +32,37 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         CloudManager.sharedManager.delegate = self
-        self.usernameTextView.text = CloudManager.sharedManager.currentUser.alias
+        if !self.userIsFriend {
+            self.user = CloudManager.sharedManager.currentUser
+        }
+        setViewsToUser()
         getPosts()
+    }
+    
+    func setViewsToUser() {
+        self.postsNumberLabel.text  = "\(self.posts.count)"
+        self.usernameTextView.text = self.user.alias
+        self.imageView.image = self.user.avatar?.circle
     }
     
     var currentlyWaitingForGetPostsToReturn = false
     func getPosts() {
         if !currentlyWaitingForGetPostsToReturn {
             self.posts = []
+            self.collectionView.reloadData()
             self.currentlyWaitingForGetPostsToReturn = true
-            manager.getPostsForCurrentUser { (post, error) in
+            manager.getPostsForUser(user) { (post, error) in
                 self.currentlyWaitingForGetPostsToReturn = false
             }
         }
     }
-    func cloudManager(cloudManager: CloudManager, gotCurrentUser currentUser: User?) {
-        NSOperationQueue.mainQueue().addOperationWithBlock { 
-            self.usernameTextView.text = currentUser?.alias
+    func cloudManager(cloudManager: CloudManager, gotUser user: User?) {
+        if !userIsFriend {
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                self.user = user
+                self.setViewsToUser()
+                self.getPosts()
+            }
         }
     }
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
@@ -49,12 +70,12 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?) {}
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {}
-    func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {
+    func cloudManager(cloudManager: CloudManager, gotUserPost post: Post?) {
         guard let post = post else { return }
         self.posts.append(post)
         NSOperationQueue.mainQueue().addOperationWithBlock {
             self.collectionView.reloadData()
-            self.postsNumberLabel.text  = "\(self.posts.count)"
+            self.setViewsToUser()
         }
     }
     

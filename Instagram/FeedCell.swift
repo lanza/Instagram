@@ -3,8 +3,6 @@ import UIKit
 protocol FeedCellDelegate {
     func feedCell(feedCell: FeedCell, likeButtonTapped likeButton: UIButton)
     func feedCell(feedCell: FeedCell, commentButtonTapped commentButton: UIButton)
-    func feedCell(feedCell: FeedCell, onImageDoubleTapped image: UIImage)
-    
 }
 
 class FeedCell: UITableViewCell {
@@ -17,7 +15,7 @@ class FeedCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        doubleTap = UITapGestureRecognizer(target: self, action: "onImageDoubleTapped:")
+        doubleTap = UITapGestureRecognizer(target: self, action: "onLikeButtonTapped:")
         doubleTap.delegate = self
         doubleTap.numberOfTapsRequired = 2
         self.addGestureRecognizer(doubleTap)
@@ -37,21 +35,9 @@ class FeedCell: UITableViewCell {
     
     @IBAction func onLikeButtonTapped(sender: UIButton) {
         delegate.feedCell(self, likeButtonTapped: sender)
-        
-        // Nathan...
-        // Fix them there code!
-        // if  {
-        // self.likeButtonImageView.imageView?.image = UIImage(named: "liked")
-        // } else {
-        // return
-        // }
     }
     
     @IBAction func onCommentButtonTapped(sender: UIButton) {
         delegate.feedCell(self, commentButtonTapped: sender)
-    }
-    
-    func onImageDoubleTapped(sender: UIImage) {
-        delegate.feedCell(self, onImageDoubleTapped: sender)
     }
 }

@@ -42,7 +42,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             
             self.usersImage = pickedImage
             
-            let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+            let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
             let path = paths[0] as NSString
             let pathString = path.stringByAppendingPathComponent("cached.png")
             

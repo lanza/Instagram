@@ -6,8 +6,8 @@ protocol CloudManagerDelegate {
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?)
     func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?)
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?)
-    func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?)
-    func cloudManager(cloudManager: CloudManager, gotCurrentUser currentUser: User?)
+    func cloudManager(cloudManager: CloudManager, gotUserPost post: Post?)
+    func cloudManager(cloudManager: CloudManager, gotUser user: User?)
 }
 
 class CloudManager {
@@ -53,7 +53,7 @@ class CloudManager {
             }
             let operation = CKFetchRecordsOperation(recordIDs: recordIDs)
             
-            operation.qualityOfService = .UserInitiated
+            operation.qualityOfService = .UserInteractive
             operation.fetchRecordsCompletionBlock = { recordsDictionary, error in
                 guard let recordsDictionary = recordsDictionary else { completionHandler?(nil,error); return }
                 let records = Array(recordsDictionary.values)
@@ -79,7 +79,7 @@ class CloudManager {
             return reference.recordID
         }
         let operation = CKFetchRecordsOperation(recordIDs: followingsRecordIDs)
-        operation.qualityOfService = .UserInitiated
+        operation.qualityOfService = .UserInteractive
         operation.fetchRecordsCompletionBlock = { recordsDictionary, error in
             guard let recordsDictionary = recordsDictionary else { completionHandler?(nil,error); return }
             let records = Array(recordsDictionary.values)
@@ -97,12 +97,12 @@ class CloudManager {
     
     func getFeedPosts(withCompletionHandler completionHandler: (([Post]?,ErrorType?) -> ())?) {
         guard followings.count > 0 else { return }
-        for user in followings {
+        func getUsersPosts(user: User, completion: (([Post]?,ErrorType?)->())?) {
             let reference = CKReference(record: user.record, action: .None)
             let predicate = NSPredicate(format: "Poster == %@", reference)
             let query = CKQuery(recordType: "Post", predicate: predicate)
             let operation = CKQueryOperation(query: query)
-            operation.qualityOfService = .UserInitiated
+            operation.qualityOfService = .UserInteractive
             operation.recordFetchedBlock = { record in
                 let post = Post(fromRecord: record)
                 self.feedPosts.append(post)
@@ -112,19 +112,24 @@ class CloudManager {
                 "getFeedPosts finished"
             }
             publicDatabase.addOperation(operation)
+        }     
+        
+        for user in followings {
+            getUsersPosts(user, completion: nil)
         }
+        getUsersPosts(self.currentUser, completion: completionHandler)
     }
     
-    func getPostsForCurrentUser(withCompletionHandler completionHandler: (([Post]?,ErrorType?) -> ())?) {
-        let reference = CKReference(record: currentUser.record, action: .None)
+    func getPostsForUser(user: User, withCompletionHandler completionHandler: (([Post]?,ErrorType?) -> ())?) {
+        let reference = CKReference(record: user.record, action: .None)
         let predicate = NSPredicate(format: "Poster == %@", reference)
         let query = CKQuery(recordType: "Post", predicate: predicate)
         let operation = CKQueryOperation(query: query)
-        operation.qualityOfService = .UserInitiated
+        operation.qualityOfService = .UserInteractive
         operation.recordFetchedBlock = { record in
             let post = Post(fromRecord: record)
             self.currentUsersPosts.append(post)
-            self.delegate?.cloudManager(self, gotCurrentUserPost: post)
+            self.delegate?.cloudManager(self, gotUserPost: post)
         }
         operation.completionBlock = {
             print("got posts for user finished")

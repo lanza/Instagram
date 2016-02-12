@@ -152,11 +152,11 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         (tabBarController!.tabBar.items![3]).badgeValue = value
     }
     
-    func cloudManager(cloudManager: CloudManager, gotCurrentUser currentUser: User?) {}
+    func cloudManager(cloudManager: CloudManager, gotUser user: User?) {}
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
         getLikesAndComments()
     }
     func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?) {}
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?) {}
-    func cloudManager(cloudManager: CloudManager, gotCurrentUserPost post: Post?) {}
+    func cloudManager(cloudManager: CloudManager, gotUserPost post: Post?) {}
 }

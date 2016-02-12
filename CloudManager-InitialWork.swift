@@ -15,7 +15,7 @@ extension CloudManager {
             operation.fetchRecordsCompletionBlock = { dictionary, error in
                 guard let dictionary = dictionary else { return }
                 self.currentUser = User(fromRecord: Array(dictionary.values)[0])
-                self.delegate?.cloudManager(self, gotCurrentUser: self.currentUser)
+                self.delegate?.cloudManager(self, gotUser: self.currentUser)
             }
             operation.completionBlock = {
                 print("getCurrentUser finished")
