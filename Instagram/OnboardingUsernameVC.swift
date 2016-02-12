@@ -13,8 +13,8 @@ class OnboardingUsernameVC: UIViewController {
         
         guard let aliasText = usernameLoginTextField.text else { return }
         
-        CloudManager.sharedManager.currentUser.alias = aliasText
-        CloudManager.sharedManager.currentUser.saveRecord(inDatabase: CloudManager.sharedManager.publicDatabase) { 
+        CloudManager.sharedManager.currentUser?.alias = aliasText
+        CloudManager.sharedManager.currentUser?.saveRecord(inDatabase: CloudManager.sharedManager.publicDatabase) {
             NSOperationQueue.mainQueue().addOperationWithBlock {
                 self.performSegueWithIdentifier("onboardingProfilePicSegue", sender: nil)
             }

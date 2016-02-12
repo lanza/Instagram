@@ -5,7 +5,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // CloudKit
     let manager = CloudManager.sharedManager
-    var user: User!
+    var user: User?
     
     // shows a list of notifications
     @IBOutlet weak var tableView: UITableView!
@@ -56,13 +56,15 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func getLikesAndComments() {
+        guard let user = self.user else { return }
         if !currentlyWaitingForEitherToReturn {
             self.likesAndComments = []
+            self.tableView.reloadData()
         }
         if !currentlyWaitingForGetLikesToReturn {
-            likes = []
+            self.tableView.reloadData()
             self.currentlyWaitingForGetLikesToReturn = true
-            CloudManager.sharedManager.getLikesForUser(CloudManager.sharedManager.currentUser) { (likes, error) -> () in
+            CloudManager.sharedManager.getLikesForUser(user) { (likes, error) -> () in
                 if let error = error {
                     print(error)
                 }

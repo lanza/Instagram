@@ -15,7 +15,7 @@ class CloudManager {
     var delegate: CloudManagerDelegate?
     
     var allUsers = [User]()
-    var currentUser = User()
+    var currentUser: User!
     var followings = [User]() {
         didSet {
             delegate?.cloudManager(self, gotFollowings: self.followings)

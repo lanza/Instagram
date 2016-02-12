@@ -91,7 +91,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         cell.descriptionLabel.text = post.description
         
         let formatter = NSDateFormatter()
-        formatter.dateStyle = .ShortStyle
+        formatter.dateStyle = .NoStyle
         formatter.timeStyle = .ShortStyle
         cell.timeStamp.text = formatter.stringFromDate(post.postTime)
         

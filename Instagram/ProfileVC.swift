@@ -5,7 +5,7 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     // CloudKit
     let manager = CloudManager.sharedManager
     var posts = [Post]()
-    var user: User!
+    var user: User?
     var userIsFriend = false
     
     // storyboard
@@ -42,12 +42,13 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     func setViewsToUser() {
         self.postsNumberLabel.text  = "\(self.posts.count)"
-        self.usernameTextView.text = self.user.alias
-        self.imageView.image = self.user.avatar?.circle
+        self.usernameTextView.text = self.user?.alias
+        self.imageView.image = self.user?.avatar?.circle
     }
     
     var currentlyWaitingForGetPostsToReturn = false
     func getPosts() {
+        guard let user = user else { return }
         if !currentlyWaitingForGetPostsToReturn {
             self.posts = []
             self.collectionView.reloadData()
@@ -74,7 +75,15 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     func cloudManager(cloudManager: CloudManager, gotUserPost post: Post?) {
         guard let post = post else { return }
         self.posts.append(post)
+        self.posts.sortInPlace { (postOne, postTwo) -> Bool in
+            if (postOne.postTime.compare(postTwo.postTime) == .OrderedDescending) {
+                return true
+            } else {
+                return false
+            }
+        }
         NSOperationQueue.mainQueue().addOperationWithBlock {
+            
             self.collectionView.reloadData()
             self.setViewsToUser()
         }
