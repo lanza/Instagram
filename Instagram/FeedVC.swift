@@ -79,6 +79,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         cell.userFullNameLabel.text = post.posterName
         cell.postImageView.image = post.image
         cell.descriptionLabel.text = post.description
+
+        if post.likersAliases.contains(CloudManager.sharedManager.currentUser.alias) {
+            cell.likeButtonImageView.imageView?.image = UIImage(named: "liked")
+        } else {
+            cell.likeButtonImageView.imageView?.image = UIImage(named: "like")
+        }
         
         let formatter = NSDateFormatter()
         formatter.dateStyle = .NoStyle

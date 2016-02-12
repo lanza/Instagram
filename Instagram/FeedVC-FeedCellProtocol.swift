@@ -12,6 +12,9 @@ extension FeedVC: FeedCellDelegate {
         
         if !post.likersAliases.contains(manager.currentUser.alias) {
             post.likersAliases.append(manager.currentUser.alias)
+            
+            feedCell.likeButtonImageView.imageView?.image = UIImage(named: "liked")
+            
             manager.addLike(toPost: post)
             post.saveRecord(inDatabase: manager.publicDatabase) { () -> () in
                 print("like added to post")
