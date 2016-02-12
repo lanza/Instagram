@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window!.rootViewController = tbc
         } else {
             let storyBoard = UIStoryboard(name: "Onboarding", bundle: nil)
-            let ouvc = storyBoard.instantiateViewControllerWithIdentifier("OnboardingVC")
-            self.window!.rootViewController = ouvc
+            let nc = storyBoard.instantiateInitialViewController() as! UINavigationController
+            self.window!.rootViewController = nc
         }
         self.window!.makeKeyAndVisible()
         return true

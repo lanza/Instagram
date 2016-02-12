@@ -10,8 +10,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     var singlePost: Post?
     var hidingNavBarManager: HidingNavigationBarManager?
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,7 +17,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         tableView.rowHeight = UITableViewAutomaticDimension
         setUpUI()
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
-        
         
         if let _ = singlePost {
             self.navigationItem.titleView = nil
@@ -29,7 +26,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         tableView.estimatedRowHeight = 500
         tableView.rowHeight = UITableViewAutomaticDimension
     }
-
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -41,18 +38,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         hidingNavBarManager?.viewWillDisappear(animated)
     }
     
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.currentlyWaitingForPosts = false
         
         manager.delegate = self
         self.getPostsOfFollowings()
         hidingNavBarManager?.viewWillAppear(animated)
     }
-    var currentlyWaitingForPosts = false
-    
     
     func setUpPullToRefresh() {
         let refreshControl = UIRefreshControl()
@@ -65,13 +57,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
     }
     
     func getPostsOfFollowings() {
-        if !currentlyWaitingForPosts {
-            currentlyWaitingForPosts = true
-            self.posts = []
-            tableView.reloadData()
-            manager.getFeedPosts { (post, error) in
-                self.currentlyWaitingForPosts = false
-            }
+        guard let _ = CloudManager.sharedManager.currentUser else { return }
+        self.posts = []
+        tableView.reloadData()
+        manager.getFeedPosts { (post, error) in
+            CloudManager.sharedManager.currentlyGettingFeedPosts = false    
         }
     }
     
@@ -143,10 +133,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         }
     }
     
-    
-    func cloudManager(cloudManager: CloudManager, gotUser user: User?) {
-        
-    }
+    func cloudManager(cloudManager: CloudManager, gotUser user: User?) {}
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
         getPostsOfFollowings()
     }

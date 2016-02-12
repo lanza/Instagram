@@ -6,7 +6,7 @@ class OnboardingUsernameVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUpUI()
     }
     
     @IBAction func onLoginButtonTapped(sender: UIButton) {

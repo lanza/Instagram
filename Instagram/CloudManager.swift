@@ -95,8 +95,11 @@ class CloudManager {
         publicDatabase.addOperation(operation)
     }
     
+    var currentlyGettingFeedPosts = false
     func getFeedPosts(withCompletionHandler completionHandler: (([Post]?,ErrorType?) -> ())?) {
         guard followings.count > 0 else { return }
+        guard currentlyGettingFeedPosts == false else { return }
+        currentlyGettingFeedPosts = true
         func getUsersPosts(user: User, completion: (([Post]?,ErrorType?)->())?) {
             let reference = CKReference(record: user.record, action: .None)
             let predicate = NSPredicate(format: "Poster == %@", reference)
@@ -135,6 +138,9 @@ class CloudManager {
         operation.completionBlock = {
             print("got posts for user finished")
             completionHandler?(nil,nil)
+            if user === self.currentUser {
+                self.currentlyGettingFeedPosts = false
+            }
         }
         publicDatabase.addOperation(operation)
     }

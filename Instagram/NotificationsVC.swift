@@ -5,8 +5,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // CloudKit
     let manager = CloudManager.sharedManager
-    var user: User?
-    
+  
     // shows a list of notifications
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,11 +16,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         // set badge to # of objects in data array
-        self.updateTabBadge("\(likesAndComments.count)")
+        //        self.updateTabBadge("\(likesAndComments.count)")
         setUpUI()
     }
-    
-    
     
     var currentlyWaitingForGetLikesToReturn: Bool = false {
         didSet (new) {
@@ -47,6 +44,12 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         get { return currentlyWaitingForGetCommentsToReturn || currentlyWaitingForGetLikesToReturn }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.currentlyWaitingForGetLikesToReturn = false
+        self.currentlyWaitingForGetCommentsToReturn = false
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.currentlyWaitingForGetLikesToReturn = false
@@ -56,13 +59,14 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func getLikesAndComments() {
-        guard let user = self.user else { return }
-        if !currentlyWaitingForEitherToReturn {
-            self.likesAndComments = []
-            self.tableView.reloadData()
-        }
+        guard let user = CloudManager.sharedManager.currentUser else { return }
+        guard currentlyWaitingForEitherToReturn == false else { return }
+        
+        self.likesAndComments = []
+        self.tableView.reloadData()
+        
         if !currentlyWaitingForGetLikesToReturn {
-            self.tableView.reloadData()
+            likes = []
             self.currentlyWaitingForGetLikesToReturn = true
             CloudManager.sharedManager.getLikesForUser(user) { (likes, error) -> () in
                 if let error = error {
@@ -143,20 +147,25 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return likesAndComments.count
     }
     
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
         return 60
     }
     
-    func updateTabBadge(value: String) {
-        (tabBarController!.tabBar.items![3]).badgeValue = value
-    }
     
-    func cloudManager(cloudManager: CloudManager, gotUser user: User?) {}
+    //    func updateTabBadge(value: String) {
+    //        (tabBarController!.tabBar.items![3]).badgeValue = value
+    //    }
+    
+    
+    func cloudManager(cloudManager: CloudManager, gotUser user: User?) {
+        getLikesAndComments()
+    }
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?) {
         getLikesAndComments()
     }

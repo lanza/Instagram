@@ -1,4 +1,5 @@
 import UIKit
+import CloudKit
 
 class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CloudManagerDelegate {
     
@@ -44,6 +45,9 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         self.postsNumberLabel.text  = "\(self.posts.count)"
         self.usernameTextView.text = self.user?.alias
         self.imageView.image = self.user?.avatar?.circle
+        guard let followings = self.user?.record.objectForKey("Followings") as? [CKReference] else { return }
+        self.followingNumberLabel.text = String(followings.count)
+        self.followersNumberLabel.text = String(followings.count)
     }
     
     var currentlyWaitingForGetPostsToReturn = false
