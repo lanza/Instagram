@@ -110,7 +110,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 70
+        return 60
     }
     
     func updateTabBadge(value: String) {
