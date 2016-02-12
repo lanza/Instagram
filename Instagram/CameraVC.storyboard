@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ho3-y0-rsz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ho3-y0-rsz">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -21,18 +21,29 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="y1B-en-5Bc">
                                 <rect key="frame" x="-4" y="64" width="328" height="455"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wce-9U-DTE">
-                                        <rect key="frame" x="0.0" y="0.0" width="328" height="228"/>
-                                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Take Photo"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wce-9U-DTE">
+                                        <rect key="frame" x="0.0" y="0.0" width="328" height="226"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="   Take Photo" image="takephoto">
+                                            <color key="titleColor" red="0.2196078431372549" green="0.36862745098039218" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="onTakePhotoButtonTapped:" destination="ocI-bn-exh" eventType="touchUpInside" id="dYS-4g-zZx"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmi-N9-Iwh">
-                                        <rect key="frame" x="0.0" y="228" width="328" height="228"/>
-                                        <color key="backgroundColor" red="0.66402243585897436" green="0.66402243585897436" blue="0.66402243585897436" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Choose Photo"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J6W-gq-Mtr">
+                                        <rect key="frame" x="0.0" y="226" width="328" height="3"/>
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="3" id="i5W-M5-p6y"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmi-N9-Iwh">
+                                        <rect key="frame" x="0.0" y="229" width="328" height="226"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="   Pick Photo" image="choosephoto">
+                                            <color key="titleColor" red="0.21568627450980393" green="0.35686274509803922" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="onChoosePhotoButtonTapped:" destination="ocI-bn-exh" eventType="touchUpInside" id="f4p-f1-kGA"/>
                                         </connections>
@@ -45,6 +56,9 @@
                                     <constraint firstItem="Nmi-N9-Iwh" firstAttribute="leading" secondItem="y1B-en-5Bc" secondAttribute="leading" id="XxS-XN-cMz"/>
                                     <constraint firstAttribute="trailing" secondItem="Nmi-N9-Iwh" secondAttribute="trailing" id="hqe-vm-gZF"/>
                                     <constraint firstAttribute="trailing" secondItem="Wce-9U-DTE" secondAttribute="trailing" id="mE7-rU-lRG"/>
+                                    <constraint firstItem="J6W-gq-Mtr" firstAttribute="centerX" secondItem="y1B-en-5Bc" secondAttribute="centerX" id="pAS-CF-tsJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="J6W-gq-Mtr" secondAttribute="trailing" id="plx-UC-VvW"/>
+                                    <constraint firstItem="J6W-gq-Mtr" firstAttribute="leading" secondItem="y1B-en-5Bc" secondAttribute="leading" id="sBz-Zm-vDw"/>
                                     <constraint firstItem="Wce-9U-DTE" firstAttribute="height" secondItem="Nmi-N9-Iwh" secondAttribute="height" id="zPv-Gg-QKB"/>
                                 </constraints>
                             </stackView>
@@ -160,7 +174,7 @@
         <scene sceneID="rD0-Ra-zFj">
             <objects>
                 <navigationController storyboardIdentifier="CameraNav" automaticallyAdjustsScrollViewInsets="NO" id="ho3-y0-rsz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Camera" image="2FB1CAB3-0D0A-4BE2-9568-69D00DF7F977" id="flK-h4-raz"/>
+                    <tabBarItem key="tabBarItem" title="Camera" image="6F5D381C-8C30-4AAD-9424-786F9EF3C9E2" id="flK-h4-raz"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -179,7 +193,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2FB1CAB3-0D0A-4BE2-9568-69D00DF7F977" width="25" height="25">
+        <image name="6F5D381C-8C30-4AAD-9424-786F9EF3C9E2" width="25" height="25">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -290,5 +304,7 @@ oACiAKQApgCoAK0AxADGAMgXnhejF64XtxfKF84X2RfiF+cX7xfyF/cYBhgKGBEYGRgmGCsYLRgvGDQY
 PBg/GEQYTBhPGGEYZBhpAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAGGs
 </mutableData>
         </image>
+        <image name="choosephoto" width="160" height="160"/>
+        <image name="takephoto" width="160" height="140"/>
     </resources>
 </document>
