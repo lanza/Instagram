@@ -330,8 +330,14 @@
 				TargetAttributes = {
 					D8EDC8A41C640ACE00FF79E3 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 5VAY37GE36;
+						DevelopmentTeam = 72MNHNDUNH;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};

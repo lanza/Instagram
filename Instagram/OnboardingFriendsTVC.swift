@@ -1,4 +1,5 @@
 import UIKit
+import CloudKit
 
 class OnboardingFriendsTVC: UIViewController {
     
@@ -19,6 +20,19 @@ class OnboardingFriendsTVC: UIViewController {
         presentViewController(tbc, animated: true, completion: nil)
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(true, forKey: "didOnboard")
+    }
+    
+    func subscribeToSelf() {
+        let userRecord = CloudManager.sharedManager.currentUser.record
+        let reference = CKReference(record: userRecord, action: .None)
+        let predicate = NSPredicate(format: "Poster == %@", reference)
+        
+        let subscription = CKSubscription(recordType: "Post", predicate: predicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
+        CloudManager.sharedManager.publicDatabase.saveSubscription(subscription) { (subscription, error) in
+            if let error = error {
+                print(error)
+            }
+        }
     }
     
  

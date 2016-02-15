@@ -1,4 +1,5 @@
 import UIKit
+import CloudKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChecksError, CloudManagerDelegate {
     @IBOutlet var tableView: UITableView!
@@ -61,7 +62,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         self.posts = []
         tableView.reloadData()
         manager.getFeedPosts { (post, error) in
-            CloudManager.sharedManager.currentlyGettingFeedPosts = false    
+            CloudManager.sharedManager.currentlyGettingFeedPosts = false
         }
     }
     
@@ -72,14 +73,17 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! FeedCell
         let post = singlePost ?? posts[indexPath.row]
         
+        
         cell.delegate = self
         
         cell.avatarImageView.image = post.posterAvatar?.circle
         
         cell.userFullNameLabel.text = post.posterName
         cell.postImageView.image = post.image
-        cell.descriptionLabel.text = post.description
-
+        let descriptionLabelText = NSMutableAttributedString(string: post.posterName + " ", attributes: [NSForegroundColorAttributeName : UIColor.instagramColor()])
+        descriptionLabelText.appendAttributedString(NSAttributedString(string: post.description))
+        cell.descriptionLabel.attributedText = descriptionLabelText
+        
         if post.likersAliases.contains(CloudManager.sharedManager.currentUser.alias) {
             cell.likeButtonImageView.imageView?.image = UIImage(named: "liked")
         } else {
@@ -91,30 +95,62 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Chec
         formatter.timeStyle = .ShortStyle
         cell.timeStamp.text = formatter.stringFromDate(post.postTime)
         
-        var likersText = ""
-        for liker in post.likersAliases {
-            if likersText != "" {
-                likersText.appendContentsOf(", ")
+        cell.likesLabel.text = post.likersAliases.joinWithSeparator(", ")
+        
+        
+        getComments(forPost: post) { (comments) in
+            let commentStrings = comments.map { (comment) -> NSMutableAttributedString in
+                let lineString = NSMutableAttributedString()
+                let postName = NSAttributedString(string: comment.commenterAlias + " ", attributes: [NSForegroundColorAttributeName : UIColor.instagramColor()])
+                let commentString = NSAttributedString(string: comment.commentString)
+                lineString.appendAttributedString(postName)
+                lineString.appendAttributedString(commentString)
+                return lineString
             }
-            likersText.appendContentsOf(liker)
+            let commentString = commentStrings.reduce (NSMutableAttributedString(), combine: { (result, nextString) -> NSMutableAttributedString in
+                if !result.isEqual(NSMutableAttributedString()) {
+                    result.appendAttributedString(NSAttributedString(string: "\n"))
+                }
+                result.appendAttributedString(nextString)
+                return result
+                })
+                cell.friendsCommentsLabel.attributedText = commentString
         }
         
-        var commentsText = ""
-        for comment in post.commentStrings {
-            if commentsText != "" {
-                commentsText.appendContentsOf("\n")
-            }
-            commentsText.appendContentsOf(comment)
-        }
-        
-        cell.likesLabel.text = likersText
-        cell.friendsCommentsLabel.text = commentsText
         
         cell.friendsCommentsLabel.sizeToFit()
         cell.userFullNameLabel.text = post.posterName
         cell.sizeToFit()
         
         return cell
+    }
+    
+    func getComments(forPost post: Post, withCompletionHandler handler: (comments: [Comment]) -> ()) {
+        var comments = [Comment]()
+        
+        let reference = CKReference(record: post.record, action: .None)
+        let predicate = NSPredicate(format: "Post == %@", reference)
+        let query = CKQuery(recordType: "Comment", predicate: predicate)
+        let operation = CKQueryOperation(query: query)
+        operation.qualityOfService = .UserInteractive
+        operation.recordFetchedBlock = { record in
+            comments.append(Comment(fromRecord: record))
+        }
+        
+        operation.completionBlock = {
+            comments.sortInPlace { (first, second) -> Bool in
+                guard let firstTime = first.record.creationDate, secondTime = second.record.creationDate else { return true }
+                if firstTime.compare(secondTime) == .OrderedDescending {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                handler(comments: comments)
+            }
+        }
+        CloudManager.sharedManager.publicDatabase.addOperation(operation)
     }
     
     

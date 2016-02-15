@@ -3,6 +3,7 @@ import CloudKit
 
 extension CloudManager {
     
+    
     func getCommentsForUser(user: User, withCompletionHandler completionHandler: ([Comment]?,ErrorType?) -> ()) {
         var comments = [Comment]()
         

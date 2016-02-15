@@ -12,7 +12,8 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     // storyboard
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var usernameTextView: UITextView!
+    @IBOutlet var userInfoLabel: UILabel!
+    
     @IBOutlet weak var postsNumberLabel: UILabel!
     @IBOutlet weak var followersNumberLabel: UILabel!
     @IBOutlet weak var followingNumberLabel: UILabel!
@@ -22,6 +23,22 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         self.user = CloudManager.sharedManager.currentUser
     }
     
+    @IBAction func editOrFollowButtonTapped(sender: UIButton) {
+        if userIsFriend {
+            guard let user = user else { return }
+            let reference = CKReference(record: user.record, action: .None)
+            let currentUser = CloudManager.sharedManager.currentUser
+            guard var followings = currentUser.record.objectForKey("Followings") as? [CKReference] else { return }
+            followings.append(reference)
+            currentUser.record.setObject(followings, forKey: "Followings")
+            currentUser.saveRecord(inDatabase: CloudManager.sharedManager.publicDatabase, withCompletionHandler: nil)
+        } else {
+            //do something eventually
+        }
+    }
+    
+    
+    @IBOutlet var editOrFollowButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()       
         
@@ -39,11 +56,25 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         }
         setViewsToUser()
         getPosts()
+        
+        if self.userIsFriend {
+            guard let followings = CloudManager.sharedManager.currentUser.record.objectForKey("Followings") as? [CKReference] else { return }
+            let followingsIDs = followings.map { (reference) -> String in
+                return reference.recordID.recordName
+            }
+            guard let user = user else { return }
+            if followingsIDs.contains(user.record.recordID.recordName) {
+                self.editOrFollowButton.enabled = false
+                self.editOrFollowButton.setTitle("Following", forState: .Normal)
+            }
+        } else {
+            self.editOrFollowButton.setTitle("Edit Profile", forState: .Normal)
+        }
     }
     
     func setViewsToUser() {
         self.postsNumberLabel.text  = "\(self.posts.count)"
-        self.usernameTextView.text = self.user?.alias
+        self.userInfoLabel.text = self.user?.alias
         self.imageView.image = self.user?.avatar?.circle
         guard let followings = self.user?.record.objectForKey("Followings") as? [CKReference] else { return }
         self.followingNumberLabel.text = String(followings.count)

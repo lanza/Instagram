@@ -2,7 +2,7 @@ import UIKit
 import CloudKit
 
 protocol CloudManagerDelegate {
-
+    
     func cloudManager(cloudManager: CloudManager, gotFollowings followings: [User]?)
     func cloudManager(cloudManager: CloudManager, gotAllUsers allUsers: [User]?)
     func cloudManager(cloudManager: CloudManager, gotFeedPost post: Post?)
@@ -28,17 +28,39 @@ class CloudManager {
     let container: CKContainer
     let publicDatabase: CKDatabase
     
+    
     private init() {
         container = CKContainer.defaultContainer()
         publicDatabase = container.publicCloudDatabase
+        print("getCurrentUser starting")
         getCurrentUser { (user, error) in
             self.getFollowingsForUser(self.currentUser) { (users, error) in
                 self.getFeedPosts(withCompletionHandler: nil)
+//                self.followings.forEach({ (user) in
+//                    self.subscribeToFollowing(user, withCompletionHandler: nil)
+//                })
             }
             self.checkIfInAllUsers()
         }
     }
+    
+    func subscribeToFollowing(following: User, withCompletionHandler completionHandler: (()->())? ) {
         
+        let reference = CKReference(record: following.record, action: .None)
+        let predicate = NSPredicate(format: "Poster == %@", reference)
+        let subscription = CKSubscription(recordType: "Post", predicate: predicate, options: .FiresOnRecordCreation)
+        let notification = CKNotificationInfo()
+        notification.alertBody = "Somebody posted."
+        notification.soundName = UILocalNotificationDefaultSoundName
+        subscription.notificationInfo = notification
+        
+        publicDatabase.saveSubscription(subscription) { (subscription, error) -> Void in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+    
     func getAllUsers(withPredicate: NSPredicate, andCompletionHandler completionHandler: (([User]?,ErrorType?) -> ())? ) {
         
         let predicate = NSPredicate(value: true)
@@ -100,10 +122,12 @@ class CloudManager {
         guard followings.count > 0 else { return }
         guard currentlyGettingFeedPosts == false else { return }
         currentlyGettingFeedPosts = true
+        print("gettingFeedPosts")
         func getUsersPosts(user: User, completion: (([Post]?,ErrorType?)->())?) {
             let reference = CKReference(record: user.record, action: .None)
             let predicate = NSPredicate(format: "Poster == %@", reference)
             let query = CKQuery(recordType: "Post", predicate: predicate)
+            //query.sortDescriptors = [NSSortDescriptor(key: "Created", ascending: false)]
             let operation = CKQueryOperation(query: query)
             operation.qualityOfService = .UserInteractive
             operation.recordFetchedBlock = { record in
@@ -116,7 +140,7 @@ class CloudManager {
                 completion?(nil,nil)
             }
             publicDatabase.addOperation(operation)
-        }     
+        }
         
         for user in followings {
             getUsersPosts(user, completion: nil)

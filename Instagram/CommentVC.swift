@@ -4,7 +4,7 @@ class CommentVC: UIViewController {
     
     var post: Post!
     
-    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var commentField: UITextField!
     
     override func viewDidLoad() {
         setUpUI()
@@ -19,7 +19,7 @@ class CommentVC: UIViewController {
     }
     
     @IBAction func onSaveButtonTapped(sender: UIBarButtonItem) {
-        guard let commentText = commentTextView.text else { return }
+        guard let commentText = commentField.text else { return }
         saveComment(commentText)
         let nvc = self.navigationController
         nvc?.popViewControllerAnimated(true)

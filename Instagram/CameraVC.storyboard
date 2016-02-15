@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ho3-y0-rsz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ho3-y0-rsz">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -110,21 +110,6 @@
                                     <rect key="frame" x="0.0" y="58" width="568" height="568"/>
                                 </variation>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kNw-18-vE0" userLabel="TextView">
-                                <rect key="frame" x="16" y="127" width="288" height="155"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="155" id="Bax-5w-Z8r"/>
-                                </constraints>
-                                <string key="text">
-add description and #hashtags </string>
-                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="386" width="568" height="58"/>
-                                </variation>
-                            </textView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nD-6I-oTJ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                 <constraints>
@@ -155,6 +140,11 @@ add description and #hashtags </string>
                                     <action selector="onAddTextButtonTapped:" destination="4PD-Zc-h4i" eventType="touchUpInside" id="2aP-lh-qUT"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="add comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d3M-Xk-sAP">
+                                <rect key="frame" x="20" y="335" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -162,16 +152,12 @@ add description and #hashtags </string>
                             <constraint firstAttribute="trailing" secondItem="OX7-6H-VXQ" secondAttribute="trailing" id="3Ih-vg-W4x"/>
                             <constraint firstAttribute="trailing" secondItem="7nD-6I-oTJ" secondAttribute="trailing" id="3qD-XP-Oaj"/>
                             <constraint firstItem="6XK-Xb-ng6" firstAttribute="top" secondItem="OX7-6H-VXQ" secondAttribute="bottom" id="4jA-wV-6kS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kNw-18-vE0" secondAttribute="trailing" id="C5h-WN-doO"/>
                             <constraint firstItem="7nD-6I-oTJ" firstAttribute="top" secondItem="o1Y-JE-9j3" secondAttribute="top" id="EgU-lg-VDU"/>
                             <constraint firstItem="7nD-6I-oTJ" firstAttribute="leading" secondItem="o1Y-JE-9j3" secondAttribute="leading" id="Op3-SM-2Ws"/>
                             <constraint firstItem="OX7-6H-VXQ" firstAttribute="leading" secondItem="o1Y-JE-9j3" secondAttribute="leading" id="Zgw-cS-n1j"/>
                             <constraint firstItem="wgL-Fd-yys" firstAttribute="top" secondItem="7nD-6I-oTJ" secondAttribute="bottom" id="c5o-sZ-Q0T"/>
-                            <constraint firstItem="kNw-18-vE0" firstAttribute="centerY" secondItem="wgL-Fd-yys" secondAttribute="centerY" id="hhg-cA-AIb"/>
                             <constraint firstItem="OX7-6H-VXQ" firstAttribute="top" secondItem="wgL-Fd-yys" secondAttribute="bottom" id="hvh-Qi-PSi"/>
                             <constraint firstItem="wgL-Fd-yys" firstAttribute="leading" secondItem="o1Y-JE-9j3" secondAttribute="leading" id="nBe-4V-MtH"/>
-                            <constraint firstItem="kNw-18-vE0" firstAttribute="centerX" secondItem="wgL-Fd-yys" secondAttribute="centerX" id="sO7-cq-B94"/>
-                            <constraint firstItem="kNw-18-vE0" firstAttribute="leading" secondItem="o1Y-JE-9j3" secondAttribute="leadingMargin" id="uI3-e3-g2n"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -181,7 +167,7 @@ add description and #hashtags </string>
                         <outlet property="imageView" destination="wgL-Fd-yys" id="ODA-Z4-zPL"/>
                         <outlet property="navBar" destination="7nD-6I-oTJ" id="59A-lw-7Gh"/>
                         <outlet property="shareButton" destination="kyx-sV-eCJ" id="fDV-m4-xpV"/>
-                        <outlet property="textView" destination="kNw-18-vE0" id="OAG-8d-GTQ"/>
+                        <outlet property="textField" destination="d3M-Xk-sAP" id="0AX-f3-Tdl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSs-Ak-ZDD" userLabel="First Responder" sceneMemberID="firstResponder"/>

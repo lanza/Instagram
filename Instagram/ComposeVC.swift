@@ -5,10 +5,10 @@ class ComposeVC: UIViewController {
     // storyboard connections
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var addTextButton: UIButton!
+    @IBOutlet var textField: UITextField!
 
     // properties
     var usersImage: UIImage?
@@ -19,7 +19,7 @@ class ComposeVC: UIViewController {
 
         imageView.image = usersImage
         
-        textView.hidden = true
+        textField.hidden = true
         
         cancelButton.tintColor = UIColor.whiteColor()
         shareButton.tintColor = UIColor.whiteColor()
@@ -27,19 +27,21 @@ class ComposeVC: UIViewController {
 
         self.navBar.barTintColor = UIColor.instagramColor()
         
+        
+        
     }
     
     @IBAction func onAddTextButtonTapped(sender: AnyObject) {
         
-        textView.hidden = false
-        textView.becomeFirstResponder()
+        textField.hidden = false
+        textField.becomeFirstResponder()
         
     }
     
     @IBAction func onShareTapped(sender: AnyObject) {
         
         guard let imageURL = imageURL else { return }
-        if let text = textView.text {
+        if let text = textField.text {
             CloudManager.sharedManager.postImage(imageURL, description: text)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
